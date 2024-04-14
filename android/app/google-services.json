@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "813888667559",
+    "project_id": "turf-booking-application-spot",
+    "storage_bucket": "turf-booking-application-spot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813888667559:android:1a5fd421edff241523c082",
+        "android_client_info": {
+          "package_name": "amina.admin_side_of_turf_booking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzt9ReBp-9zjT-n8oYo7N0f_KNgKLiNFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813888667559:android:6113d3d90a80775123c082",
+        "android_client_info": {
+          "package_name": "amina.owners_side_of_turf_booking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzt9ReBp-9zjT-n8oYo7N0f_KNgKLiNFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813888667559:android:d715dbf3fcd38bae23c082",
+        "android_client_info": {
+          "package_name": "amina.users_side_of_turf_booking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzt9ReBp-9zjT-n8oYo7N0f_KNgKLiNFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
