@@ -36,6 +36,7 @@ class LoginScreen extends StatelessWidget {
                     builder: (context) => const MyBottomNavigationBar()));
               } else if (state is SigninError) {
                 // Show error message
+                Navigator.of(context).pop();
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(SnackBar(content: Text(state.error)));

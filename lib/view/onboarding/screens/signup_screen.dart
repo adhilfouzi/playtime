@@ -36,6 +36,7 @@ class SignupScreen extends StatelessWidget {
             child: BlocListener<SignupBloc, SignupState>(
               listener: (context, state) {
                 if (state is SignupError) {
+                  Navigator.of(context).pop();
                   CustomSnackBar.showError(context, state.error);
                 } else if (state is SignupSuccess) {
                   Navigator.of(context).push(MaterialPageRoute(
