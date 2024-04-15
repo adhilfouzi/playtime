@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'model/backend/repositories/firebase_options.dart';
-import 'view/onboarding/screens/splash_screen.dart';
+import 'view/course/head/bottom_navigationbar_widget.dart';
 import 'view_model/bloc/emailverification/emailverification_bloc.dart';
 import 'view_model/bloc/signin_bloc/signin_bloc.dart';
 import 'view_model/bloc/signup_bloc/signup_bloc.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: 'Poppins',
         ),
-        home: const SplashScreen(),
+        home: const MyBottomNavigationBar(),
       ),
     );
   }
