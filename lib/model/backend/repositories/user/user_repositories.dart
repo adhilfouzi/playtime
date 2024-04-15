@@ -13,4 +13,23 @@ class UserRepository {
       throw ExceptionHandler.handleException(e);
     }
   }
+
+  /// Function to fetch user data from Firestore by user ID
+  Future<UserModel> getUserById(String userId) async {
+    try {
+      DocumentSnapshot userSnapshot =
+          await _db.collection("Users").doc(userId).get();
+
+      if (userSnapshot.exists) {
+        Map<String, dynamic> userData =
+            userSnapshot.data() as Map<String, dynamic>;
+
+        return UserModel.fromJson(userData);
+      } else {
+        throw Exception('User not found');
+      }
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
 }

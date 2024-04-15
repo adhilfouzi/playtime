@@ -60,13 +60,17 @@ class OnboardingScreen extends StatelessWidget {
                     children: [
                       const Spacer(),
                       Button().whiteButton('Sign up', context, () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignupScreen()));
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => SignupScreen()),
+                            (route) => false);
                       }),
                       const Spacer(),
                       Button().whiteButton('Login', context, () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()),
+                            (route) => false);
                       }),
                       const Spacer(),
                     ],

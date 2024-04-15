@@ -29,8 +29,7 @@ class SignupScreen extends StatelessWidget {
     final checkboxCubit = context.read<CheckboxCubit>();
     return SafeArea(
       child: Scaffold(
-        appBar: const IntroAppbar(
-            needLeading: true, actions: [], titleText: 'Sign up'),
+        appBar: const IntroAppbar(actions: [], titleText: 'Sign up'),
         body: SingleChildScrollView(
           child: Form(
             key: signupFormKey,
@@ -113,11 +112,12 @@ class SignupScreen extends StatelessWidget {
                           number: phoneNumberTextEditingController.text.trim(),
                           email: emailTextEditingController.text.trim(),
                           password: passwordTextEditingController.text.trim(),
-                          profile: '');
+                          profile: '',
+                          isUser: true);
 
                       context
                           .read<SignupBloc>()
-                          .add(SignupRequested(user: user));
+                          .add(SignupRequested(user: user, context: context));
                     }
                   }),
                   SizedBox(height: height * 0.02),

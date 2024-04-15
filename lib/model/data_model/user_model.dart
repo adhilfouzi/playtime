@@ -6,6 +6,7 @@ class UserModel {
   final String email;
   final String password;
   final String profile;
+  final bool isUser;
 
   UserModel({
     required this.name,
@@ -13,8 +14,20 @@ class UserModel {
     required this.email,
     required this.password,
     required this.profile,
+    required this.isUser,
   });
 
+  // Factory constructor to create UserModel from JSON data
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      name: json['name'],
+      number: json['number'],
+      email: json['email'],
+      password: json['password'],
+      profile: json['profile'],
+      isUser: json['isUser'],
+    );
+  }
   Map<String, dynamic> toJson() {
     return {
       'name': name,
@@ -22,6 +35,7 @@ class UserModel {
       'email': email,
       'password': password,
       'profile': profile,
+      'isUser': isUser,
     };
   }
 

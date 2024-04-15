@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../model/controller/validator.dart';
 import '../../../utils/const/image_name.dart';
 import '../../../utils/portion/button.dart';
@@ -8,6 +7,7 @@ import '../../../utils/portion/textfield.dart';
 import '../../../view_model/bloc/signin_bloc/signin_bloc.dart';
 import '../../course/head/bottom_navigationbar_widget.dart';
 import '../utils/appbar.dart';
+import 'forget/forgetpassword/emailverification.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -24,7 +24,6 @@ class LoginScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: const IntroAppbar(
-          needLeading: true,
           actions: [],
           titleText: 'Log in',
         ),
@@ -65,13 +64,18 @@ class LoginScreen extends StatelessWidget {
                     controller: passwordTextEditingController,
                   ),
                   SizedBox(height: height * 0.06),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EmailVerificationScreen()));
+                      },
+                      child: const Text("Forget password")),
                   Button().mainButton('Log in', context, () {
                     if (!loginFormKey.currentState!.validate()) return;
                     final email = emailTextEditingController.text;
                     final password = passwordTextEditingController.text;
-                    context
-                        .read<SigninBloc>()
-                        .add(SigninRequested(email: email, password: password));
+                    context.read<SigninBloc>().add(SigninRequested(
+                        email: email, password: password, context: context));
                   }),
                   SizedBox(height: height * 0.025),
                   const Text('or'),
