@@ -10,7 +10,7 @@ class IntroAppbar extends StatelessWidget implements PreferredSizeWidget {
   final PreferredSizeWidget? bottom;
 
   const IntroAppbar({
-    Key? key,
+    super.key,
     required this.actions,
     required this.titleText,
     this.backgroundColor,
