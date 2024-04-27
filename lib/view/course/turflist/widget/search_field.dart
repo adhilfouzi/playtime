@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../view_model/bloc/turflist/turflist_bloc.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({super.key});
@@ -21,8 +24,8 @@ class SearchField extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        onChanged: (value) {
-          // Add your search logic here
+        onChanged: (query) {
+          BlocProvider.of<TurflistBloc>(context).add(SearchTurf(query));
         },
       ),
     );

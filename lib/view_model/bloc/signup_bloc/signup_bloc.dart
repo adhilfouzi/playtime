@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
-import '../../../model/backend/repositories/user/user_repositories.dart';
+import '../../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../../model/data_model/user_model.dart';
 import '../../../utils/portion/loadingpopup.dart';
 
@@ -25,14 +25,13 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       // Register user in the firebase Authentication & save user data in the firebase
 
       final userCredential = await AuthenticationRepository()
-          .registerWithEmailAndPassword(event.user.email, event.user.password);
+          .registerWithEmailAndPassword(event.user.email, event.password);
 
       // Save authenticated user data in the firebase firestore
       final newUser = UserModel(
           name: event.user.name,
           number: event.user.number,
           email: event.user.email,
-          password: event.user.password,
           profile: "",
           isUser: event.user.isUser);
       await UserRepository().saveUserRecord(newUser, userCredential.user!.uid);

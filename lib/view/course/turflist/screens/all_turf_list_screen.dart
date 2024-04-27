@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:users_side_of_turf_booking/view/course/turflist/widget/turflist.dart';
+import 'package:users_side_of_turf_booking/view_model/bloc/turflist/turflist_bloc.dart';
 
 import '../widget/filter_button.dart';
 import '../widget/search_field.dart';
-import '../widget/turf_list_item.dart';
 
 class AllTurfList extends StatelessWidget {
   const AllTurfList({super.key});
@@ -16,12 +18,9 @@ class AllTurfList extends StatelessWidget {
           FilterButton(),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10, // Replace with your actual list length
-        itemBuilder: (context, index) {
-          return TurfListItem(index: index);
-        },
-      ),
+      body: BlocProvider(
+          create: (context) => TurflistBloc()..add(FetchTurfList()),
+          child: const TurfListscreen()),
     );
   }
 }

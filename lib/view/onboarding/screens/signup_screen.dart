@@ -112,13 +112,14 @@ class SignupScreen extends StatelessWidget {
                           name: fullNameTextEditingController.text.trim(),
                           number: phoneNumberTextEditingController.text.trim(),
                           email: emailTextEditingController.text.trim(),
-                          password: passwordTextEditingController.text.trim(),
                           profile: '',
                           isUser: true);
 
-                      context
-                          .read<SignupBloc>()
-                          .add(SignupRequested(user: user, context: context));
+                      context.read<SignupBloc>().add(SignupRequested(
+                            user: user,
+                            context: context,
+                            password: passwordTextEditingController.text.trim(),
+                          ));
                     }
                   }),
                   SizedBox(height: height * 0.02),

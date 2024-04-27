@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../user/user_repositories.dart';
+import '../firestore/user_repositories.dart';
 import 'firebase_exceptionhandler.dart';
 
 class AuthenticationRepository {
   // static AuthenticationRepository get instance => Get.find();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? get authUser => _auth.currentUser;
 
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
@@ -23,7 +24,8 @@ class AuthenticationRepository {
         email: email,
         password: password,
       );
-      final user = await UserRepository().getUserById(userCredential.user!.uid);
+      final user =
+          await UserRepository().fetchUserdetails(userCredential.user!.uid);
 
       return user.isUser;
     } catch (e) {

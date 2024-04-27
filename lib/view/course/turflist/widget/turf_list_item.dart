@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../../model/data_model/owner_model.dart';
 
 class TurfListItem extends StatelessWidget {
-  final int index;
+  final OwnerModel turf;
 
   const TurfListItem({
     super.key,
-    required this.index,
+    required this.turf,
   });
 
   @override
@@ -29,25 +30,22 @@ class TurfListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          title: const Text(
-            'MTM Sports', // Replace with turf name
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+          title: Text(
+            turf.courtName, // Use turf name from OwnerModel
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Ponnani, Malappuram', // Replace with turf place
-                style: TextStyle(
-                  color: Colors.grey[600],
-                ),
+                turf.courtLocation, // Use turf location from OwnerModel
+                style: TextStyle(color: Colors.grey[600], fontSize: 14),
               ),
               const SizedBox(height: 4),
               Text(
-                '$index km', // Replace with distance
+                '${turf.openingTime} to ${turf.closingTime}', // Use turf distance from OwnerModel
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   color: Colors.grey[600],
                 ),
               ),

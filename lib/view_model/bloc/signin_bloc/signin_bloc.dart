@@ -17,17 +17,20 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
       SigninRequested event, Emitter<SigninState> emit) async {
     emit(SigninLoading());
     try {
+      log("SigninLoading");
       Navigator.of(event.context)
           .push(MaterialPageRoute(builder: (context) => const LoadingPopup()));
       bool isUser = await AuthenticationRepository()
           .signInWithEmailAndPassword(event.email, event.password);
       if (isUser) {
         emit(SigninSuccess());
+        log("SigninSuccess");
       } else {
         log("Some error happened");
       }
     } catch (e) {
       emit(SigninError(error: e.toString()));
+      log("SigninError");
     }
   }
 }
