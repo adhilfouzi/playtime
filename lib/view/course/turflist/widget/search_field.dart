@@ -13,17 +13,14 @@ class SearchField extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: height * 0.02,
-        horizontal: width * 0.02,
+        vertical: height * 0.0002,
+        horizontal: width * 0.002,
       ),
       child: TextFormField(
-        decoration: InputDecoration(
-          hintText: 'Search Turf ....',
-          prefixIcon: const Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
+        decoration: const InputDecoration(
+            hintText: 'Search Turf ....',
+            prefixIcon: Icon(Icons.search),
+            border: InputBorder.none),
         onChanged: (query) {
           BlocProvider.of<TurflistBloc>(context).add(SearchTurf(query));
         },

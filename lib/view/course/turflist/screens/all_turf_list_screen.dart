@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:users_side_of_turf_booking/view/course/turflist/widget/turflist.dart';
-import 'package:users_side_of_turf_booking/view_model/bloc/turflist/turflist_bloc.dart';
-
-import '../widget/filter_button.dart';
+import '../../../../view_model/bloc/turflist/turflist_bloc.dart';
 import '../widget/search_field.dart';
+import '../widget/turflist.dart';
 
 class AllTurfList extends StatelessWidget {
   const AllTurfList({super.key});
@@ -13,9 +11,10 @@ class AllTurfList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const SearchField(),
         actions: const [
-          FilterButton(),
+          // FilterButton(),
         ],
       ),
       body: BlocProvider(

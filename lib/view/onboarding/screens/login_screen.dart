@@ -89,8 +89,10 @@ class LoginScreen extends StatelessWidget {
                       const Text('Don’t have an account? '),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SignupScreen()));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) => SignupScreen()),
+                              (route) => false);
                         },
                         child: const Text('Sign up'),
                       ),

@@ -5,14 +5,14 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../../utils/const/icons_image.dart';
 import '../home/screens/home_screen.dart';
 import '../mybooking/mybooking_screen.dart';
-import '../profile/userprofle_screen.dart';
+import '../profile/screens/userprofle_screen.dart';
 import '../turflist/screens/all_turf_list_screen.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   const MyBottomNavigationBar({super.key});
 
   @override
-  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
+  State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
 }
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
