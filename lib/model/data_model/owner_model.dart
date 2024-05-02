@@ -16,6 +16,7 @@ class OwnerModel {
   String ownerFullName;
   String ownerPhoneNumber;
   String ownerEmailAddress;
+  bool is24h;
   bool isOwner;
   bool isRegistered;
 
@@ -33,25 +34,27 @@ class OwnerModel {
     required this.ownerFullName,
     required this.ownerPhoneNumber,
     required this.ownerEmailAddress,
+    required this.is24h,
     required this.isOwner,
     required this.isRegistered,
   });
 
   factory OwnerModel.fromJson(Map<String, dynamic> json) {
     return OwnerModel(
-      id: json['id'] ?? '',
-      courtName: json['courtName'] ?? '',
-      courtPhoneNumber: json['courtPhoneNumber'] ?? '',
-      courtEmailAddress: json['courtEmailAddress'] ?? '',
-      courtDescription: json['courtDescription'] ?? '',
-      openingTime: json['openingTime'] ?? '',
-      closingTime: json['closingTime'] ?? '',
-      courtLocation: json['courtLocation'] ?? '',
-      images: json['images'] ?? '',
-      ownerPhoto: json['ownerPhoto'] ?? '',
-      ownerFullName: json['ownerFullName'] ?? '',
-      ownerPhoneNumber: json['ownerPhoneNumber'] ?? '',
-      ownerEmailAddress: json['ownerEmailAddress'] ?? '',
+      id: json['id'] ?? "N/A",
+      courtName: json['courtName'] ?? "N/A",
+      courtPhoneNumber: json['courtPhoneNumber'] ?? "N/A",
+      courtEmailAddress: json['courtEmailAddress'] ?? "N/A",
+      courtDescription: json['courtDescription'] ?? "N/A",
+      openingTime: json['openingTime'] ?? "N/A",
+      closingTime: json['closingTime'] ?? "N/A",
+      courtLocation: json['courtLocation'] ?? "N/A",
+      images: json['images'] ?? "N/A",
+      ownerPhoto: json['ownerPhoto'] ?? "N/A",
+      ownerFullName: json['ownerFullName'] ?? "N/A",
+      ownerPhoneNumber: json['ownerPhoneNumber'] ?? "N/A",
+      ownerEmailAddress: json['ownerEmailAddress'] ?? "N/A",
+      is24h: json['is24h'] ?? false,
       isOwner: json['isOwner'] ?? false,
       isRegistered: json['isRegistered'] ?? false,
     );
@@ -71,6 +74,7 @@ class OwnerModel {
       ownerFullName: '',
       ownerPhoneNumber: '',
       ownerEmailAddress: '',
+      is24h: false,
       isOwner: false,
       isRegistered: false,
     );
@@ -78,19 +82,20 @@ class OwnerModel {
 
   factory OwnerModel.fromMap(Map<String, dynamic> map) {
     return OwnerModel(
-      id: map['id'] ?? '',
-      courtName: map['courtName'] ?? '',
-      courtPhoneNumber: map['courtPhoneNumber'] ?? '',
-      courtEmailAddress: map['courtEmailAddress'] ?? '',
-      courtDescription: map['courtDescription'] ?? '',
-      openingTime: map['openingTime'] ?? '',
-      closingTime: map['closingTime'] ?? '',
-      courtLocation: map['courtLocation'] ?? '',
-      images: map['images'] ?? '',
-      ownerPhoto: map['ownerPhoto'] ?? '',
-      ownerFullName: map['ownerFullName'] ?? '',
-      ownerPhoneNumber: map['ownerPhoneNumber'] ?? '',
-      ownerEmailAddress: map['ownerEmailAddress'] ?? '',
+      id: map['id'] ?? "N/A",
+      courtName: map['courtName'] ?? "N/A",
+      courtPhoneNumber: map['courtPhoneNumber'] ?? "N/A",
+      courtEmailAddress: map['courtEmailAddress'] ?? "N/A",
+      courtDescription: map['courtDescription'] ?? "N/A",
+      openingTime: map['openingTime'] ?? "N/A",
+      closingTime: map['closingTime'] ?? "N/A",
+      courtLocation: map['courtLocation'] ?? "N/A",
+      images: map['images'] ?? "N/A",
+      ownerPhoto: map['ownerPhoto'] ?? "N/A",
+      ownerFullName: map['ownerFullName'] ?? "N/A",
+      ownerPhoneNumber: map['ownerPhoneNumber'] ?? "N/A",
+      ownerEmailAddress: map['ownerEmailAddress'] ?? "N/A",
+      is24h: map['is24h'] ?? false,
       isOwner: map['isOwner'] ?? false,
       isRegistered: map['isRegistered'] ?? false,
     );
@@ -111,6 +116,7 @@ class OwnerModel {
       'ownerFullName': ownerFullName,
       'ownerPhoneNumber': ownerPhoneNumber,
       'ownerEmailAddress': ownerEmailAddress,
+      'is24h': is24h,
       'isOwner': isOwner,
       'isRegistered': isRegistered,
     };
@@ -131,6 +137,7 @@ class OwnerModel {
       'ownerFullName': ownerFullName,
       'ownerPhoneNumber': ownerPhoneNumber,
       'ownerEmailAddress': ownerEmailAddress,
+      'is24h': is24h,
       'isOwner': isOwner,
       'isRegistered': isRegistered,
     };
@@ -139,20 +146,21 @@ class OwnerModel {
   factory OwnerModel.fromSnapshot(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
     return OwnerModel(
-      id: data['id'] ?? '',
-      courtName: data['courtName'] ?? '',
-      courtPhoneNumber: data['courtPhoneNumber'] ?? '',
-      courtEmailAddress: data['courtEmailAddress'] ?? '',
-      courtDescription: data['courtDescription'] ?? '',
-      openingTime: data['openingTime'] ?? '',
-      closingTime: data['closingTime'] ?? '',
-      courtLocation: data['courtLocation'] ?? '',
-      images: data['images'] ?? '',
-      ownerPhoto: data['ownerPhoto'] ?? '',
-      ownerFullName: data['ownerFullName'] ?? '',
-      ownerPhoneNumber: data['ownerPhoneNumber'] ?? '',
-      ownerEmailAddress: data['ownerEmailAddress'] ?? '',
-      isOwner: data['isOwner'] ?? true,
+      id: data['id'] ?? "N/A",
+      courtName: data['courtName'] ?? "N/A",
+      courtPhoneNumber: data['courtPhoneNumber'] ?? "N/A",
+      courtEmailAddress: data['courtEmailAddress'] ?? "N/A",
+      courtDescription: data['courtDescription'] ?? "N/A",
+      openingTime: data['openingTime'] ?? "N/A",
+      closingTime: data['closingTime'] ?? "N/A",
+      courtLocation: data['courtLocation'] ?? "N/A",
+      images: data['images'] ?? "N/A",
+      ownerPhoto: data['ownerPhoto'] ?? "N/A",
+      ownerFullName: data['ownerFullName'] ?? "N/A",
+      ownerPhoneNumber: data['ownerPhoneNumber'] ?? "N/A",
+      ownerEmailAddress: data['ownerEmailAddress'] ?? "N/A",
+      is24h: data['is24h'] ?? false,
+      isOwner: data['isOwner'] ?? false,
       isRegistered: data['isRegistered'] ?? false,
     );
   }

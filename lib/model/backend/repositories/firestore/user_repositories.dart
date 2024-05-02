@@ -9,7 +9,7 @@ class UserRepository {
   /// Save user data to Firestore
   Future<void> saveUserRecord(UserModel user, String id) async {
     try {
-      await _db.collection("Owner").doc(id).set(user.toJson());
+      await _db.collection("Users").doc(id).set(user.toJson());
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }
@@ -19,7 +19,7 @@ class UserRepository {
   Future<UserModel> getUserById() async {
     try {
       DocumentSnapshot snapshot = await _db
-          .collection("Owner")
+          .collection("Users")
           .doc(AuthenticationRepository().authUser!.uid)
           .get();
       if (snapshot.exists) {
@@ -35,7 +35,7 @@ class UserRepository {
   /// Fetch user data from Firestore by user ID
   Future<UserModel> fetchUserdetails(String? id) async {
     try {
-      DocumentSnapshot snapshot = await _db.collection("Owner").doc(id).get();
+      DocumentSnapshot snapshot = await _db.collection("Users").doc(id).get();
       if (snapshot.exists) {
         return UserModel.fromSnapshot(snapshot);
       } else {
@@ -51,7 +51,7 @@ class UserRepository {
       {required String fieldName, required dynamic value}) async {
     try {
       await _db
-          .collection("Owner")
+          .collection("Users")
           .doc(AuthenticationRepository().authUser!.uid)
           .update({
         fieldName: value,
@@ -65,7 +65,7 @@ class UserRepository {
   Future<void> updateUserField({required UserModel userMdel}) async {
     try {
       await _db
-          .collection("Owner")
+          .collection("Users")
           .doc(AuthenticationRepository().authUser!.uid)
           .update(userMdel.toJson());
     } catch (e) {
@@ -77,7 +77,7 @@ class UserRepository {
   Future<void> removeUserRecord() async {
     try {
       await _db
-          .collection("Owner")
+          .collection("Users")
           .doc(AuthenticationRepository().authUser!.uid)
           .delete();
     } catch (e) {

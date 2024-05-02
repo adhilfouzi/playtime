@@ -83,7 +83,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
           children: [
             // Call button
             whiteButton('Call', context, () {
-              // _makePhoneCall(turf.courtPhoneNumber);
+              _makePhoneCall(turf.courtPhoneNumber);
             }),
             // Book now button
             mainButton('Book Now', context, () {
@@ -96,8 +96,8 @@ class ViewTurfDetailsScreen extends StatelessWidget {
   }
 
   // Function to make a phone call
-  void _makePhoneCall(String phoneNumber) async {
-    String url = 'tel:$phoneNumber';
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:+91$phoneNumber';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -134,7 +134,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(999), // Button corner radius
           side:
-              BorderSide(color: const Color(0xFF238C98)), // Button border color
+              const BorderSide(color: Color(0xFF238C98)), // Button border color
         ),
       ),
       child: Text(text),

@@ -11,7 +11,7 @@ class TurfListscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TurflistBloc, TurflistState>(
       builder: (context, state) {
-        if (state is TurfInitial) {
+        if (state is TurfLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
