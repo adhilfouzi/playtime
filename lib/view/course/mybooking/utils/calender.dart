@@ -4,11 +4,10 @@ import 'package:table_calendar/table_calendar.dart';
 class BookingCalendar extends StatefulWidget {
   final void Function(DateTime) onDateSelected; // Callback function
 
-  const BookingCalendar({Key? key, required this.onDateSelected})
-      : super(key: key);
+  const BookingCalendar({super.key, required this.onDateSelected});
 
   @override
-  _BookingCalendarState createState() => _BookingCalendarState();
+  State<BookingCalendar> createState() => _BookingCalendarState();
 }
 
 class _BookingCalendarState extends State<BookingCalendar> {
@@ -45,7 +44,7 @@ class _BookingCalendarState extends State<BookingCalendar> {
             _selectedDay = selectedDay;
             _focusedDay = focusedDay;
           });
-          widget.onDateSelected(selectedDay); // Invoke callback function
+          widget.onDateSelected(selectedDay);
         },
         onFormatChanged: (format) {
           setState(() {
