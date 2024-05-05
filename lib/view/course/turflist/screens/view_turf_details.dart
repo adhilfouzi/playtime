@@ -6,7 +6,7 @@ import '../../../../model/data_model/owner_model.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {
   final OwnerModel turf;
-  const ViewTurfDetailsScreen({Key? key, required this.turf}) : super(key: key);
+  const ViewTurfDetailsScreen({super.key, required this.turf});
 
   @override
   Widget build(BuildContext context) {
