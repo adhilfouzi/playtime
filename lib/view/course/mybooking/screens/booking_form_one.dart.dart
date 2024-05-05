@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 
 import '../../../../utils/const/colors.dart';
 import '../utils/appbar_booking_form.dart';
@@ -87,26 +90,49 @@ class _BookingFormContentState extends State<BookingFormContent> {
     );
   }
 
-  Future<void> _selectTime(BuildContext context, bool isOpening) async {
+  Future<void> _selectTime(context, bool isOpening) async {
+    if (!isOpening && _openingTime == null) {
+      CustomSnackBar.showError(context, 'Please select the starting time.');
+      return;
+    }
+
     final initialTime = isOpening ? _openingTime : _closingTime;
     final selectedTime = await showDialog<TimeOfDay>(
       context: context,
       builder: (BuildContext context) {
         return TimePickerDialog(
           closingTime: const TimeOfDay(hour: 2, minute: 00),
-          openingTime: const TimeOfDay(hour: 5, minute: 00),
+          openingTime:
+              !isOpening ? _openingTime : const TimeOfDay(hour: 5, minute: 00),
           initialTime: initialTime ?? TimeOfDay.now(),
         );
       },
     );
     if (selectedTime != null) {
-      setState(() {
-        if (isOpening) {
+      // Check if selected time meets the condition
+      if (isOpening) {
+        setState(() {
           _openingTime = selectedTime;
+          _closingTime = TimeOfDay(
+              hour: selectedTime.hour + 1, minute: selectedTime.minute);
+        });
+      } else {
+        final difference = selectedTime.hour - _openingTime!.hour;
+        log(difference.toString());
+        if (difference >= 1 && difference <= 6) {
+          setState(() {
+            _closingTime = selectedTime;
+          });
         } else {
-          _closingTime = selectedTime;
+          if (difference < 1) {
+            CustomSnackBar.showError(
+                context, 'Minimum booking duration is limited to 1 hours');
+          } else {
+            CustomSnackBar.showError(
+                context, 'Maximum booking duration is limited to 6 hours');
+          }
         }
-      });
+      }
     }
   }
 }
@@ -172,11 +198,11 @@ class TimePickerDialog extends StatelessWidget {
   final TimeOfDay? closingTime;
 
   const TimePickerDialog({
-    super.key,
+    Key? key,
     required this.initialTime,
     required this.openingTime,
     required this.closingTime,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -209,9 +235,15 @@ class TimePickerDialog extends StatelessWidget {
     final startHour = openingTime!.hour;
     final endHour = closingTime!.hour;
     final endMinute = closingTime!.minute;
-    return endHour > startHour || (endHour == startHour && endMinute > 0)
-        ? (endHour - startHour) * 2 + 1
-        : (24 - startHour + endHour) * 2 + 1;
+    final duration = closingTime!.periodOffset - openingTime!.periodOffset;
+
+    // Check if the duration is at least 1 hour and at most 6 hours
+    if (duration < Duration(hours: 1) || duration > Duration(hours: 6)) {
+      return 0;
+    }
+
+    // Calculate the number of items based on the duration
+    return (duration.inHours * 2) + 1;
   }
 
   TimeOfDay _calculateTime(int index) {
