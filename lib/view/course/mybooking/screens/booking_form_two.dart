@@ -22,7 +22,7 @@ class BookingFormTwo extends StatelessWidget {
           ),
           SizedBox(height: height * 0.01),
           const MyTextField(
-            hintText: "Jhoshuatope@gmail.com",
+            hintText: "jhoshuatope@gmail.com",
             labelText: "Email Address",
           ),
           SizedBox(height: height * 0.01),
@@ -36,11 +36,7 @@ class BookingFormTwo extends StatelessWidget {
         color: Colors.white,
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.05, vertical: height * 0.02),
-        child: Button().mainButton('Submit', context, () {
-          // if (controller.formKey.currentState!.validate()) {
-          //   controller.submit();
-          // }
-        }),
+        child: Button().mainButton('Submit', context, () {}),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking_form_one.dart.dart';
 
@@ -17,7 +18,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
         ),
       ),
@@ -88,8 +89,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
             }),
             // Book now button
             mainButton('Book Now', context, () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => BookingFormOne()));
+              Get.to(() => const BookingFormOne());
             }),
           ],
         ),

@@ -1,6 +1,6 @@
-// ignore_for_file: deprecated_member_use
+import 'dart:developer';
 
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
@@ -66,12 +66,9 @@ class ProfileController {
 
       await AuthenticationRepository().logout();
       await prefs.remove(logs);
-
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (contex) => LoginScreen()),
-          (route) => false);
+      Get.offAll((contex) => LoginScreen());
     } catch (e) {
-      print("Error during logout: $e");
+      log("Error during logout: $e");
 
       CustomSnackbar.showError(
           "An error occurred during logout. Please try again.");

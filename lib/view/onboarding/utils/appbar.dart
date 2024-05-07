@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import '../../../utils/const/colors.dart';
 
@@ -55,7 +56,7 @@ class CustomBottomAppBar extends StatelessWidget
     return AppBar(
       leading: IconButton(
         icon: const Icon(Ionicons.chevron_back_outline),
-        onPressed: leading ?? () => Navigator.of(context).pop(),
+        onPressed: leading ?? () => Get.back(),
       ),
       title: const Row(
         mainAxisAlignment: MainAxisAlignment.center,

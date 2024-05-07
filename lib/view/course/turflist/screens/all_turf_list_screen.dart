@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../view_model/bloc/turflist/turflist_bloc.dart';
+import 'package:get/get.dart';
+import '../controller/turflist_controller.dart';
 import '../widget/search_field.dart';
 import '../widget/turflist.dart';
 
 class AllTurfList extends StatelessWidget {
-  const AllTurfList({super.key});
+  final TurflistController controller = Get.put(TurflistController());
+
+  AllTurfList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const SearchField(),
+        title: SearchField(
+          controller: controller,
+        ),
         actions: const [
           // FilterButton(),
         ],
       ),
-      body: BlocProvider(
-          create: (context) => TurflistBloc()..add(FetchTurfList()),
-          child: const TurfListscreen()),
+      body: TurfListscreen(
+        controller: controller,
+      ),
     );
   }
 }

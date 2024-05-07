@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../view_model/bloc/turflist/turflist_bloc.dart';
+import '../controller/turflist_controller.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({super.key});
+  final TurflistController controller;
+  const SearchField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SearchField extends StatelessWidget {
             prefixIcon: Icon(Icons.search),
             border: InputBorder.none),
         onChanged: (query) {
-          BlocProvider.of<TurflistBloc>(context).add(SearchTurf(query));
+          controller.searchTurf(query);
         },
       ),
     );

@@ -50,8 +50,7 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: height * 0.06),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => EmailVerificationScreen()));
+                    Get.to(() => EmailVerificationScreen());
                   },
                   child: const Text("Forget password"),
                 ),
@@ -71,10 +70,7 @@ class LoginScreen extends StatelessWidget {
                     const Text('Don’t have an account? '),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => SignupScreen()),
-                            (route) => false);
+                        Get.offAll(() => SignupScreen());
                       },
                       child: const Text('Sign up'),
                     ),

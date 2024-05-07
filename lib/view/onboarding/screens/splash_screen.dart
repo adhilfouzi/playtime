@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../../utils/const/colors.dart';
@@ -52,10 +53,7 @@ Future<void> checkUserLoggedIn(context) async {
     final items = prefs.getStringList(logs);
     if (items == null) {
       await Future.delayed(const Duration(seconds: 2));
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const WelcomeScreen()),
-      );
+      Get.off(() => const WelcomeScreen());
     } else {
       await AuthenticationRepository()
           .signInWithEmailAndPassword(items[0], items[1]);

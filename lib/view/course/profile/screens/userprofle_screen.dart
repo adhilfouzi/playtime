@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../controller/profile_controlller.dart';
 
 class UserProfile extends StatelessWidget {
+  const UserProfile({super.key});
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;

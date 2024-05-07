@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
-import '../../../../view_model/bloc/turflist/turflist_bloc.dart';
+import '../controller/turflist_controller.dart';
 import 'turf_list_item.dart';
 
 class TurfListscreen extends StatelessWidget {
-  const TurfListscreen({super.key});
+  final TurflistController controller;
+  const TurfListscreen({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TurflistBloc, TurflistState>(
-      builder: (context, state) {
-        if (state is TurfLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is TurfLoaded) {
-          final turfList = state.turfList;
-
-          // Build your UI with the turfList
-          return ListView.builder(
-            itemCount: turfList.length, // Replace with your actual list length
-            itemBuilder: (context, index) {
-              return TurfListItem(turf: turfList[index]);
-            },
-          );
-        } else if (state is TurfError) {
-          return Center(
-            child: Text(state.message),
-          );
-        } else {
-          return Container(); // Handle other states if needed
-        }
-      },
-    );
+    return Obx(() {
+      if (controller.isLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (controller.errorMessage.isNotEmpty) {
+        return Center(
+          child: Text(controller.errorMessage),
+        );
+      } else {
+        final turfList = controller.turfList;
+        return ListView.builder(
+          itemCount: turfList.length,
+          itemBuilder: (context, index) {
+            return TurfListItem(turf: turfList[index]);
+          },
+        );
+      }
+    });
   }
 }

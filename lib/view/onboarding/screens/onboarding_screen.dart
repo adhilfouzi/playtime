@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../utils/const/image_name.dart';
 import '../../../utils/portion/button.dart';
 import 'login_screen.dart';
@@ -60,17 +62,11 @@ class OnboardingScreen extends StatelessWidget {
                     children: [
                       const Spacer(),
                       Button().whiteButton('Sign up', context, () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => SignupScreen()),
-                            (route) => false);
+                        Get.off(() => SignupScreen());
                       }),
                       const Spacer(),
                       Button().whiteButton('Login', context, () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()),
-                            (route) => false);
+                        Get.off(() => LoginScreen());
                       }),
                       const Spacer(),
                     ],

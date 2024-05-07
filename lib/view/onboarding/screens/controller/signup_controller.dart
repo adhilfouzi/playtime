@@ -36,6 +36,7 @@ class SignupController extends GetxController {
       await UserRepository().saveUserRecord(user, userCredential.user!.uid);
 
       Get.offAll(() => const MyBottomNavigationBar());
+
       fullNameText.clear();
       phoneNumberText.clear();
       emailText.clear();

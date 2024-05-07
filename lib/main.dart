@@ -1,10 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'model/backend/repositories/firebase_options.dart';
-import 'view/onboarding/screens/splash_screen.dart';
-import 'view_model/bloc/turflist/turflist_bloc.dart';
+import 'view/course/head/bottom_navigationbar_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +16,8 @@ void main() async {
     );
   } catch (e) {
     // Handle Firebase initialization errors
-    print('Failed to initialize Firebase: $e');
+    log('Failed to initialize Firebase: $e');
   }
-
   runApp(const MyApp());
 }
 
@@ -27,26 +26,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        // BlocProvider(create: (context) => SignupBloc()),
-        // BlocProvider(create: (context) => SigninBloc()),
-        // BlocProvider(create: (context) => CheckboxCubit()),
-        // BlocProvider(create: (context) => EmailVerificationBloc()),
-        BlocProvider(create: (context) => TurflistBloc()),
-        // Add more Bloc providers if needed
-      ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Turf Booking Application For User',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-          fontFamily: 'Poppins',
-        ),
-        home: const SplashScreen(),
-        // home: const MyBottomNavigationBar(),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Turf Booking Application For User',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        fontFamily: 'Poppins',
       ),
+      // home: const SplashScreen(),
+      home: const MyBottomNavigationBar(),
     );
   }
 }

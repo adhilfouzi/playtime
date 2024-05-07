@@ -20,9 +20,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    const AllTurfList(),
-    MyBooking(),
-    UserProfile(),
+    AllTurfList(),
+    const MyBooking(),
+    const UserProfile(),
   ];
 
   @override

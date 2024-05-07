@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../utils/const/image_name.dart';
 import '../../../utils/portion/button.dart';
 import 'onboarding_screen.dart';
@@ -65,8 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 // Button "Get Started"
                 Button().mainButton('Get Started', context, () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const OnboardingScreen()));
+                  Get.to(() => const OnboardingScreen());
                 }),
               ],
             ),

@@ -25,12 +25,15 @@ class TurfRepository {
 
   Future<List<OwnerModel>> searchTurf(String query) async {
     try {
-      // Implement your search logic here, such as querying Firestore based on the search query
-      // Example:
+      String normalizedQuery = query;
+
       QuerySnapshot turfSnapshot = await _db
           .collection("Owner")
-          .where("courtName",
-              isEqualTo: query) // Assuming "name" is the field to search for
+          .where(
+            "courtName", // Assuming "courtName" is the field to search for
+            isGreaterThanOrEqualTo: normalizedQuery,
+            isLessThanOrEqualTo: '$normalizedQuery\uf8ff',
+          )
           .get();
 
       turfList.clear();

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:users_side_of_turf_booking/view/course/turflist/screens/view_turf_details.dart';
 import '../../../../model/data_model/owner_model.dart';
 
@@ -62,8 +64,7 @@ class TurfListItem extends StatelessWidget {
             ],
           ),
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ViewTurfDetailsScreen(turf: turf)));
+            Get.to(() => ViewTurfDetailsScreen(turf: turf));
           },
         ),
       ),

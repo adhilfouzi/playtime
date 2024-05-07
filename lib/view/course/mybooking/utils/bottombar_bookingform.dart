@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../utils/portion/button.dart';
 import '../screens/booking_form_two.dart';
@@ -17,9 +18,7 @@ class BookingFormBottomBar extends StatelessWidget {
         vertical: height * 0.02,
       ),
       child: Button().mainButton('Next', context, () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const BookingFormTwo()),
-        );
+        Get.to(() => const BookingFormTwo());
       }),
     );
   }

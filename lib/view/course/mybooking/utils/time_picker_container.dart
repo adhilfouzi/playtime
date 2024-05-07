@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../utils/const/colors.dart';
@@ -87,7 +88,8 @@ class TimePickerDialogBox extends StatelessWidget {
                   DateTime(2022, 1, 1, time.hour, time.minute),
                 ),
               ),
-              onTap: () => Navigator.of(context).pop(time),
+              onTap: () => Get.back(result: time),
+//  Navigator.of(context).pop(time),
             );
           },
         ),
