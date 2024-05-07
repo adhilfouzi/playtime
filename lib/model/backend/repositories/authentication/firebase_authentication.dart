@@ -11,7 +11,7 @@ import 'firebase_exceptionhandler.dart';
 
 const logs = 'action';
 
-class AuthenticationRepository {
+class AuthenticationRepository extends GetxController {
   // static AuthenticationRepository get instance => Get.find();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? get authUser => _auth.currentUser;
@@ -19,6 +19,8 @@ class AuthenticationRepository {
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
     try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setStringList(logs, <String>[email, password]);
       return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } catch (e) {
@@ -60,9 +62,10 @@ class AuthenticationRepository {
   }
 
   // Sign out the current user using Firebase authentication
-  Future<void> logout() async {
+  Future<void> userLogout() async {
     try {
-      await FirebaseAuth.instance.signOut();
+      log(_auth.currentUser!.uid.toString());
+      await _auth.signOut();
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }

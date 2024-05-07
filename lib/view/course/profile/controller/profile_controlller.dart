@@ -8,10 +8,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:users_side_of_turf_booking/view/onboarding/screens/login_screen.dart';
 
 class ProfileController {
-  static void changePassword() async {
+  static void changePassword(String email) async {
     try {
-      await AuthenticationRepository()
-          .sendPasswordResetEmail('adhilfouziofficial@gmail.com');
+      await AuthenticationRepository().sendPasswordResetEmail(email);
       CustomSnackbar.showInfo("Password reset email sent successfully.");
     } catch (error) {
       CustomSnackbar.showError("Failed to send password reset email.");
@@ -59,14 +58,13 @@ class ProfileController {
     }
   }
 
-  static void logout(context) async {
+  static void logout() async {
     // Call the logout function from Firebase or any other authentication service
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      await AuthenticationRepository().logout();
+      await AuthenticationRepository().userLogout();
       await prefs.remove(logs);
-      Get.offAll((contex) => LoginScreen());
+      Get.offAll(() => LoginScreen());
     } catch (e) {
       log("Error during logout: $e");
 

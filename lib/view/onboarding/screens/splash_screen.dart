@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../../utils/const/colors.dart';
 import '../../../utils/const/image_name.dart';
+import '../../../view_model/usermodel_controller.dart';
 import 'welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     checkUserLoggedIn(context);
+    Get.put(UserController());
   }
 
   @override

@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../../data_model/user_model.dart';
 import '../authentication/firebase_authentication.dart';
 import '../authentication/firebase_exceptionhandler.dart';
 
-class UserRepository {
+class UserRepository extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   /// Save user data to Firestore

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../view_model/usermodel_controller.dart';
 import '../controller/profile_controlller.dart';
 
 class UserProfile extends StatelessWidget {
@@ -9,6 +11,7 @@ class UserProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
+    final UserController controller = Get.find();
 
     return Scaffold(
       body: SafeArea(
@@ -26,20 +29,20 @@ class UserProfile extends StatelessWidget {
                     'assets/image/profile.png'), // Add your profile image asset
               ),
               SizedBox(height: screenHeight * 0.02),
-              const Text(
-                'Adhil Fouzi', // Replace with user's email
-                style: TextStyle(
+              Text(
+                controller.user.value.name, // Replace with user's email
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'user@example.com', // Replace with user's email
-                      style: TextStyle(
+                      controller.user.value.email, // Replace with user's email
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -49,7 +52,7 @@ class UserProfile extends StatelessWidget {
               ),
               SizedBox(height: screenHeight * 0.08),
               _buildButton('Change Password', screenWidth, screenHeight, () {
-                ProfileController.changePassword();
+                ProfileController.changePassword(controller.user.value.email);
               }),
               _buildButton('Notification', screenWidth, screenHeight, () {}),
               _buildButton('Help & FAQs', screenWidth, screenHeight, () {
@@ -63,7 +66,7 @@ class UserProfile extends StatelessWidget {
               }),
               _buildButton('About Us', screenWidth, screenHeight, () {}),
               _buildButton('Log Out', screenWidth, screenHeight, () {
-                ProfileController.logout(context);
+                ProfileController.logout();
               }),
             ],
           ),

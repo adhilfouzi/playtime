@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'model/backend/repositories/firebase_options.dart';
-import 'view/course/head/bottom_navigationbar_widget.dart';
+import 'view/onboarding/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,8 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      // home: const SplashScreen(),
-      home: const MyBottomNavigationBar(),
+      home: const SplashScreen(),
     );
   }
 }
