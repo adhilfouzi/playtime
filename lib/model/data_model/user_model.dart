@@ -3,13 +3,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../controller/formater.dart';
 
 class UserModel {
+  final String? id;
   final String name;
   final String number;
   final String email;
   final String profile;
   final bool isUser;
 
+  // Updated constructor to accept id
   UserModel({
+    this.id,
     required this.name,
     required this.number,
     required this.email,
@@ -20,6 +23,7 @@ class UserModel {
   // Factory constructor to create UserModel from JSON data
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+      id: json["id"], // Assign id here
       name: json['name'],
       number: json['number'],
       email: json['email'],
@@ -31,6 +35,7 @@ class UserModel {
   // Create an empty UserModel
   factory UserModel.emptyUserModel() {
     return UserModel(
+      id: '', // Assign empty id here
       name: '',
       number: '',
       email: '',
@@ -42,6 +47,7 @@ class UserModel {
   // Convert UserModel to a map
   Map<String, dynamic> toMap() {
     return {
+      'id': id, // Include id in the map
       'name': name,
       'number': number,
       'email': email,
@@ -53,6 +59,7 @@ class UserModel {
   // Factory constructor to create UserModel from map
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
+      id: map['id'],
       name: map['name'],
       number: map['number'],
       email: map['email'],
@@ -64,6 +71,7 @@ class UserModel {
   // Convert UserModel to JSON
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'number': number,
       'email': email,
@@ -73,13 +81,15 @@ class UserModel {
   }
 
   // Factory constructor to create UserModel from JSON-like Map
-  factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
+  factory UserModel.fromSnapshot(DocumentSnapshot document) {
+    Map<String, dynamic> data = document.data() as Map<String, dynamic>;
     return UserModel(
-      name: snapshot['name'],
-      number: snapshot['number'],
-      email: snapshot['email'],
-      profile: snapshot['profile'],
-      isUser: snapshot['isUser'],
+      id: data['id'] ?? "N/A",
+      name: data['name'] ?? "N/A",
+      number: data['number'] ?? "N/A",
+      email: data['email'],
+      profile: data['profile'] ?? "N/A",
+      isUser: data['isUser'] ?? "N/A",
     );
   }
 

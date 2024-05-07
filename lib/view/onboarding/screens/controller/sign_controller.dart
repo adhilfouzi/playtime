@@ -22,7 +22,7 @@ class SigninController extends GetxController {
       passwordTextEditingController.clear();
     } catch (e) {
       Get.back();
-      CustomSnackbar.showError("Please check the email or password");
+      CustomSnackbar.showError(e.toString());
       log("SigninError");
     }
   }

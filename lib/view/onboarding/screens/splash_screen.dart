@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../../utils/const/colors.dart';
 import '../../../utils/const/image_name.dart';
-import '../../course/head/bottom_navigationbar_widget.dart';
 import 'welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -4,9 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'model/backend/repositories/firebase_options.dart';
 import 'view/onboarding/screens/splash_screen.dart';
-import 'view_model/bloc/signup_bloc/signup_bloc.dart';
 import 'view_model/bloc/turflist/turflist_bloc.dart';
-import 'view_model/cubit/checkbox/checkbox_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,9 +29,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => SignupBloc()),
+        // BlocProvider(create: (context) => SignupBloc()),
         // BlocProvider(create: (context) => SigninBloc()),
-        BlocProvider(create: (context) => CheckboxCubit()),
+        // BlocProvider(create: (context) => CheckboxCubit()),
         // BlocProvider(create: (context) => EmailVerificationBloc()),
         BlocProvider(create: (context) => TurflistBloc()),
         // Add more Bloc providers if needed
