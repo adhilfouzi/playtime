@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../utils/portion/snackbar.dart';
+import '../../../../view/course/head/bottom_navigationbar_widget.dart';
 import '../firestore/user_repositories.dart';
 import 'firebase_exceptionhandler.dart';
 
@@ -21,7 +26,7 @@ class AuthenticationRepository {
     }
   }
 
-  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -34,8 +39,13 @@ class AuthenticationRepository {
 
       if (user.isUser) {
         await prefs.setStringList(logs, <String>[email, password]);
+        Get.offAll(() => const MyBottomNavigationBar());
+        log("SigninSuccess");
+      } else {
+        Get.back();
+        CustomSnackbar.showError(
+            'Your account has some issue. Please contact support for assistance.');
       }
-      return user.isUser;
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }

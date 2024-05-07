@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'model/backend/repositories/firebase_options.dart';
 import 'view/onboarding/screens/splash_screen.dart';
-import 'view_model/bloc/signin_bloc/signin_bloc.dart';
 import 'view_model/bloc/signup_bloc/signup_bloc.dart';
 import 'view_model/bloc/turflist/turflist_bloc.dart';
 import 'view_model/cubit/checkbox/checkbox_cubit.dart';
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SignupBloc()),
-        BlocProvider(create: (context) => SigninBloc()),
+        // BlocProvider(create: (context) => SigninBloc()),
         BlocProvider(create: (context) => CheckboxCubit()),
         // BlocProvider(create: (context) => EmailVerificationBloc()),
         BlocProvider(create: (context) => TurflistBloc()),

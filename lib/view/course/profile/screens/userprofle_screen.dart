@@ -47,17 +47,17 @@ class UserProfile extends StatelessWidget {
               ),
               SizedBox(height: screenHeight * 0.08),
               _buildButton('Change Password', screenWidth, screenHeight, () {
-                ProfileController.changePassword(context);
+                ProfileController.changePassword();
               }),
               _buildButton('Notification', screenWidth, screenHeight, () {}),
               _buildButton('Help & FAQs', screenWidth, screenHeight, () {
                 ProfileController.helpAndFAQs();
               }),
               _buildButton('Privacy Policy', screenWidth, screenHeight, () {
-                ProfileController.privacyPolicy(context);
+                ProfileController.privacyPolicy();
               }),
               _buildButton('Terms & Use', screenWidth, screenHeight, () {
-                ProfileController.termsUse(context);
+                ProfileController.termsUse();
               }),
               _buildButton('About Us', screenWidth, screenHeight, () {}),
               _buildButton('Log Out', screenWidth, screenHeight, () {

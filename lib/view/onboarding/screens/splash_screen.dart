@@ -60,10 +60,6 @@ Future<void> checkUserLoggedIn(context) async {
     } else {
       await AuthenticationRepository()
           .signInWithEmailAndPassword(items[0], items[1]);
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (context) => const MyBottomNavigationBar()),
-          (route) => false);
     }
   } catch (e) {
     log('Error querying the database: $e');

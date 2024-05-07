@@ -8,14 +8,13 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:users_side_of_turf_booking/view/onboarding/screens/login_screen.dart';
 
 class ProfileController {
-  static void changePassword(context) async {
+  static void changePassword() async {
     try {
       await AuthenticationRepository()
           .sendPasswordResetEmail('adhilfouziofficial@gmail.com');
-      CustomSnackBar.showInfo(
-          context, "Password reset email sent successfully.");
+      CustomSnackbar.showInfo("Password reset email sent successfully.");
     } catch (error) {
-      CustomSnackBar.showError(context, "Failed to send password reset email.");
+      CustomSnackbar.showError("Failed to send password reset email.");
     }
   }
 
@@ -39,24 +38,24 @@ class ProfileController {
     }
   }
 
-  static void privacyPolicy(context) async {
+  static void privacyPolicy() async {
     final Uri url = Uri.parse(
         'https://www.freeprivacypolicy.com/live/23a6eb84-0360-4ce5-8580-53a24494b3dc');
 
     try {
       await launchUrl(url);
     } catch (e) {
-      CustomSnackBar.showError(context, "Could not open privacy policy.");
+      CustomSnackbar.showError("Could not open privacy policy.");
     }
   }
 
-  static void termsUse(context) async {
+  static void termsUse() async {
     final Uri url = Uri.parse(
         'https://www.freeprivacypolicy.com/live/cfe121cc-25c9-4882-a467-0f9bb8ab28da');
     try {
       await launchUrl(url);
     } catch (e) {
-      CustomSnackBar.showError(context, "Could not open terms of use.");
+      CustomSnackbar.showError("Could not open terms of use.");
     }
   }
 
@@ -69,13 +68,13 @@ class ProfileController {
       await prefs.remove(logs);
 
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (contex) => LoginScreen()),
           (route) => false);
     } catch (e) {
       print("Error during logout: $e");
 
-      CustomSnackBar.showError(
-          context, "An error occurred during logout. Please try again.");
+      CustomSnackbar.showError(
+          "An error occurred during logout. Please try again.");
     }
   }
 }

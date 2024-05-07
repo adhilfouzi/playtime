@@ -37,7 +37,7 @@ class SignupScreen extends StatelessWidget {
               listener: (context, state) {
                 if (state is SignupError) {
                   Navigator.of(context).pop();
-                  CustomSnackBar.showError(context, state.error);
+                  CustomSnackbar.showError(state.error);
                 } else if (state is SignupSuccess) {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const MyBottomNavigationBar()));

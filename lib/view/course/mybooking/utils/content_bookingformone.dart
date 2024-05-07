@@ -74,7 +74,7 @@ class _BookingFormContentState extends State<BookingFormContent> {
 
   Future<void> _selectTime(context, bool isOpening) async {
     if (!isOpening && _openingTime == null) {
-      CustomSnackBar.showError(context, 'Please select the starting time.');
+      CustomSnackbar.showError('Please select the starting time.');
       return;
     }
 
@@ -108,11 +108,11 @@ class _BookingFormContentState extends State<BookingFormContent> {
           });
         } else {
           if (difference < 1) {
-            CustomSnackBar.showError(
-                context, 'Minimum booking duration is limited to 1 hours');
+            CustomSnackbar.showError(
+                'Minimum booking duration is limited to 1 hours');
           } else {
-            CustomSnackBar.showError(
-                context, 'Maximum booking duration is limited to 6 hours');
+            CustomSnackbar.showError(
+                'Maximum booking duration is limited to 6 hours');
           }
         }
       }
