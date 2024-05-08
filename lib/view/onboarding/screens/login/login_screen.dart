@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../model/controller/validator.dart';
-import '../../../utils/const/image_name.dart';
-import '../../../utils/portion/button.dart';
-import '../../../utils/portion/textfield.dart';
-import '../utils/appbar.dart';
-import 'controller/sign_controller.dart';
-import 'forget/forgetpassword/emailverification.dart';
-import 'signup_screen.dart';
+import '../../../../model/controller/validator.dart';
+import '../../../../utils/const/image_name.dart';
+import '../../../../utils/portion/button.dart';
+import '../../../../utils/portion/textfield.dart';
+import '../../utils/appbar.dart';
+import '../../../../view_model/onboarding/sign_controller.dart';
+import '../forgetpassword/emailverification.dart';
+import '../signup/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});

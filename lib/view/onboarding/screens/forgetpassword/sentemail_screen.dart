@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../utils/portion/button.dart';
-import '../../../controller/email_verification_controller.dart';
-import '../../login_screen.dart';
+import '../../../../utils/portion/button.dart';
+import '../../../../view_model/onboarding/email_verification_controller.dart';
+import '../login/login_screen.dart';
 
 class SentEmailScreen extends StatelessWidget {
   const SentEmailScreen({

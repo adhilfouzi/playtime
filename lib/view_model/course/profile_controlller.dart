@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:users_side_of_turf_booking/view/onboarding/screens/login_screen.dart';
+import 'package:users_side_of_turf_booking/view/onboarding/screens/login/login_screen.dart';
 
 class ProfileController {
   static void changePassword(String email) async {

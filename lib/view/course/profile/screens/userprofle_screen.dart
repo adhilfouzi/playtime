@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../view_model/usermodel_controller.dart';
-import '../controller/profile_controlller.dart';
+import '../../../../view_model/course/usermodel_controller.dart';
+import '../../../../view_model/course/profile_controlller.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});

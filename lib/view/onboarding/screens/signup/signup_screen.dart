@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../model/controller/validator.dart';
-import '../../../utils/const/image_name.dart';
-import '../../../utils/portion/button.dart';
-import '../../../utils/portion/textfield.dart';
-import '../utils/appbar.dart';
-import 'controller/privacy_policy_checkbox.dart';
-import 'controller/signup_controller.dart';
+import '../../../../model/controller/validator.dart';
+import '../../../../utils/const/image_name.dart';
+import '../../../../utils/portion/button.dart';
+import '../../../../utils/portion/textfield.dart';
+import '../../utils/appbar.dart';
+import '../../utils/privacy_policy_checkbox.dart';
+import '../../../../view_model/onboarding/signup_controller.dart';
 
 class SignupScreen extends StatelessWidget {
   final GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();

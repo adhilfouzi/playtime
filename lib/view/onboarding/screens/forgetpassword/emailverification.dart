@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../model/controller/validator.dart';
-import '../../../../../utils/portion/button.dart';
-import '../../../../../utils/portion/textfield.dart';
-import '../../../controller/email_verification_controller.dart';
+import '../../../../model/controller/validator.dart';
+import '../../../../utils/portion/button.dart';
+import '../../../../utils/portion/textfield.dart';
+import '../../../../view_model/onboarding/email_verification_controller.dart';
 
 class EmailVerificationScreen extends StatelessWidget {
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
