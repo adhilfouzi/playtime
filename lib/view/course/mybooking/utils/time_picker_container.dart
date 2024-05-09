@@ -21,7 +21,7 @@ class TimeSelector extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             title,

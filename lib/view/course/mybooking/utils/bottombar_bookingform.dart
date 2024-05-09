@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../utils/portion/button.dart';
-import '../screens/booking_form_two.dart';
+import '../controller/booking_controller.dart';
 
 class BookingFormBottomBar extends StatelessWidget {
-  const BookingFormBottomBar({super.key});
+  final BookingController controller;
+
+  const BookingFormBottomBar({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class BookingFormBottomBar extends StatelessWidget {
         vertical: height * 0.02,
       ),
       child: Button().mainButton('Next', context, () {
-        Get.to(() => const BookingFormTwo());
+        controller.nextWay();
       }),
     );
   }

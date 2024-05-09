@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking_form_one.dart.dart';
 
 import '../../../../model/data_model/owner_model.dart';
+import '../../mybooking/controller/booking_controller.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {
   final OwnerModel turf;
@@ -89,7 +90,9 @@ class ViewTurfDetailsScreen extends StatelessWidget {
             }),
             // Book now button
             mainButton('Book Now', context, () {
-              Get.to(() => const BookingFormOne());
+              final BookingController controller = Get.put(BookingController());
+              controller.turfId.value = turf.id;
+              Get.to(() => BookingFormOne(controller: controller));
             }),
           ],
         ),

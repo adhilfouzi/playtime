@@ -1,14 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import '../../../../utils/portion/snackbar.dart';
+import '../controller/booking_controller.dart';
 import '../utils/calender.dart';
 import 'time_picker_container.dart';
 
 class BookingFormContent extends StatefulWidget {
+  final BookingController controller;
+
   const BookingFormContent({
     super.key,
+    required this.controller,
   });
 
   @override
@@ -30,12 +34,9 @@ class _BookingFormContentState extends State<BookingFormContent> {
             onDateSelected: (selectedDate) {
               setState(() {
                 _selectedDate = selectedDate;
+                widget.controller.selectedDate.value = _selectedDate;
               });
             },
-          ),
-          Text(
-            'Selected Date: ${DateFormat('yyyy-MM-dd').format(_selectedDate)}',
-            style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 16),
           Container(
@@ -116,6 +117,10 @@ class _BookingFormContentState extends State<BookingFormContent> {
           }
         }
       }
+      setState(() {
+        widget.controller.startTime.value = _openingTime!;
+        widget.controller.endTime.value = _closingTime!;
+      });
     }
   }
 }
