@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 
@@ -20,7 +22,7 @@ class BookingRepository {
           bookingList.add(turf);
         }
       }
-
+      log("all bookingList: ${bookingList.length}");
       return bookingList;
     } catch (e) {
       throw ExceptionHandler.handleException(e);

@@ -13,9 +13,13 @@ class ActiveBooking extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final activeBookings = controller.activeBookings;
-    if (activeBookings.isEmpty) {
+    if (controller.isActiveLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (controller.activeError.isNotEmpty) {
       return Center(
-        child: Text("no bookings are available"),
+        child: Text(controller.activeError),
       );
     } else {
       return ListView.builder(

@@ -11,7 +11,8 @@ class BookingDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final startTimeFormatted = DateFormat('dd-MM-yyyy').format(turf.startTime);
+    final startTimeFormatted =
+        DateFormat('dd-MM-yyyy HH:MM').format(turf.startTime);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +41,7 @@ class BookingDetails extends StatelessWidget {
             children: [
               Text(
                 turf.turf.courtName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Colors.black87,
@@ -51,7 +52,7 @@ class BookingDetails extends StatelessWidget {
               SizedBox(width: width * 0.08),
               Text(
                 turf.turf.courtLocation,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
                 ),
@@ -61,10 +62,24 @@ class BookingDetails extends StatelessWidget {
               SizedBox(width: width * 0.08),
               Text(
                 startTimeFormatted,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(width: width * 0.08),
+              Text(
+                turf.status,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: turf.status == 'approved'
+                        ? Colors.green
+                        : (turf.status == 'pending'
+                            ? Colors.yellow
+                            : Colors.red),
+                    fontWeight: FontWeight.bold),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

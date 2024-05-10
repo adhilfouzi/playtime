@@ -23,7 +23,6 @@ class _MyBookingState extends State<MyBooking> with TickerProviderStateMixin {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
     tabController.addListener(_handleTabSelection);
-    controller.fetchAllBookings();
   }
 
   void _handleTabSelection() {

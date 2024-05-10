@@ -11,7 +11,7 @@ class CompletedBooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final activeBookings = controller.activeBookings;
+    final activeBookings = controller.completedBookings;
     final width = MediaQuery.of(context).size.width;
 
     if (activeBookings.isEmpty) {

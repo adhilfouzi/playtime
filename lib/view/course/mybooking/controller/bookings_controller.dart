@@ -1,65 +1,72 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 import '../../../../model/backend/repositories/firestore/booking_repositories.dart';
-import '../../../../model/data_model/booking_model.dart'; // Import your BookingModel
+import '../../../../model/data_model/booking_model.dart';
 
 class BookingsController extends GetxController {
-  RxList<BookingModel> allBookings = <BookingModel>[].obs;
   RxList<BookingModel> activeBookings = <BookingModel>[].obs;
   RxList<BookingModel> canceledBookings = <BookingModel>[].obs;
   RxList<BookingModel> completedBookings = <BookingModel>[].obs;
 
-  // Method to fetch all bookings from the database or any other data source
-  Future<void> fetchAllBookings() async {
-    // Implement logic to fetch all bookings from the database
-    // Example:
-    List<BookingModel> bookings =
-        await BookingRepository().fetchAllBookingDetails();
-    allBookings.value = bookings;
-    separateActiveBookings();
+  final _activeLoading = false.obs;
+  final _activeErrorMessage = RxString('');
+
+  bool get isActiveLoading => _activeLoading.value;
+  String get activeError => _activeErrorMessage.value;
+
+  @override
+  void onInit() {
+    super.onInit();
+    separateBookings();
   }
 
-  // Method to separate active bookings from all bookings
-  void separateActiveBookings() {
-    activeBookings.clear();
-    DateTime currentTime = DateTime.now();
-    for (var booking in allBookings) {
-      if (booking.status == 'pending') {
-        if (booking.startTime.isAfter(currentTime)) {
+  Future<void> separateBookings() async {
+    try {
+      _activeErrorMessage.value = '';
+      _activeLoading.value = true;
+      activeBookings.clear();
+      canceledBookings.clear();
+      completedBookings.clear();
+
+      List<BookingModel> bookings =
+          await BookingRepository().fetchAllBookingDetails();
+      DateTime currentTime = DateTime.now();
+
+      for (var booking in bookings) {
+        if (booking.status == 'approved' &&
+            booking.startTime.isBefore(currentTime)) {
+          completedBookings.add(booking);
+        } else if (booking.status == 'canceled' ||
+            booking.endTime.isBefore(currentTime)) {
+          canceledBookings.add(booking);
+        } else if (booking.endTime.isAfter(currentTime) &&
+                booking.status == 'pending' ||
+            booking.status == 'approved') {
           activeBookings.add(booking);
         }
       }
+
+      log("Active Bookings: ${activeBookings.length}");
+      log("Canceled Bookings: ${canceledBookings.length}");
+      log("Completed Bookings: ${completedBookings.length}");
+    } catch (e) {
+      _activeErrorMessage.value = "No bookings are available";
+    } finally {
+      _activeLoading.value = false;
     }
   }
 
-  // Method to add a new booking
   Future<void> addBooking(BookingModel booking) async {
     // Implement logic to add a new booking to the database
-    // Example:
-    // await yourDatabaseService.addBooking(booking);
-    // Update the bookings list
-    // bookings.add(booking);
   }
 
-  // Method to update an existing booking
   Future<void> updateBooking(BookingModel booking) async {
     // Implement logic to update the booking in the database
-    // Example:
-    // await yourDatabaseService.updateBooking(booking);
-    // Find the index of the existing booking in the list
-    // int index = bookings.indexWhere((b) => b.id == booking.id);
-    // Update the booking in the list
-    // if (index != -1) {
-    //   bookings[index] = booking;
-    // }
   }
 
-  // Method to delete a booking
   Future<void> deleteBooking(String bookingId) async {
     // Implement logic to delete the booking from the database
-    // Example:
-    // await yourDatabaseService.deleteBooking(bookingId);
-    // Remove the booking from the list
-    // bookings.removeWhere((b) => b.id == bookingId);
   }
 }
