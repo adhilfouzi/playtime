@@ -1,21 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 
 import '../../../data_model/booking_model.dart';
 import '../authentication/firebase_exceptionhandler.dart';
 
 class BookingRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  List<BookingModel> bookingList = List.empty();
 
   /// Function to fetch all turf details from Firestore
   Future<List<BookingModel>> fetchAllBookingDetails() async {
     try {
       QuerySnapshot turfSnapshot = await _db.collection("Booking").get();
-      bookingList.clear();
+      List<BookingModel> bookingList = [];
 
       for (var doc in turfSnapshot.docs) {
         Map<String, dynamic> turfData = doc.data() as Map<String, dynamic>;
-        bookingList.add(BookingModel.fromJson(turfData));
+        var turf = BookingModel.fromJson(turfData);
+        if (turf.userId == AuthenticationRepository().authUser!.uid) {
+          bookingList.add(turf);
+        }
       }
 
       return bookingList;

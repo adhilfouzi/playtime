@@ -1,18 +1,35 @@
 import 'package:get/get.dart';
 
+import '../../../../model/backend/repositories/firestore/booking_repositories.dart';
 import '../../../../model/data_model/booking_model.dart'; // Import your BookingModel
 
-class Bookingsontroller extends GetxController {
-  // Define an observable list to store bookings
-  RxList<BookingModel> bookings = <BookingModel>[].obs;
+class BookingsController extends GetxController {
+  RxList<BookingModel> allBookings = <BookingModel>[].obs;
+  RxList<BookingModel> activeBookings = <BookingModel>[].obs;
+  RxList<BookingModel> canceledBookings = <BookingModel>[].obs;
+  RxList<BookingModel> completedBookings = <BookingModel>[].obs;
 
-  // Method to fetch bookings from the database or any other data source
-  Future<void> fetchBookings() async {
-    // Implement logic to fetch bookings from the database
+  // Method to fetch all bookings from the database or any other data source
+  Future<void> fetchAllBookings() async {
+    // Implement logic to fetch all bookings from the database
     // Example:
-    // List<BookingModel> fetchedBookings = await yourDatabaseService.fetchBookings();
-    // Update the bookings list
-    // bookings.value = fetchedBookings;
+    List<BookingModel> bookings =
+        await BookingRepository().fetchAllBookingDetails();
+    allBookings.value = bookings;
+    separateActiveBookings();
+  }
+
+  // Method to separate active bookings from all bookings
+  void separateActiveBookings() {
+    activeBookings.clear();
+    DateTime currentTime = DateTime.now();
+    for (var booking in allBookings) {
+      if (booking.status == 'pending') {
+        if (booking.startTime.isAfter(currentTime)) {
+          activeBookings.add(booking);
+        }
+      }
+    }
   }
 
   // Method to add a new booking
