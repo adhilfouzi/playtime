@@ -38,6 +38,7 @@ class ActiveBooking extends StatelessWidget {
                   Button().mainButton("View Booking", context, () {
                     // Add action for button press
                   }),
+                  SizedBox(height: height * 0.01),
                 ],
               ),
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../model/data_model/booking_model.dart';
 
@@ -10,6 +11,8 @@ class BookingDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final startTimeFormatted = DateFormat('dd-MM-yyyy').format(turf.startTime);
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -31,12 +34,12 @@ class BookingDetails extends StatelessWidget {
           ),
         ),
         SizedBox(width: width * 0.05),
-        const Expanded(
+        Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "The Pearls The Pearls The PearlsThe Pearls",
+                turf.turf.courtName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -45,9 +48,9 @@ class BookingDetails extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 2),
+              SizedBox(width: width * 0.08),
               Text(
-                "GRA, Lagos",
+                turf.turf.courtLocation,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black54,
@@ -55,9 +58,9 @@ class BookingDetails extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: 2),
+              SizedBox(width: width * 0.08),
               Text(
-                "27 - March 2024",
+                startTimeFormatted,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black54,

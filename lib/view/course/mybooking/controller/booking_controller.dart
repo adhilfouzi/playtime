@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/firestore/booking_repositories.dart';
+import 'package:users_side_of_turf_booking/model/data_model/owner_model.dart';
 import 'package:users_side_of_turf_booking/utils/portion/loadingpopup.dart';
 import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import 'package:users_side_of_turf_booking/view/course/head/bottom_navigationbar_widget.dart';
@@ -19,7 +20,7 @@ class BookingController extends GetxController {
   var name = TextEditingController();
   var email = TextEditingController();
   var phone = TextEditingController();
-  var turfId = ''.obs;
+  var turf = OwnerModel.emptyOwnerModel().obs();
 
   // Method to combine date and time
   DateTime combineDateTime(DateTime date, TimeOfDay time) {
@@ -30,7 +31,7 @@ class BookingController extends GetxController {
     Get.to(() => const LoadingPopup());
     try {
       var booking = BookingModel(
-          turfId: turfId.value,
+          turf: turf,
           userId: AuthenticationRepository().authUser!.uid,
           startTime: combineDateTime(selectedDate.value, startTime.value),
           endTime: combineDateTime(selectedDate.value, endTime.value),
@@ -39,7 +40,7 @@ class BookingController extends GetxController {
           userEmail: email.text,
           userNumber: phone.text);
 
-      await BookingRepository().saveBookingRecord(booking, turfId.value);
+      await BookingRepository().saveBookingRecord(booking, turf.id);
       Get.offAll(() => const MyBottomNavigationBar());
       CustomSnackbar.showSuccess("Booking completed");
     } catch (e) {

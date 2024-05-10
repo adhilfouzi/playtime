@@ -39,6 +39,7 @@ class CompletedBooking extends StatelessWidget {
                   Button().mainButton("Booking Completed", context, () {
                     // Add action for button press
                   }),
+                  SizedBox(height: height * 0.01),
                 ],
               ),
             ),
