@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking_form_one.dart.dart';
+import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/booking_form_one.dart.dart';
 
 import '../../../../model/data_model/owner_model.dart';
 import '../../mybooking/controller/booking_controller.dart';

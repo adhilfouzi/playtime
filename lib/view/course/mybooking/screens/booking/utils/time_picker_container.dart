@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../utils/const/colors.dart';
+import '../../../../../../utils/const/colors.dart';
 
 class TimeSelector extends StatelessWidget {
   final String title;

@@ -9,7 +9,7 @@ import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import 'package:users_side_of_turf_booking/view/course/head/bottom_navigationbar_widget.dart';
 
 import '../../../../model/data_model/booking_model.dart';
-import '../screens/booking_form_two.dart';
+import '../screens/booking/booking_form_two.dart';
 
 class BookingController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;

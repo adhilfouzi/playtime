@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/model/controller/validator.dart';
 import 'package:users_side_of_turf_booking/utils/portion/textfield.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/utils/appbar_booking_form.dart';
+import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/utils/appbar_booking_form.dart';
 
-import '../../../../utils/portion/button.dart';
-import '../controller/booking_controller.dart';
+import '../../../../../utils/portion/button.dart';
+import '../../controller/booking_controller.dart';
 
 class BookingFormTwo extends StatelessWidget {
   final GlobalKey<FormState> _bookingFormKey = GlobalKey<FormState>();
