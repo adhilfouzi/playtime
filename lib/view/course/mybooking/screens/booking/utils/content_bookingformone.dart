@@ -56,12 +56,14 @@ class _BookingFormContentState extends State<BookingFormContent> {
                     TimeSelector(
                       title: 'From',
                       time: _openingTime,
-                      onPressed: () => _selectTime(context, true),
+                      onPressed: () =>
+                          _selectTime(context, true, widget.controller),
                     ),
                     TimeSelector(
                       title: 'To',
                       time: _closingTime,
-                      onPressed: () => _selectTime(context, false),
+                      onPressed: () =>
+                          _selectTime(context, false, widget.controller),
                     ),
                   ],
                 ),
@@ -73,25 +75,55 @@ class _BookingFormContentState extends State<BookingFormContent> {
     );
   }
 
-  Future<void> _selectTime(context, bool isOpening) async {
+  TimeOfDay parseTimeFromString(
+    String timeString,
+    bool isOpening,
+  ) {
+    // Split the time string into hours and minutes
+    List<String> parts = timeString.split(':');
+    int hours = int.parse(parts[0]);
+    int minutes = int.parse(parts[1]);
+
+    if (isOpening) {
+      if (hours != 0) {
+        hours--;
+      } else {
+        hours = 23;
+      }
+    } else {}
+    return TimeOfDay(hour: hours, minute: minutes);
+  }
+
+  Future<void> _selectTime(
+    context,
+    bool isOpening,
+    BookingController controller,
+  ) async {
     if (!isOpening && _openingTime == null) {
       CustomSnackbar.showError('Please select the starting time.');
       return;
     }
-
+    // final now = DateTime.now();
+    final openingTime = !isOpening
+        ? _openingTime
+        : (parseTimeFromString(
+            controller.turf.openingTime, isOpening && false));
+    final closingTime =
+        parseTimeFromString(controller.turf.closingTime, isOpening && true);
     final initialTime = isOpening ? _openingTime : _closingTime;
+
     final selectedTime = await showDialog<TimeOfDay>(
       context: context,
       builder: (BuildContext context) {
         return TimePickerDialogBox(
-          isOpening: isOpening,
-          closingTime: const TimeOfDay(hour: 2, minute: 00),
-          openingTime:
-              !isOpening ? _openingTime : const TimeOfDay(hour: 5, minute: 00),
           initialTime: initialTime ?? TimeOfDay.now(),
+          isOpening: isOpening,
+          closingTime: closingTime,
+          openingTime: openingTime,
         );
       },
     );
+
     if (selectedTime != null) {
       // Check if selected time meets the condition
       if (isOpening) {
