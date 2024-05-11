@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../utils/portion/button.dart';
 import '../../controller/bookings_controller.dart';
 import 'utils/booking_details.dart';
 
@@ -25,7 +24,7 @@ class CompletedBooking extends StatelessWidget {
         );
       } else {
         if (completedBookings.isEmpty) {
-          return Center(
+          return const Center(
             child: Text("no bookings are available"),
           );
         } else {
@@ -45,11 +44,18 @@ class CompletedBooking extends StatelessWidget {
                       BookingDetails(
                         turf: completedBookings[index],
                       ),
-                      SizedBox(height: height * 0.01),
-                      Button().mainButton("Booking Completed", context, () {
-                        // Add action for button press
-                      }),
-                      SizedBox(height: height * 0.01),
+                      SizedBox(height: height * 0.02),
+                      const Text(
+                        "Well Played floks",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.green,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: height * 0.02),
                     ],
                   ),
                 ),

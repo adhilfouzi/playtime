@@ -109,40 +109,38 @@ class ViewTurfDetailsScreen extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
+}
 
-  // Function to create main button with custom style
-  Widget mainButton(String text, BuildContext context, VoidCallback onPressed) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        backgroundColor: const Color(0xFF238C98), // Text color
-        minimumSize:
-            Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(999)), // Button corner radius
-      ),
-      child: Text(text),
-    );
-  }
+// Function to create main button with custom style
+Widget mainButton(String text, BuildContext context, VoidCallback onPressed) {
+  return ElevatedButton(
+    onPressed: onPressed,
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Colors.white,
+      backgroundColor: const Color(0xFF238C98), // Text color
+      minimumSize:
+          Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(999)), // Button corner radius
+    ),
+    child: Text(text),
+  );
+}
 
-  // Function to create white button with custom style
-  Widget whiteButton(
-      String text, BuildContext context, VoidCallback onPressed) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: const Color(0xFF238C98),
-        backgroundColor: Colors.white, // Text color
-        minimumSize:
-            Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(999), // Button corner radius
-          side:
-              const BorderSide(color: Color(0xFF238C98)), // Button border color
-        ),
+// Function to create white button with custom style
+Widget whiteButton(String text, BuildContext context, VoidCallback onPressed) {
+  return ElevatedButton(
+    onPressed: onPressed,
+    style: ElevatedButton.styleFrom(
+      foregroundColor: const Color(0xFF238C98),
+      backgroundColor: Colors.white, // Text color
+      minimumSize:
+          Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(999), // Button corner radius
+        side: const BorderSide(color: Color(0xFF238C98)), // Button border color
       ),
-      child: Text(text),
-    );
-  }
+    ),
+    child: Text(text),
+  );
 }

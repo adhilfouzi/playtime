@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../../utils/const/image_name.dart';
 import '../../../../utils/portion/button.dart';
 import '../login/login_screen.dart';

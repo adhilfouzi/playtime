@@ -70,19 +70,19 @@ class BookingDetails extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               SizedBox(width: width * 0.08),
-              Text(
-                turf.status,
-                style: TextStyle(
-                    fontSize: 16,
-                    color: turf.status == 'approved'
-                        ? Colors.green
-                        : (turf.status == 'pending'
-                            ? Colors.yellow
-                            : Colors.red),
-                    fontWeight: FontWeight.bold),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
+              // Text(
+              //   turf.status,
+              //   style: TextStyle(
+              //       fontSize: 16,
+              //       color: turf.status == 'approved'
+              //           ? Colors.green
+              //           : (turf.status == 'pending'
+              //               ? Colors.yellow
+              //               : Colors.red),
+              //       fontWeight: FontWeight.bold),
+              //   maxLines: 1,
+              //   overflow: TextOverflow.ellipsis,
+              // ),
             ],
           ),
         ),

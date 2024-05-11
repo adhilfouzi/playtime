@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:users_side_of_turf_booking/view/course/turflist/screens/view_turf_details.dart';
 import '../../../../model/data_model/owner_model.dart';
 
@@ -8,9 +7,9 @@ class TurfListItem extends StatelessWidget {
   final OwnerModel turf;
 
   const TurfListItem({
-    Key? key,
+    super.key,
     required this.turf,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

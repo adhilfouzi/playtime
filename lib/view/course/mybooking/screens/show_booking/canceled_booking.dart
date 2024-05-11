@@ -23,7 +23,7 @@ class CanceledBooking extends StatelessWidget {
         );
       } else {
         if (canceledBookings.isEmpty) {
-          return Center(
+          return const Center(
             child: Text("no bookings are available"),
           );
         } else {

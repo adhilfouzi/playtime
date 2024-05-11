@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../utils/portion/button.dart';
 import '../../controller/bookings_controller.dart';
 import 'utils/booking_details.dart';
+import 'utils/view_booked_details.dart';
 
 class ActiveBooking extends StatelessWidget {
   final BookingsController controller;
@@ -25,7 +26,7 @@ class ActiveBooking extends StatelessWidget {
         );
       } else {
         if (activeBookings.isEmpty) {
-          return Center(
+          return const Center(
             child: Text("no bookings are available"),
           );
         } else {
@@ -47,7 +48,14 @@ class ActiveBooking extends StatelessWidget {
                       ),
                       const Divider(), // Add Divider for visual separation
                       Button().mainButton("View Booking", context, () {
-                        // Add action for button press
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ViewBookingDetails(
+                              booking: activeBookings[index],
+                            ); // Show the booking details dialog
+                          },
+                        );
                       }),
                     ],
                   ),
