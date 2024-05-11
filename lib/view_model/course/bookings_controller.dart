@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 
-import '../../../../model/backend/repositories/firestore/booking_repositories.dart';
-import '../../../../model/data_model/booking_model.dart';
+import '../../model/backend/repositories/firestore/booking_repositories.dart';
+import '../../model/data_model/booking_model.dart';
 
 class BookingsController extends GetxController {
   RxList<BookingModel> activeBookings = <BookingModel>[].obs;

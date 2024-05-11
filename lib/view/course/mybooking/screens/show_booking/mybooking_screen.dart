@@ -4,7 +4,7 @@ import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_bo
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/canceled_booking.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/completed_booking.dart';
 
-import '../../controller/bookings_controller.dart';
+import '../../../../../view_model/course/bookings_controller.dart';
 
 class MyBooking extends StatefulWidget {
   const MyBooking({super.key});

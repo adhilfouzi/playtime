@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/portion/button.dart';
-import '../../controller/bookings_controller.dart';
+import '../../../../../view_model/course/bookings_controller.dart';
 import 'utils/booking_details.dart';
 import 'utils/view_booked_details.dart';
 

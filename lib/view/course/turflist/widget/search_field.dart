@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../controller/turflist_controller.dart';
+import '../../../../view_model/course/turflist_controller.dart';
 
 class SearchField extends StatelessWidget {
   final TurflistController controller;

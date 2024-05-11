@@ -8,7 +8,7 @@ import '../../../../turflist/screens/view_turf_details.dart';
 class ViewBookingDetails extends StatelessWidget {
   final BookingModel booking;
 
-  const ViewBookingDetails({Key? key, required this.booking}) : super(key: key);
+  const ViewBookingDetails({super.key, required this.booking});
 
   @override
   Widget build(BuildContext context) {

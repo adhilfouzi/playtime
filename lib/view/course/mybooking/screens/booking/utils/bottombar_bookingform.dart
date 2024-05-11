@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../utils/portion/button.dart';
-import '../../../controller/booking_controller.dart';
+import '../../../../../../view_model/course/booking_controller.dart';
 
 class BookingFormBottomBar extends StatelessWidget {
   final BookingController controller;

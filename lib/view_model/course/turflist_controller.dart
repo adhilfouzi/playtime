@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../../../model/backend/repositories/firestore/turf_repositories.dart';
-import '../../../../model/data_model/owner_model.dart';
+import '../../model/backend/repositories/firestore/turf_repositories.dart';
+import '../../model/data_model/owner_model.dart';
 
 class TurflistController extends GetxController {
   final _turfList = <OwnerModel>[].obs;

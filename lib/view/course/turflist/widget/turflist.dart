@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/turflist_controller.dart';
+import '../../../../view_model/course/turflist_controller.dart';
 import 'turf_list_item.dart';
 
 class TurfListscreen extends StatelessWidget {

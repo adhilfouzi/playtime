@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../controller/booking_controller.dart';
+import '../../../../../view_model/course/booking_controller.dart';
 import 'utils/appbar_booking_form.dart';
 import 'utils/bottombar_bookingform.dart';
 import 'utils/content_bookingformone.dart';

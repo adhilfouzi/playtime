@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/bookings_controller.dart';
+import '../../../../../view_model/course/bookings_controller.dart';
 import 'utils/booking_details.dart';
 
 class CompletedBooking extends StatelessWidget {
