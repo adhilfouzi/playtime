@@ -10,11 +10,11 @@ class BookingsController extends GetxController {
   RxList<BookingModel> canceledBookings = <BookingModel>[].obs;
   RxList<BookingModel> completedBookings = <BookingModel>[].obs;
 
-  final _activeLoading = false.obs;
-  final _activeErrorMessage = RxString('');
+  final _isLoading = false.obs;
+  final _errorMessage = RxString('');
 
-  bool get isActiveLoading => _activeLoading.value;
-  String get activeError => _activeErrorMessage.value;
+  bool get isLoading => _isLoading.value;
+  String get errorMessage => _errorMessage.value;
 
   @override
   void onInit() {
@@ -24,8 +24,8 @@ class BookingsController extends GetxController {
 
   Future<void> separateBookings() async {
     try {
-      _activeErrorMessage.value = '';
-      _activeLoading.value = true;
+      _errorMessage.value = '';
+      _isLoading.value = true;
       activeBookings.clear();
       canceledBookings.clear();
       completedBookings.clear();
@@ -42,8 +42,7 @@ class BookingsController extends GetxController {
             booking.endTime.isBefore(currentTime)) {
           canceledBookings.add(booking);
         } else if (booking.endTime.isAfter(currentTime) &&
-                booking.status == 'pending' ||
-            booking.status == 'approved') {
+            (booking.status == 'pending' || booking.status == 'approved')) {
           activeBookings.add(booking);
         }
       }
@@ -52,21 +51,10 @@ class BookingsController extends GetxController {
       log("Canceled Bookings: ${canceledBookings.length}");
       log("Completed Bookings: ${completedBookings.length}");
     } catch (e) {
-      _activeErrorMessage.value = "No bookings are available";
+      _errorMessage.value = "No bookings are available";
     } finally {
-      _activeLoading.value = false;
+      _isLoading.value = false; // Update loading state to false
+      update(); // Trigger state update
     }
-  }
-
-  Future<void> addBooking(BookingModel booking) async {
-    // Implement logic to add a new booking to the database
-  }
-
-  Future<void> updateBooking(BookingModel booking) async {
-    // Implement logic to update the booking in the database
-  }
-
-  Future<void> deleteBooking(String bookingId) async {
-    // Implement logic to delete the booking from the database
   }
 }
