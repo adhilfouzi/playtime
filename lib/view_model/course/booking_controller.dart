@@ -11,6 +11,7 @@ import 'package:users_side_of_turf_booking/view/course/head/bottom_navigationbar
 
 import '../../model/data_model/booking_model.dart';
 import '../../view/course/mybooking/screens/booking/booking_form_two.dart';
+import 'usermodel_controller.dart';
 
 class BookingController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
@@ -21,6 +22,16 @@ class BookingController extends GetxController {
   var email = TextEditingController();
   var phone = TextEditingController();
   var turf = OwnerModel.emptyOwnerModel().obs();
+
+  UserController userController = Get.find();
+
+  @override
+  void onInit() {
+    super.onInit();
+    name.text = userController.user.value.name;
+    email.text = userController.user.value.email;
+    phone.text = userController.user.value.number;
+  }
 
   // Method to combine date and time
   DateTime combineDateTime(DateTime date, TimeOfDay time) {
