@@ -10,6 +10,10 @@ class TurfListscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> refresh() async {
+      await controller.searchTurf();
+    }
+
     return Obx(() {
       if (controller.isLoading) {
         return const Center(
@@ -21,12 +25,29 @@ class TurfListscreen extends StatelessWidget {
         );
       } else {
         final turfList = controller.turfList;
-        return ListView.builder(
-          itemCount: turfList.length,
-          itemBuilder: (context, index) {
-            return TurfListItem(turf: turfList[index]);
-          },
-        );
+        if (turfList.isEmpty) {
+          return RefreshIndicator(
+            onRefresh: refresh,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Container(
+                height: MediaQuery.of(context).size.height - 200,
+                alignment: Alignment.center,
+                child: const Text("No bookings are available"),
+              ),
+            ),
+          );
+        } else {
+          return RefreshIndicator(
+            onRefresh: refresh,
+            child: ListView.builder(
+              itemCount: turfList.length,
+              itemBuilder: (context, index) {
+                return TurfListItem(turf: turfList[index]);
+              },
+            ),
+          );
+        }
       }
     });
   }

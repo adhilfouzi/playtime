@@ -54,7 +54,9 @@ class TurfListItem extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                '${turf.openingTime} to ${turf.closingTime}',
+                turf.is24h
+                    ? "Open 24 Hours"
+                    : '${turf.openingTime} to ${turf.closingTime}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[600],

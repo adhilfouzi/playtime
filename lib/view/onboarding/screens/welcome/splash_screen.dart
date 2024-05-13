@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    checkUserLoggedIn(context);
+    checkUserLoggedIn();
     Get.put(UserController());
   }
 
@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-Future<void> checkUserLoggedIn(context) async {
+Future<void> checkUserLoggedIn() async {
   try {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final items = prefs.getStringList(logs);

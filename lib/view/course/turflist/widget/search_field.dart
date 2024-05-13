@@ -22,7 +22,8 @@ class SearchField extends StatelessWidget {
             prefixIcon: Icon(Icons.search),
             border: InputBorder.none),
         onChanged: (query) {
-          controller.searchTurf(query);
+          controller.query.value = query;
+          controller.searchTurf();
         },
       ),
     );

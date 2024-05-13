@@ -51,7 +51,7 @@ class BookingsController extends GetxController {
       log("Canceled Bookings: ${canceledBookings.length}");
       log("Completed Bookings: ${completedBookings.length}");
     } catch (e) {
-      _errorMessage.value = "No bookings are available";
+      _errorMessage.value = 'Error: $e';
     } finally {
       _isLoading.value = false; // Update loading state to false
       update(); // Trigger state update

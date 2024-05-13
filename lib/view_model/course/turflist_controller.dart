@@ -7,6 +7,7 @@ class TurflistController extends GetxController {
   final _turfList = <OwnerModel>[].obs;
   final _isLoading = true.obs;
   final _errorMessage = RxString('');
+  final query = RxString('');
 
   List<OwnerModel> get turfList => _turfList.toList();
   bool get isLoading => _isLoading.value;
@@ -30,12 +31,12 @@ class TurflistController extends GetxController {
     }
   }
 
-  Future<void> searchTurf(String query) async {
+  Future<void> searchTurf() async {
     try {
       if (query.isNotEmpty) {
         _isLoading.value = true;
         _errorMessage.value = '';
-        var searchedTurfList = await TurfRepository().searchTurf(query);
+        var searchedTurfList = await TurfRepository().searchTurf(query.value);
         _turfList.assignAll(searchedTurfList);
         _isLoading.value = false;
         if (_turfList.isEmpty && query.isNotEmpty) {
