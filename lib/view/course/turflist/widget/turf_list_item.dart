@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:users_side_of_turf_booking/model/controller/formater.dart';
 import 'package:users_side_of_turf_booking/view/course/turflist/screens/view_turf_details.dart';
 import '../../../../model/data_model/owner_model.dart';
 
@@ -15,7 +16,8 @@ class TurfListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
+    var opening = Formatter.timeOfDayToString(turf.openingTime);
+    var close = Formatter.timeOfDayToString(turf.closingTime);
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: height * 0.01,
@@ -54,9 +56,7 @@ class TurfListItem extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                turf.is24h
-                    ? "Open 24 Hours"
-                    : '${turf.openingTime}0 to ${turf.closingTime}0',
+                turf.is24h ? "Open 24 Hours" : '$opening to $close',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[600],

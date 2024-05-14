@@ -12,7 +12,7 @@ class BookingDetails extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final startTimeFormatted =
-        DateFormat('dd-MM-yyyy HH:MM').format(turf.startTime);
+        DateFormat('dd-MMM-yy hh:mm a').format(turf.startTime);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

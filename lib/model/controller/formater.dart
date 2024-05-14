@@ -40,7 +40,21 @@ class Formatter {
   }
 
   static String timeOfDayToString(TimeOfDay timeOfDay) {
-    return '${timeOfDay.hour}:${timeOfDay.minute}';
+    // Determine if it's AM or PM
+    final period = timeOfDay.hour >= 12 ? 'PM' : 'AM';
+
+    // Convert hours to 12-hour format
+    int hour = timeOfDay.hourOfPeriod;
+    if (hour == 0) {
+      hour = 12; // 12 AM
+    }
+
+    // Format minutes with leading zero if needed
+    String minute =
+        timeOfDay.minute < 10 ? '0${timeOfDay.minute}' : '${timeOfDay.minute}';
+
+    // Construct the formatted time string
+    return '$hour:$minute $period';
   }
 
   static DateTime stringToDateTime(String dateString) {
