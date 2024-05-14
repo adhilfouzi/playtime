@@ -57,6 +57,7 @@ class EmailVerificationScreen extends StatelessWidget {
               'Send Reset Link',
               context,
               () {
+                FocusManager.instance.primaryFocus?.unfocus();
                 if (!emailFormKey.currentState!.validate()) return;
                 _controller.requestEmailVerification(context);
               },

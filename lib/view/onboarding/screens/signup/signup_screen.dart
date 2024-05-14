@@ -62,6 +62,7 @@ class SignupScreen extends StatelessWidget {
                 PrivacyPolicyCheckbox(controller: _signupController),
                 SizedBox(height: height * 0.02),
                 Button().mainButton('Sign up', context, () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   if (!signupFormKey.currentState!.validate()) return;
                   _signupController.signup();
                 }),

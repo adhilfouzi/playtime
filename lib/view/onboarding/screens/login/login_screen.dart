@@ -55,6 +55,7 @@ class LoginScreen extends StatelessWidget {
                   child: const Text("Forget password"),
                 ),
                 Button().mainButton('Log in', context, () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   if (!loginFormKey.currentState!.validate()) return;
 
                   _controller.signIn();

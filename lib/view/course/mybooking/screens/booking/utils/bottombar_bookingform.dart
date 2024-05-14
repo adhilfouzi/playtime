@@ -19,6 +19,7 @@ class BookingFormBottomBar extends StatelessWidget {
         vertical: height * 0.02,
       ),
       child: Button().mainButton('Next', context, () {
+        FocusManager.instance.primaryFocus?.unfocus();
         controller.nextWay();
       }),
     );

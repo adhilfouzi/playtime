@@ -57,6 +57,7 @@ class BookingFormTwo extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.05, vertical: height * 0.02),
         child: Button().mainButton('Submit', context, () {
+          FocusManager.instance.primaryFocus?.unfocus();
           if (_bookingFormKey.currentState!.validate()) {
             controller.bookTheturf();
           }
