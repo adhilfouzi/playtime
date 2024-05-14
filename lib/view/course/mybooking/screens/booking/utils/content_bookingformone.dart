@@ -76,13 +76,12 @@ class _BookingFormContentState extends State<BookingFormContent> {
   }
 
   TimeOfDay parseTimeFromString(
-    String timeString,
+    TimeOfDay timeString,
     bool isOpening,
   ) {
     // Split the time string into hours and minutes
-    List<String> parts = timeString.split(':');
-    int hours = int.parse(parts[0]);
-    int minutes = int.parse(parts[1]);
+    int hours = timeString.hour;
+    int minutes = timeString.minute;
 
     if (isOpening) {
       if (hours != 0) {

@@ -16,7 +16,8 @@ class BookingRepository {
       List<BookingModel> bookingList = [];
       for (var doc in bookingSnapshot.docs) {
         Map<String, dynamic> turfData = doc.data();
-        var booking = BookingModel.fromJson(turfData);
+        String bookingId = doc.id; // Retrieve the document ID
+        var booking = BookingModel.fromJson(turfData, bookingId);
         if (booking.userId == AuthenticationRepository().authUser!.uid) {
           bookingList.add(booking);
         }

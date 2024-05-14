@@ -56,7 +56,7 @@ class TurfListItem extends StatelessWidget {
               Text(
                 turf.is24h
                     ? "Open 24 Hours"
-                    : '${turf.openingTime} to ${turf.closingTime}',
+                    : '${turf.openingTime}0 to ${turf.closingTime}0',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[600],

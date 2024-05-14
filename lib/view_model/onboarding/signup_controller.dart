@@ -23,16 +23,18 @@ class SignupController extends GetxController {
         return;
       }
       Get.to(() => const LoadingPopup());
+
+      final userCredential = await AuthenticationRepository()
+          .registerWithEmailAndPassword(
+              emailText.text, passwordText.text.trim());
       final user = UserModel(
+        id: userCredential.user!.uid,
         name: fullNameText.text.trim(),
         number: phoneNumberText.text.trim(),
         email: emailText.text.trim(),
         profile: '',
         isUser: true,
       );
-      final userCredential = await AuthenticationRepository()
-          .registerWithEmailAndPassword(user.email, passwordText.text.trim());
-
       await UserRepository().saveUserRecord(user, userCredential.user!.uid);
 
       Get.offAll(() => const MyBottomNavigationBar());

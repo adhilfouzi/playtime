@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../data_model/owner_model.dart'; // Assuming OwnerModel is the model for turf details
+import '../../../data_model/owner_model.dart';
 import '../authentication/firebase_exceptionhandler.dart';
 
 class TurfRepository {
@@ -14,7 +14,10 @@ class TurfRepository {
 
       for (var doc in turfSnapshot.docs) {
         Map<String, dynamic> turfData = doc.data() as Map<String, dynamic>;
-        turfList.add(OwnerModel.fromJson(turfData));
+        var turf = OwnerModel.fromJson(turfData);
+        if (turf.isRegistered && turf.isOwner) {
+          turfList.add(turf);
+        }
       }
 
       return turfList;
