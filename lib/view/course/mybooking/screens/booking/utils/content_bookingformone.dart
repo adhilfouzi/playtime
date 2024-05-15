@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:users_side_of_turf_booking/model/controller/formater.dart';
 
 import '../../../../../../utils/portion/snackbar.dart';
 import '../../../../../../view_model/course/booking_controller.dart';
@@ -69,6 +70,11 @@ class _BookingFormContentState extends State<BookingFormContent> {
                 ),
               ],
             ),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "Total Price: ${Formatter.formatCurrency(widget.controller.price.value)}",
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -151,6 +157,8 @@ class _BookingFormContentState extends State<BookingFormContent> {
       setState(() {
         widget.controller.startTime.value = _openingTime!;
         widget.controller.endTime.value = _closingTime!;
+        widget.controller.price.value = Formatter.calculateTotalPrice(
+            widget.controller.turf.price, _openingTime!, _closingTime!);
       });
     }
   }

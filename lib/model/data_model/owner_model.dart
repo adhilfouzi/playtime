@@ -12,6 +12,7 @@ class OwnerModel {
   TimeOfDay openingTime;
   TimeOfDay closingTime;
   String courtLocation;
+  double price;
   String images;
   String ownerPhoto;
   String ownerFullName;
@@ -30,6 +31,7 @@ class OwnerModel {
     required this.openingTime,
     required this.closingTime,
     required this.courtLocation,
+    required this.price,
     required this.images,
     required this.ownerPhoto,
     required this.ownerFullName,
@@ -52,6 +54,7 @@ class OwnerModel {
       openingTime: openingTime,
       closingTime: closingTime,
       courtLocation: json['courtLocation'] ?? "N/A",
+      price: Formatter.firebaseNumberToDouble(json['price']),
       images: json['images'] ?? "N/A",
       ownerPhoto: json['ownerPhoto'] ?? "N/A",
       ownerFullName: json['ownerFullName'] ?? "N/A",
@@ -72,6 +75,7 @@ class OwnerModel {
       openingTime: TimeOfDay.now(),
       closingTime: TimeOfDay.now(),
       courtLocation: '',
+      price: 0,
       images: '',
       ownerPhoto: '',
       ownerFullName: '',
@@ -95,6 +99,7 @@ class OwnerModel {
       openingTime: openingTime,
       closingTime: closingTime,
       courtLocation: map['courtLocation'] ?? "N/A",
+      price: Formatter.firebaseNumberToDouble(map['price']),
       images: map['images'] ?? "N/A",
       ownerPhoto: map['ownerPhoto'] ?? "N/A",
       ownerFullName: map['ownerFullName'] ?? "N/A",
@@ -116,6 +121,7 @@ class OwnerModel {
       'openingTime': Formatter.timeOfDayToTimestamp(openingTime),
       'closingTime': Formatter.timeOfDayToTimestamp(closingTime),
       'courtLocation': courtLocation,
+      'price': price,
       'images': images,
       'ownerPhoto': ownerPhoto,
       'ownerFullName': ownerFullName,
@@ -137,6 +143,7 @@ class OwnerModel {
       'openingTime': Formatter.timeOfDayToTimestamp(openingTime),
       'closingTime': Formatter.timeOfDayToTimestamp(closingTime),
       'courtLocation': courtLocation,
+      'price': price,
       'images': images,
       'ownerPhoto': ownerPhoto,
       'ownerFullName': ownerFullName,
@@ -161,6 +168,7 @@ class OwnerModel {
       openingTime: openingTime,
       closingTime: closingTime,
       courtLocation: data['courtLocation'] ?? "N/A",
+      price: Formatter.firebaseNumberToDouble(data['price']),
       images: data['images'] ?? "N/A",
       ownerPhoto: data['ownerPhoto'] ?? "N/A",
       ownerFullName: data['ownerFullName'] ?? "N/A",

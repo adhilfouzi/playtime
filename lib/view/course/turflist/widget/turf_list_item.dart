@@ -62,6 +62,13 @@ class TurfListItem extends StatelessWidget {
                   color: Colors.grey[600],
                 ),
               ),
+              Text(
+                Formatter.formatCurrency(turf.price),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[600],
+                ),
+              ),
             ],
           ),
           onTap: () {

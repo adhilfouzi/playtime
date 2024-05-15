@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Formatter {
-  static String formatDate(DateTime date) {
+  static String dateTimetoString(DateTime date) {
     return DateFormat('dd MMMM yyyy').format(date);
   }
 
@@ -12,13 +12,43 @@ class Formatter {
     return formatCurrency.format(amount);
   }
 
+  static String timeRange(DateTime start, DateTime end) {
+    String startTime = DateFormat('hh:mm a').format(start);
+    String endTime = DateFormat('hh:mm a').format(end);
+    return '$startTime to $endTime';
+  }
+
   static String formatPhoneNumber(String phoneNumber) {
     // Assuming the phone number format is 10 digits
     return '${phoneNumber.substring(0, 5)}-${phoneNumber.substring(5, 10)}'; // Example: 12345-67890
   }
 
+  static double firebaseNumberToDouble(num firebaseNumber) {
+    return firebaseNumber.toDouble();
+  }
+
   static DateTime timestampToDateTime(Timestamp timestamp) {
     return timestamp.toDate();
+  }
+
+  static double calculateTotalPrice(
+    double pricePerHour,
+    TimeOfDay startTime,
+    TimeOfDay endTime,
+  ) {
+    // Convert TimeOfDay to DateTime
+    DateTime startDateTime =
+        DateTime(2002, 5, 22, startTime.hour, startTime.minute);
+    DateTime endDateTime = DateTime(2002, 5, 22, endTime.hour, endTime.minute);
+
+    // Calculate the duration of the booking in hours
+    double durationInHours =
+        endDateTime.difference(startDateTime).inHours.toDouble();
+
+    // Calculate the total price
+    double totalPrice = durationInHours * pricePerHour;
+
+    return totalPrice;
   }
 
   static String timestampToString(Timestamp timestamp) {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../data_model/owner_model.dart';
 import '../authentication/firebase_exceptionhandler.dart';
@@ -22,6 +24,7 @@ class TurfRepository {
 
       return turfList;
     } catch (e) {
+      log(e.toString());
       throw ExceptionHandler.handleException(e);
     }
   }

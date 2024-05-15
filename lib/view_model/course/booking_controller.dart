@@ -21,6 +21,7 @@ class BookingController extends GetxController {
   var name = TextEditingController();
   var email = TextEditingController();
   var phone = TextEditingController();
+  var price = 0.0.obs;
   var turf = OwnerModel.emptyOwnerModel().obs();
 
   UserController userController = Get.find();
@@ -47,6 +48,7 @@ class BookingController extends GetxController {
           startTime: combineDateTime(selectedDate.value, startTime.value),
           endTime: combineDateTime(selectedDate.value, endTime.value),
           status: Status.pending.value,
+          price: price.value,
           username: name.text,
           userEmail: email.text,
           userNumber: phone.text);

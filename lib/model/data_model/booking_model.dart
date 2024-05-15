@@ -10,6 +10,7 @@ class BookingModel {
   final DateTime startTime;
   final DateTime endTime;
   final String status;
+  final double price;
   final String username;
   final String userEmail;
   final String userNumber;
@@ -21,6 +22,7 @@ class BookingModel {
     required this.startTime,
     required this.endTime,
     required this.status,
+    required this.price,
     required this.username,
     required this.userEmail,
     required this.userNumber,
@@ -36,6 +38,7 @@ class BookingModel {
       startTime: start,
       endTime: end,
       status: json['status'] ?? "N/A",
+      price: Formatter.firebaseNumberToDouble(json['price']),
       username: json['username'] ?? "N/A",
       userEmail: json['userEmail'] ?? "N/A",
       userNumber: json['userNumber'] ?? "N/A",
@@ -52,6 +55,7 @@ class BookingModel {
       startTime: start,
       endTime: end,
       status: data['status'] ?? "N/A",
+      price: Formatter.firebaseNumberToDouble(data['price']),
       username: data['username'] ?? "N/A",
       userEmail: data['userEmail'] ?? "N/A",
       userNumber: data['userNumber'] ?? "N/A",
@@ -66,6 +70,7 @@ class BookingModel {
       'startTime': Formatter.dateTimeToTimestamp(startTime),
       'endTime': Formatter.dateTimeToTimestamp(endTime),
       'status': status,
+      'price': price,
       'username': username,
       'userEmail': userEmail,
       'userNumber': userNumber,

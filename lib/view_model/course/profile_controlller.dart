@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
-import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:users_side_of_turf_booking/view/onboarding/screens/login/login_screen.dart';
+
+import '../../model/backend/repositories/authentication/firebase_authentication.dart';
+import '../../utils/portion/snackbar.dart';
+import '../../view/onboarding/screens/login/login_screen.dart';
 
 class ProfileController {
   static void changePassword(String email) async {
@@ -33,7 +34,8 @@ class ProfileController {
     try {
       await launchUrl(emailUri);
     } catch (e) {
-      // print('Error launching email: $e');
+      log('Error launching email: $e');
+      CustomSnackbar.showError("Could not launching helpAndFAQs");
     }
   }
 

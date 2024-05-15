@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 import '../../model/backend/repositories/firestore/turf_repositories.dart';
@@ -27,6 +29,7 @@ class TurflistController extends GetxController {
       _isLoading.value = false;
     } catch (e) {
       _errorMessage.value = 'Failed to fetch turf list: $e';
+      log(e.toString());
       _isLoading.value = false;
     }
   }
