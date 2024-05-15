@@ -32,7 +32,7 @@ class _BookingCalendarState extends State<BookingCalendar> {
       ),
       padding: const EdgeInsets.all(20),
       child: TableCalendar(
-        firstDay: DateTime.utc(2024, 1, 1),
+        firstDay: DateTime.now(),
         lastDay: DateTime.utc(2100, 12, 31),
         focusedDay: _focusedDay,
         calendarFormat: _calendarFormat,
