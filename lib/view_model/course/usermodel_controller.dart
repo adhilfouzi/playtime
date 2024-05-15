@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../model/data_model/user_model.dart';
@@ -7,10 +9,14 @@ import '../../model/data_model/user_model.dart';
 class UserController extends GetxController {
   // static UserController get instance => Get.find();
   Rx<UserModel> user = UserModel.emptyUserModel().obs;
+  final name = TextEditingController();
+  final number = TextEditingController();
 
   @override
-  void onReady() {
-    getUserRecord();
+  void onReady() async {
+    await getUserRecord();
+    name.text = user.value.name;
+    number.text = user.value.number;
     super.onReady();
   }
 
@@ -29,6 +35,22 @@ class UserController extends GetxController {
       user(UserModel.emptyUserModel());
       log("getUserRecord failed");
       log(e.toString());
+    }
+  }
+
+  Future<void> updateUser() async {
+    try {
+      var userModel = UserModel(
+          name: name.text,
+          number: number.text,
+          email: user.value.email,
+          profile: user.value.profile,
+          isUser: user.value.isUser);
+      await UserRepository().updateUserField(userMdel: userModel);
+      user.value = userModel;
+    } catch (e) {
+      log('updateUser:$e');
+      CustomSnackbar.showError(e.toString());
     }
   }
 }
