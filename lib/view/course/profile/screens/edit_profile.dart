@@ -2,66 +2,87 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/view/onboarding/utils/appbar.dart';
 
-import '../../../../model/controller/validator.dart';
-import '../../../../utils/portion/button.dart';
-import '../../../../utils/portion/textfield.dart';
+import '../../../../view_model/course/image_controller.dart';
 import '../../../../view_model/course/usermodel_controller.dart';
 
 class EditUser extends StatelessWidget {
-  EditUser({super.key});
-  final GlobalKey<FormState> _editUser = GlobalKey<FormState>();
+  const EditUser({super.key});
 
   @override
   Widget build(BuildContext context) {
     final UserController user = Get.find();
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
+    final ImageController imagePicker = Get.put(ImageController(
+      user.user.value.profile.isNotEmpty ? user.user.value.profile : null,
+    ));
+
     return Scaffold(
-      appBar: const IntroAppbar(actions: [], titleText: "Edit Profile"),
-      body: Form(
-        key: _editUser,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: screenHeight * 0.05),
-              const CircleAvatar(
-                radius: 100,
-                backgroundImage: AssetImage(
-                    'assets/image/profile.png'), // Add your profile image asset
-              ),
-              SizedBox(height: screenHeight * 0.05),
-              MyTextField(
-                hintText: "Full Name",
-                validator: (value) =>
-                    InputValidators.validateEmpty("Name", value),
-                controller: user.name,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-              ),
-              MyTextField(
-                hintText: 'Phone Number',
-                controller: user.number,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                validator: (value) =>
-                    InputValidators.validatePhoneNumber(value),
-              ),
-            ],
-          ),
-        ),
+      appBar: const IntroAppbar(
+        actions: [],
+        titleText: "Edit Profile",
       ),
-      bottomNavigationBar: Container(
-        color: Colors.white,
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.05,
-          vertical: screenHeight * 0.02,
+            vertical: screenHeight * 0.02, horizontal: screenWidth * 0.02),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: screenHeight * 0.05),
+            Obx(
+              () => GestureDetector(
+                onTap: () => imagePicker.openDialog(),
+                child: CircleAvatar(
+                  backgroundImage: user.user.value.profile.isNotEmpty
+                      ? NetworkImage(user.user.value.profile)
+                      : const AssetImage('assets/image/profile.png')
+                          as ImageProvider,
+                  radius: 64.0,
+                  backgroundColor: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.05),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Name: "),
+                const SizedBox(width: 10.0),
+                Expanded(
+                  child: Text(
+                    user.user.value.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    // Add functionality to edit
+                  },
+                  icon: const Icon(Icons.edit_sharp),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Number: "),
+                const SizedBox(width: 10.0),
+                Expanded(
+                  child: Text(
+                    user.user.value.number,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    // Add functionality to edit
+                  },
+                  icon: const Icon(Icons.edit_sharp),
+                )
+              ],
+            )
+          ],
         ),
-        child: Button().mainButton('Save', context, () {
-          FocusManager.instance.primaryFocus?.unfocus();
-          if (!_editUser.currentState!.validate()) return;
-          user.updateUser();
-          Get.back();
-        }),
       ),
     );
   }

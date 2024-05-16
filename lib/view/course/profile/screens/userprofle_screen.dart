@@ -24,15 +24,22 @@ class UserProfile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: screenHeight * 0.05),
-              const CircleAvatar(
-                radius: 60,
-                backgroundImage: AssetImage(
-                    'assets/image/profile.png'), // Add your profile image asset
-              ),
+              Obx(() {
+                final imageUrl = controller.user.value.profile;
+                return CircleAvatar(
+                  backgroundImage: imageUrl.isNotEmpty
+                      ? NetworkImage(
+                          imageUrl) // Use NetworkImage for Firebase Storage URLs
+                      : const AssetImage('assets/image/profile.png')
+                          as ImageProvider,
+                  radius: 50.0,
+                  backgroundColor: Colors.white,
+                );
+              }),
               SizedBox(height: screenHeight * 0.02),
               Obx(
                 () => Text(
-                  controller.user.value.name, // Replace with user's email
+                  controller.user.value.name,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -45,8 +52,7 @@ class UserProfile extends StatelessWidget {
                   children: [
                     Obx(
                       () => Text(
-                        controller
-                            .user.value.number, // Replace with user's email
+                        controller.user.value.number,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,

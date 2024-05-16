@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
+
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../model/data_model/user_model.dart';
 
@@ -31,6 +32,7 @@ class UserController extends GetxController {
         final userd = await userRepository.getUserById();
         user(userd);
       }
+      log("getUserRecord");
     } catch (e) {
       user(UserModel.emptyUserModel());
       log("getUserRecord failed");
@@ -47,6 +49,7 @@ class UserController extends GetxController {
           profile: user.value.profile,
           isUser: user.value.isUser);
       await UserRepository().updateUserField(userMdel: userModel);
+      log("update User Model");
       user.value = userModel;
     } catch (e) {
       log('updateUser:$e');
