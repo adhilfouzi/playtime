@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:users_side_of_turf_booking/utils/const/image_name.dart';
 
 import '../../../../view_model/course/usermodel_controller.dart';
 import '../../../../view_model/course/profile_controlller.dart';
@@ -18,7 +19,7 @@ class UserProfile extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-              vertical: screenWidth * 0.02, horizontal: screenWidth * 0.0052),
+              vertical: screenWidth * 0.01, horizontal: screenWidth * 0.0052),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -28,11 +29,9 @@ class UserProfile extends StatelessWidget {
                 final imageUrl = controller.user.value.profile;
                 return CircleAvatar(
                   backgroundImage: imageUrl.isNotEmpty
-                      ? NetworkImage(
-                          imageUrl) // Use NetworkImage for Firebase Storage URLs
-                      : const AssetImage('assets/image/profile.png')
-                          as ImageProvider,
-                  radius: 50.0,
+                      ? NetworkImage(imageUrl)
+                      : const AssetImage(ImagePath.profile) as ImageProvider,
+                  radius: 64.0,
                   backgroundColor: Colors.white,
                 );
               }),
@@ -62,11 +61,11 @@ class UserProfile extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: screenHeight * 0.08),
+              SizedBox(height: screenHeight * 0.04),
               CustomButton(
-                text: ' Edit Profile',
+                text: 'Profile',
                 onPressed: () {
-                  Get.to(() => EditUser());
+                  Get.to(() => const EditUser());
                 },
               ),
               CustomButton(
@@ -141,7 +140,7 @@ class CustomButton extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: screenWidth * 0.05,
-            vertical: screenHeight * 0.01,
+            vertical: screenHeight * 0.008,
           ),
           child: Text(
             text,

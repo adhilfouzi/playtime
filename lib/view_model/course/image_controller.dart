@@ -11,16 +11,8 @@ import 'usermodel_controller.dart';
 
 class ImageController extends GetxController {
   Rx<File?> imageProfile = Rx<File?>(null);
-  late Rx<String?> imagePath;
+  Rx<String?> imagePath = ''.obs;
 
-  ImageController(String? initialImagePath) {
-    imagePath = Rx<String?>(initialImagePath ?? '');
-    if (initialImagePath != null && !initialImagePath.startsWith('http')) {
-      log("2$initialImagePath");
-      imagePath.value = 'file://$initialImagePath';
-      imageProfile.value = File(initialImagePath);
-    }
-  }
   final UserController user = Get.find();
 
   Future<void> getImage(ImageSource source) async {
