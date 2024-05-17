@@ -43,11 +43,13 @@ class UserController extends GetxController {
   Future<void> updateUser() async {
     try {
       var userModel = UserModel(
-          name: name.text,
-          number: number.text,
-          email: user.value.email,
-          profile: user.value.profile,
-          isUser: user.value.isUser);
+        name: name.text,
+        number: number.text,
+        email: user.value.email,
+        profile: user.value.profile,
+        isUser: user.value.isUser,
+        favourite: user.value.favourite,
+      );
       await UserRepository().updateUserField(userMdel: userModel);
       log("update User Model");
       user.value = userModel;

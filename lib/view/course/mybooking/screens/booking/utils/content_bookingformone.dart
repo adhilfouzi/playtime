@@ -27,56 +27,62 @@ class _BookingFormContentState extends State<BookingFormContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          BookingCalendar(
-            onDateSelected: (selectedDate) {
-              setState(() {
-                _selectedDate = selectedDate;
-                widget.controller.selectedDate.value = _selectedDate;
-              });
-            },
-          ),
-          const SizedBox(height: 16),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              color: const Color(0xFF238C98).withOpacity(0.20),
-              borderRadius: BorderRadius.circular(20),
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            vertical: height * 0.02, horizontal: width * 0.05),
+        child: Column(
+          children: [
+            BookingCalendar(
+              onDateSelected: (selectedDate) {
+                setState(() {
+                  _selectedDate = selectedDate;
+                  widget.controller.selectedDate.value = _selectedDate;
+                });
+              },
             ),
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                const Text("Slide to check availability"),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TimeSelector(
-                      title: 'From',
-                      time: _openingTime,
-                      onPressed: () =>
-                          _selectTime(context, true, widget.controller),
-                    ),
-                    TimeSelector(
-                      title: 'To',
-                      time: _closingTime,
-                      onPressed: () =>
-                          _selectTime(context, false, widget.controller),
-                    ),
-                  ],
-                ),
-              ],
+            SizedBox(height: height * 0.02),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                color: const Color(0xFF238C98).withOpacity(0.20),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.symmetric(
+                  vertical: height * 0.02, horizontal: width * 0.05),
+              child: Column(
+                children: [
+                  const Text("Slide to check availability"),
+                  SizedBox(height: height * 0.02),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TimeSelector(
+                        title: 'From',
+                        time: _openingTime,
+                        onPressed: () =>
+                            _selectTime(context, true, widget.controller),
+                      ),
+                      TimeSelector(
+                        title: 'To',
+                        time: _closingTime,
+                        onPressed: () =>
+                            _selectTime(context, false, widget.controller),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            "Total Price: ${Formatter.formatCurrency(widget.controller.price.value)}",
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ],
+            SizedBox(height: height * 0.02),
+            Text(
+              "Total Price: ${Formatter.formatCurrency(widget.controller.price.value)}",
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

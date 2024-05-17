@@ -28,13 +28,13 @@ class SignupController extends GetxController {
           .registerWithEmailAndPassword(
               emailText.text, passwordText.text.trim());
       final user = UserModel(
-        id: userCredential.user!.uid,
-        name: fullNameText.text.trim(),
-        number: phoneNumberText.text.trim(),
-        email: emailText.text.trim(),
-        profile: '',
-        isUser: true,
-      );
+          id: userCredential.user!.uid,
+          name: fullNameText.text.trim(),
+          number: phoneNumberText.text.trim(),
+          email: emailText.text.trim(),
+          profile: '',
+          isUser: true,
+          favourite: []);
       await UserRepository().saveUserRecord(user, userCredential.user!.uid);
 
       Get.offAll(() => const MyBottomNavigationBar());
