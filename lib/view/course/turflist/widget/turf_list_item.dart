@@ -35,7 +35,7 @@ class TurfListItem extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: AspectRatio(
-                aspectRatio: 16 / 9, // Adjust aspect ratio as needed
+                aspectRatio: 16 / 12, // Adjust aspect ratio as needed
                 child: turf.images.isNotEmpty
                     ? Image.network(
                         turf.images[0],
@@ -50,6 +50,7 @@ class TurfListItem extends StatelessWidget {
           ),
           title: Text(
             turf.courtName,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
           ),
           subtitle: Column(
@@ -57,11 +58,13 @@ class TurfListItem extends StatelessWidget {
             children: [
               Text(
                 turf.courtLocation,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(color: Colors.grey[600], fontSize: 14),
               ),
               const SizedBox(height: 4),
               Text(
                 turf.is24h ? "Open 24 Hours" : '$opening to $close',
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.grey[600],
