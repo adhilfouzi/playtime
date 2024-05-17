@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:users_side_of_turf_booking/model/controller/url.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/booking_form_one.dart.dart';
 
 import '../../../../model/data_model/owner_model.dart';
@@ -44,10 +44,15 @@ class ViewTurfDetailsScreen extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  "assets/image/turf_image.jpg",
-                  fit: BoxFit.cover,
-                ),
+                child: turf.images.isNotEmpty
+                    ? Image.network(
+                        turf.images[1],
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        "assets/image/turf_image.jpg",
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
             const SizedBox(height: 20),
@@ -86,7 +91,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
           children: [
             // Call button
             whiteButton('Call', context, () {
-              _makePhoneCall(turf.courtPhoneNumber);
+              Url.makePhoneCall(turf.courtPhoneNumber);
             }),
             // Book now button
             mainButton('Book Now', context, () {
@@ -98,16 +103,6 @@ class ViewTurfDetailsScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  // Function to make a phone call
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final url = 'tel:+91$phoneNumber';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
 

@@ -26,11 +26,16 @@ class BookingDetails extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: AspectRatio(
-              aspectRatio: 16 / 9, // Maintain aspect ratio
-              child: Image.asset(
-                "assets/image/turf_image.jpg",
-                fit: BoxFit.fitWidth,
-              ),
+              aspectRatio: 16 / 9, // Adjust aspect ratio as needed
+              child: turf.turf.images.isNotEmpty
+                  ? Image.network(
+                      turf.turf.images[0],
+                      fit: BoxFit.cover,
+                    )
+                  : Image.asset(
+                      "assets/image/turf_image.jpg",
+                      fit: BoxFit.cover,
+                    ),
             ),
           ),
         ),

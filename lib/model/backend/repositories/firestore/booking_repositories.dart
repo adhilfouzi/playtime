@@ -26,6 +26,7 @@ class BookingRepository {
       log("Total bookings: ${bookingList.length}");
       return bookingList;
     } catch (e) {
+      log("Error:fetchAllBookingDetails =>$e");
       throw ExceptionHandler.handleException(e);
     }
   }

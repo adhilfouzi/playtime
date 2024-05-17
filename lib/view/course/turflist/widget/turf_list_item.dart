@@ -36,10 +36,15 @@ class TurfListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: AspectRatio(
                 aspectRatio: 16 / 9, // Adjust aspect ratio as needed
-                child: Image.asset(
-                  "assets/image/turf_image.jpg",
-                  fit: BoxFit.cover,
-                ),
+                child: turf.images.isNotEmpty
+                    ? Image.network(
+                        turf.images[0],
+                        fit: BoxFit.cover,
+                      )
+                    : Image.asset(
+                        "assets/image/turf_image.jpg",
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
           ),
