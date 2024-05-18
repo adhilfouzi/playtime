@@ -5,6 +5,7 @@ import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking
 
 import '../../../../view_model/course/booking_controller.dart';
 import '../../../../view_model/course/turflist_controller.dart';
+import '../widget/turfview_appbar.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {
   final String turfid;
@@ -15,16 +16,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
     final TurflistController turfController = Get.find();
     final turf = turfController.viewTurf(turfid);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-      ),
+      appBar: TurfViewAppBar(turfid: turfid),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(

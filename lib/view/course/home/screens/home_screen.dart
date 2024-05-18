@@ -61,62 +61,78 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.01),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Favourite",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(height: height * 0.01),
-              SizedBox(
-                height: height * 0.4,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: controller.turfList.length,
-                  itemBuilder: (context, index) {
-                    var turf = controller.turfList[index];
+              controller.favouriteTurfList.favourite.isNotEmpty
+                  ? Obx(() => Column(
+                        children: [
+                          SizedBox(height: height * 0.01),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Favourite",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.01),
+                          SizedBox(
+                            height: height * 0.4,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  controller.favouriteTurfList.favourite.length,
+                              itemBuilder: (context, index) {
+                                var turf = controller
+                                    .favouriteTurfList.favourite[index];
 
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-                      child: TurfDetailCard(
-                        turfid: turf.id,
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.02),
+                                  child: TurfDetailCard(
+                                    turfid: turf,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ))
+                  : const SizedBox(),
+              Column(
+                children: [
+                  SizedBox(height: height * 0.01),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Treading",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: height * 0.01),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Treading",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(height: height * 0.01),
-              SizedBox(
-                height: height * 0.4,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: controller.turfList.length,
-                  itemBuilder: (context, index) {
-                    var turf = controller.turfList[index];
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.02),
-                      child: TurfDetailCard(
-                        turfid: turf.id,
-                      ),
-                    );
-                  },
-                ),
+                  SizedBox(height: height * 0.01),
+                  SizedBox(
+                    height: height * 0.4,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.trendingTurfs.length,
+                      itemBuilder: (context, index) {
+                        var turf = controller.trendingTurfs.isNotEmpty
+                            ? controller.trendingTurfs[index]
+                            : controller.turfList[index].id;
+                        return Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.02),
+                          child: TurfDetailCard(
+                            turfid: turf,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

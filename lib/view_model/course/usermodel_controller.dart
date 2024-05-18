@@ -48,7 +48,6 @@ class UserController extends GetxController {
         email: user.value.email,
         profile: user.value.profile,
         isUser: user.value.isUser,
-        favourite: user.value.favourite,
       );
       await UserRepository().updateUserField(userMdel: userModel);
       log("update User Model");
