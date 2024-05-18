@@ -34,6 +34,22 @@ class TurflistController extends GetxController {
     }
   }
 
+  OwnerModel? viewTurf(String id) {
+    try {
+      if (turfList.isNotEmpty) {
+        for (var turf in turfList) {
+          if (turf.id == id) {
+            return turf;
+          }
+        }
+      }
+      return null;
+    } catch (e) {
+      log("View turf error: $e");
+      rethrow;
+    }
+  }
+
   Future<void> searchTurf() async {
     try {
       if (query.isNotEmpty) {

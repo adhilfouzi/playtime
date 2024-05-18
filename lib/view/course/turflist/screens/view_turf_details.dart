@@ -3,15 +3,17 @@ import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/model/controller/url.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/booking_form_one.dart.dart';
 
-import '../../../../model/data_model/owner_model.dart';
 import '../../../../view_model/course/booking_controller.dart';
+import '../../../../view_model/course/turflist_controller.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {
-  final OwnerModel turf;
-  const ViewTurfDetailsScreen({super.key, required this.turf});
+  final String turfid;
+  const ViewTurfDetailsScreen({super.key, required this.turfid});
 
   @override
   Widget build(BuildContext context) {
+    final TurflistController turfController = Get.find();
+    final turf = turfController.viewTurf(turfid);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -44,7 +46,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: turf.images.isNotEmpty
+                child: turf!.images.isNotEmpty
                     ? Image.network(
                         turf.images[1],
                         fit: BoxFit.cover,

@@ -43,7 +43,7 @@ class TurfListscreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: turfList.length,
               itemBuilder: (context, index) {
-                return TurfListItem(turf: turfList[index]);
+                return TurfListItem(turfid: turfList[index].id);
               },
             ),
           );

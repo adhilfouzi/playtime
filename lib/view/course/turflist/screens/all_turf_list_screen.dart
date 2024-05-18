@@ -5,7 +5,7 @@ import '../widget/search_field.dart';
 import '../widget/turflist.dart';
 
 class AllTurfList extends StatelessWidget {
-  final TurflistController controller = Get.put(TurflistController());
+  final TurflistController controller = Get.find();
 
   AllTurfList({super.key});
 
