@@ -10,7 +10,6 @@ class UserModel {
   final String email;
   final String profile;
   final bool isUser;
-  final List<OwnerModel> favourite;
 
   UserModel({
     this.id,
@@ -19,17 +18,9 @@ class UserModel {
     required this.email,
     required this.profile,
     required this.isUser,
-    required this.favourite,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    List<OwnerModel> favouritesList = [];
-    if (json['favourite'] != null) {
-      json['favourite'].forEach((v) {
-        favouritesList.add(OwnerModel.fromJson(v));
-      });
-    }
-
     return UserModel(
       id: json["id"],
       name: json['name'],
@@ -37,7 +28,6 @@ class UserModel {
       email: json['email'],
       profile: json['profile'],
       isUser: json['isUser'],
-      favourite: favouritesList,
     );
   }
 
@@ -49,14 +39,10 @@ class UserModel {
       email: '',
       profile: '',
       isUser: false,
-      favourite: [],
     );
   }
 
   Map<String, dynamic> toMap() {
-    List<Map<String, dynamic>> favouritesList =
-        favourite.map((v) => v.toMap()).toList();
-
     return {
       'id': id,
       'name': name,
@@ -64,18 +50,10 @@ class UserModel {
       'email': email,
       'profile': profile,
       'isUser': isUser,
-      'favourite': favouritesList,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    List<OwnerModel> favouritesList = [];
-    if (map['favourite'] != null) {
-      map['favourite'].forEach((v) {
-        favouritesList.add(OwnerModel.fromMap(v));
-      });
-    }
-
     return UserModel(
       id: map['id'],
       name: map['name'],
@@ -83,14 +61,10 @@ class UserModel {
       email: map['email'],
       profile: map['profile'],
       isUser: map['isUser'],
-      favourite: favouritesList,
     );
   }
 
   Map<String, dynamic> toJson() {
-    List<Map<String, dynamic>> favouritesList =
-        favourite.map((v) => v.toJson()).toList();
-
     return {
       'id': id,
       'name': name,
@@ -98,7 +72,6 @@ class UserModel {
       'email': email,
       'profile': profile,
       'isUser': isUser,
-      'favourite': favouritesList,
     };
   }
 
@@ -119,7 +92,6 @@ class UserModel {
       email: data['email'] ?? "N/A",
       profile: data['profile'] ?? "N/A",
       isUser: data['isUser'] ?? "N/A",
-      favourite: favouritesList,
     );
   }
 
