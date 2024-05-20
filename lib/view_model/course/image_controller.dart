@@ -1,13 +1,18 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../model/backend/repositories/firestore/profile_image_repository.dart';
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../utils/portion/snackbar.dart';
 import 'usermodel_controller.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
 
 class ImageController extends GetxController {
   Rx<File?> imageProfile = Rx<File?>(null);
@@ -17,18 +22,42 @@ class ImageController extends GetxController {
 
   Future<void> getImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source);
+      final XFile? image = await ImagePicker().pickImage(source: source);
       if (image == null) {
         return;
       } else {
-        // final croppedFile = image;
-        imageProfile.value = File(image.path);
+        var imageFile = File(image.path);
+        log('Original file size: ${imageFile.lengthSync()} bytes');
+        imageFile = await testCompressAndGetFile(imageFile);
+        log('Compressed file size: ${imageFile.lengthSync()} bytes');
+        imageProfile.value = imageFile;
         await uploadProfileImage();
-        imagePath = Rx<String?>(image.path);
       }
     } catch (e) {
       log('Failed image picker: $e');
     }
+  }
+
+  Future<File> testCompressAndGetFile(File file) async {
+    // Get the directory to save the compressed image
+    Directory tempDir = await getTemporaryDirectory();
+    String targetPath =
+        path.join(tempDir.path, 'compressed_${path.basename(file.path)}');
+
+    final XFile? compressedXFile =
+        await FlutterImageCompress.compressAndGetFile(
+      file.absolute.path,
+      targetPath,
+      quality: 20,
+      // rotate: 180,
+    );
+
+    if (compressedXFile == null) {
+      throw Exception("Compression failed.");
+    }
+
+    // Convert XFile to File
+    return File(compressedXFile.path);
   }
 
   Future<void> uploadProfileImage() async {

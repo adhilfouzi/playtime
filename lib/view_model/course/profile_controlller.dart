@@ -41,7 +41,7 @@ class ProfileController {
 
   static void privacyPolicy() async {
     final Uri url = Uri.parse(
-        'https://www.freeprivacypolicy.com/live/23a6eb84-0360-4ce5-8580-53a24494b3dc');
+        'https://www.privacypolicyonline.com/live.php?token=ustex5OuSD3QiMsFevppnrez5Umpo8Rk');
 
     try {
       await launchUrl(url);
@@ -52,7 +52,7 @@ class ProfileController {
 
   static void termsUse() async {
     final Uri url = Uri.parse(
-        'https://www.freeprivacypolicy.com/live/cfe121cc-25c9-4882-a467-0f9bb8ab28da');
+        'https://www.privacypolicyonline.com/live.php?token=z9zYarkiLJgcFzbJ526uwVn6dBbZKq9i');
     try {
       await launchUrl(url);
     } catch (e) {

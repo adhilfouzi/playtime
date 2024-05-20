@@ -28,8 +28,9 @@ class TurfViewAppBar extends StatelessWidget implements PreferredSizeWidget {
           () => IconButton(
             onPressed: () async {
               bool currentStatus = controller.isLiked.value;
-              controller.liked(turfId: turfid, isFavorite: !currentStatus);
-              controller.checkIfLiked(turfid);
+              await controller.liked(
+                  turfId: turfid, isFavorite: !currentStatus);
+              await controller.checkIfLiked(turfid);
             },
             icon: Icon(
               controller.isLiked.value ? Icons.star : Icons.star_border,
