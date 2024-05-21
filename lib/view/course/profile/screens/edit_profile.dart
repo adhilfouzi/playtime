@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:users_side_of_turf_booking/utils/const/colors.dart';
 import 'package:users_side_of_turf_booking/utils/const/image_name.dart';
 import 'package:users_side_of_turf_booking/view/onboarding/utils/appbar.dart';
-
-import '../../../../view_model/course/image_controller.dart';
-import '../../../../view_model/course/usermodel_controller.dart';
+import 'package:users_side_of_turf_booking/view_model/course/image_controller.dart';
+import 'package:users_side_of_turf_booking/view_model/course/usermodel_controller.dart';
 
 class EditUser extends StatelessWidget {
   const EditUser({super.key});
@@ -24,11 +24,10 @@ class EditUser extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-              vertical: screenHeight * 0.02, horizontal: screenWidth * 0.02),
+              vertical: screenHeight * 0.02, horizontal: screenWidth * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: screenHeight * 0.05),
               Obx(
                 () => GestureDetector(
                   onTap: () => imagePicker.openDialog(),
@@ -36,54 +35,79 @@ class EditUser extends StatelessWidget {
                     backgroundImage: user.user.value.profile.isNotEmpty
                         ? NetworkImage(user.user.value.profile)
                         : const AssetImage(ImagePath.profile) as ImageProvider,
-                    radius: 64.0,
-                    backgroundColor: Colors.white,
+                    radius: 80.0,
+                    backgroundColor: Colors.grey.shade200,
+                    child: const Align(
+                      alignment: Alignment.bottomRight,
+                      child: CircleAvatar(
+                        backgroundColor: CustomColor.mainColor,
+                        radius: 20.0,
+                        child: Icon(
+                          Icons.camera_alt,
+                          size: 15.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: screenHeight * 0.05),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Name: "),
-                  const SizedBox(width: 10.0),
-                  Expanded(
-                    child: Text(
-                      user.user.value.name,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    buildEditableField(
+                      label: 'Name',
+                      value: user.user.value.name,
+                      onEdit: () => user.editUserDetail('name'),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // Add functionality to edit
-                    },
-                    icon: const Icon(Icons.edit_sharp),
-                  )
-                ],
+                    SizedBox(height: screenHeight * 0.02),
+                    buildEditableField(
+                      label: 'Number',
+                      value: user.user.value.number,
+                      onEdit: () => user.editUserDetail('number'),
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Number: "),
-                  const SizedBox(width: 10.0),
-                  Expanded(
-                    child: Text(
-                      user.user.value.number,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // Add functionality to edit
-                    },
-                    icon: const Icon(Icons.edit_sharp),
-                  )
-                ],
-              )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildEditableField(
+      {required String label,
+      required String value,
+      required VoidCallback onEdit}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '$label:',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(width: 10.0),
+        Expanded(
+          child: Text(
+            value,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
+        IconButton(
+          onPressed: onEdit,
+          icon: const Icon(Icons.edit, color: CustomColor.mainColor),
+        ),
+      ],
     );
   }
 }
