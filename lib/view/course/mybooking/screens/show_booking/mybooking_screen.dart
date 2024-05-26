@@ -4,7 +4,7 @@ import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_bo
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/canceled_booking.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/completed_booking.dart';
 
-import '../../../../../view_model/course/bookings_controller.dart';
+import '../../../../../view_model/course/turf_controller.dart';
 
 class MyBooking extends StatefulWidget {
   const MyBooking({super.key});
@@ -14,7 +14,7 @@ class MyBooking extends StatefulWidget {
 }
 
 class _MyBookingState extends State<MyBooking> with TickerProviderStateMixin {
-  final BookingsController controller = Get.put(BookingsController());
+  final TurfController controller = Get.find();
   late TabController tabController;
   List<String> tabTitles = ['Active', 'Canceled', 'Completed'];
 

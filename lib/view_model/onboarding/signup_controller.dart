@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
-
 import '../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../model/data_model/user_model.dart';
 import '../../utils/portion/loadingpopup.dart';
+import '../../utils/portion/snackbar.dart';
 import '../../view/course/head/bottom_navigationbar_widget.dart';
+import '../course/usermodel_controller.dart';
 
 class SignupController extends GetxController {
   final fullNameText = TextEditingController();
@@ -36,7 +36,7 @@ class SignupController extends GetxController {
         isUser: true,
       );
       await UserRepository().saveUserRecord(user, userCredential.user!.uid);
-
+      await UserController().getUserRecord();
       Get.offAll(() => const MyBottomNavigationBar());
 
       fullNameText.clear();

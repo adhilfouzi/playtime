@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 import '../widget/search_field.dart';
 import '../widget/turflist.dart';
 
 class AllTurfList extends StatelessWidget {
-  final TurflistController controller = Get.find();
+  final TurfController controller = Get.find();
 
   AllTurfList({super.key});
 

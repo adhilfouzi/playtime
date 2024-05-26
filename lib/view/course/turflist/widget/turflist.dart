@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 import 'turf_list_item.dart';
 
 class TurfListscreen extends StatelessWidget {
-  final TurflistController controller;
+  final TurfController controller;
   const TurfListscreen({super.key, required this.controller});
 
   @override
@@ -15,13 +15,13 @@ class TurfListscreen extends StatelessWidget {
     }
 
     return Obx(() {
-      if (controller.isLoading) {
+      if (controller.isLoadingTurfs) {
         return const Center(
           child: CircularProgressIndicator(),
         );
-      } else if (controller.errorMessage.isNotEmpty) {
+      } else if (controller.errorMessageTurfs.isNotEmpty) {
         return Center(
-          child: Text(controller.errorMessage),
+          child: Text(controller.errorMessageTurfs),
         );
       } else {
         final turfList = controller.turfList;

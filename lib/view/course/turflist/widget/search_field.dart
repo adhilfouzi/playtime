@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 
 class SearchField extends StatelessWidget {
-  final TurflistController controller;
+  final TurfController controller;
   const SearchField({super.key, required this.controller});
 
   @override

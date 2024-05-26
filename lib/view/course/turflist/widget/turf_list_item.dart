@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/model/controller/formater.dart';
 import 'package:users_side_of_turf_booking/view/course/turflist/screens/view_turf_details.dart';
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 
 class TurfListItem extends StatelessWidget {
   final String turfid;
@@ -16,7 +16,7 @@ class TurfListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final TurflistController turfController = Get.find();
+    final TurfController turfController = Get.find();
     final turf = turfController.viewTurf(turfid);
     var opening = Formatter.timeOfDayToString(turf!.openingTime);
     var close = Formatter.timeOfDayToString(turf.closingTime);

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/utils/const/image_name.dart';
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 import '../utils/home_appbar.dart';
 import '../utils/turf_detailcard.dart';
 
 class HomeScreen extends StatelessWidget {
-  final TurflistController controller = Get.find();
+  final TurfController controller = Get.find();
 
   HomeScreen({super.key});
 

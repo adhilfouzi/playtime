@@ -4,7 +4,7 @@ import 'package:users_side_of_turf_booking/model/controller/url.dart';
 import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/booking_form_one.dart.dart';
 
 import '../../../../view_model/course/booking_controller.dart';
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 import '../widget/turfview_appbar.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TurflistController turfController = Get.find();
+    final TurfController turfController = Get.find();
     final turf = turfController.viewTurf(turfid);
     return Scaffold(
       appBar: TurfViewAppBar(turfid: turfid),

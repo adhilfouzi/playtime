@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../view_model/course/bookings_controller.dart';
+import '../../../../../view_model/course/turf_controller.dart';
 import 'utils/booking_details.dart';
 
 class CompletedBooking extends StatelessWidget {
-  final BookingsController controller;
+  final TurfController controller;
   const CompletedBooking({super.key, required this.controller});
 
   @override
@@ -18,13 +18,13 @@ class CompletedBooking extends StatelessWidget {
     }
 
     return Obx(() {
-      if (controller.isLoading) {
+      if (controller.isLoadingBookings) {
         return const Center(
           child: CircularProgressIndicator(),
         );
-      } else if (controller.errorMessage.isNotEmpty) {
+      } else if (controller.errorMessageBookings.isNotEmpty) {
         return Center(
-          child: Text(controller.errorMessage),
+          child: Text(controller.errorMessageBookings),
         );
       } else {
         if (completedBookings.isEmpty) {

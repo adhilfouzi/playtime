@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../view_model/course/turflist_controller.dart';
+import '../../../../view_model/course/turf_controller.dart';
 
 class TurfViewAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String turfid;
@@ -9,7 +9,7 @@ class TurfViewAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TurflistController controller = Get.find();
+    final TurfController controller = Get.find();
 
     // Initialize isLiked state
     controller.checkIfLiked(turfid);
