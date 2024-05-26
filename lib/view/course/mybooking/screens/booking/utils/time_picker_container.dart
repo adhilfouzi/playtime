@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:users_side_of_turf_booking/view_model/course/booking_controller.dart';
 
 import '../../../../../../utils/const/colors.dart';
 
@@ -64,7 +67,9 @@ class TimePickerDialogBox extends StatelessWidget {
   final TimeOfDay? openingTime;
   final TimeOfDay? closingTime;
   final bool isOpening;
-  const TimePickerDialogBox({
+  final BookingController booking = Get.find();
+
+  TimePickerDialogBox({
     super.key,
     required this.initialTime,
     required this.openingTime,
@@ -89,7 +94,6 @@ class TimePickerDialogBox extends StatelessWidget {
                 ),
               ),
               onTap: () => Get.back(result: time),
-//  Navigator.of(context).pop(time),
             );
           },
         ),
@@ -101,17 +105,42 @@ class TimePickerDialogBox extends StatelessWidget {
     if (openingTime == null || closingTime == null) {
       return 0;
     }
+    final selectedDate = booking.selectedDate.value;
+    final today = DateTime.now();
+    late final int startHour;
+    if (selectedDate.month == today.month &&
+        selectedDate.day == today.day &&
+        isOpening) {
+      startHour = today.hour + 1;
+      log("true");
+    } else {
+      log('false');
+      startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
+    }
 
-    final startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
     final endHour = closingTime!.hour;
     final endMinute = closingTime!.minute;
-    return endHour > startHour || (endHour == startHour && endMinute > 0)
-        ? (endHour - startHour) * 2 + 1
-        : (24 - startHour + endHour) * 2 + 1;
+    log("startHour: $startHour,endHour:$endHour,endMinute:$endMinute  ");
+    if (isOpening) {
+      return ((endHour == 0 ? 24 : endHour) - startHour) * 2;
+    } else {
+      return (endHour == 0 ? 24 : endHour) - startHour;
+    }
   }
 
   TimeOfDay _calculateTime(int index) {
-    final startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
+    final selectedDate = booking.selectedDate.value;
+    final today = DateTime.now();
+    late final int startHour;
+    if (selectedDate.month == today.month &&
+        selectedDate.day == today.day &&
+        isOpening) {
+      startHour = today.hour + 1;
+      log("true");
+    } else {
+      log('false');
+      startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
+    }
     final startMinute = openingTime!.minute;
     final totalMinutes = isOpening
         ? (startHour * 60 + startMinute + index * 30) % (24 * 60)
