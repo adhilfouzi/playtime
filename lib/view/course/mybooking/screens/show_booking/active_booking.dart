@@ -7,11 +7,12 @@ import 'utils/booking_details.dart';
 import 'utils/view_booked_details.dart';
 
 class ActiveBooking extends StatelessWidget {
-  final TurfController controller;
-  const ActiveBooking({super.key, required this.controller});
+  const ActiveBooking({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TurfController controller = Get.find();
+
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final activeBookings = controller.activeBookings;

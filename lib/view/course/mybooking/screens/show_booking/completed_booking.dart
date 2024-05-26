@@ -5,11 +5,11 @@ import '../../../../../view_model/course/turf_controller.dart';
 import 'utils/booking_details.dart';
 
 class CompletedBooking extends StatelessWidget {
-  final TurfController controller;
-  const CompletedBooking({super.key, required this.controller});
+  const CompletedBooking({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final TurfController controller = Get.find();
     final height = MediaQuery.of(context).size.height;
     final completedBookings = controller.completedBookings;
     final width = MediaQuery.of(context).size.width;

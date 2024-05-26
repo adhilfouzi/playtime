@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../../../utils/const/icons_image.dart';
+import '../../../view_model/course/turf_controller.dart';
+import '../../../view_model/course/usermodel_controller.dart';
 import '../home/screens/home_screen.dart';
 import '../mybooking/screens/show_booking/mybooking_screen.dart';
 import '../profile/screens/userprofle_screen.dart';
@@ -24,6 +27,15 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     const MyBooking(),
     const UserProfile(),
   ];
+  final TurfController turf = Get.find();
+  final UserController user = Get.find();
+  @override
+  void initState() {
+    super.initState();
+    turf.fetchTurfList();
+    turf.separateBookings();
+    user.getUserRecord();
+  }
 
   @override
   Widget build(BuildContext context) {

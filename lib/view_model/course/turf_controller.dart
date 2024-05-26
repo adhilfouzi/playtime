@@ -82,6 +82,7 @@ class TurfController extends GetxController {
 
   Future<void> fetchTurfList() async {
     try {
+      _errorMessageTurfs.value = '';
       _isLoadingTurfs.value = true;
       var turfList = await TurfRepository().fetchAllTurfDetails();
       _turfList.assignAll(turfList);
