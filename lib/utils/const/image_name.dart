@@ -4,4 +4,5 @@ class ImagePath {
   static const String onboarding = 'assets/image/1.jpg';
   static const String welcome = 'assets/image/2.jpg';
   static const String googleLogo = 'assets/image/google_logo.svg';
+  static const String turf = 'assets/image/turf_image.jpg';
 }

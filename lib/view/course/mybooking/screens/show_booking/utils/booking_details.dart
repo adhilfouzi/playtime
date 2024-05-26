@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../model/data_model/booking_model.dart';
+import '../../../../../../utils/const/image_name.dart';
 
 class BookingDetails extends StatelessWidget {
   final BookingModel turf;
@@ -26,16 +29,22 @@ class BookingDetails extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: AspectRatio(
-              aspectRatio: 16 / 9, // Adjust aspect ratio as needed
-              child: turf.turf.images.isNotEmpty
-                  ? Image.network(
-                      turf.turf.images[0],
-                      fit: BoxFit.cover,
-                    )
-                  : Image.asset(
-                      "assets/image/turf_image.jpg",
-                      fit: BoxFit.cover,
-                    ),
+              aspectRatio: 16 / 9,
+              child: CachedNetworkImage(
+                imageUrl: turf.turf.images[0],
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    color: Colors.white,
+                  ),
+                ),
+                errorWidget: (context, url, error) => Image.asset(
+                  ImagePath.turf,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
         ),

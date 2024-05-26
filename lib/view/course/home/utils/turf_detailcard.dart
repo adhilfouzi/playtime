@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../model/controller/formater.dart';
+import '../../../../utils/const/image_name.dart';
 import '../../../../view_model/course/turf_controller.dart';
 import '../../turflist/screens/view_turf_details.dart';
 
@@ -41,11 +44,20 @@ class TurfDetailCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                "assets/image/turf_image.jpg",
+              child: CachedNetworkImage(
+                imageUrl: turf.images[0],
                 width: double.infinity,
                 height: height * 0.2,
                 fit: BoxFit.cover,
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(color: Colors.white),
+                ),
+                errorWidget: (context, url, error) => Image.asset(
+                  ImagePath.turf,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(height: height * 0.003),

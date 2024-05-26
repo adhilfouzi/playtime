@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:users_side_of_turf_booking/utils/const/colors.dart';
 import 'package:users_side_of_turf_booking/utils/const/image_name.dart';
 import 'package:users_side_of_turf_booking/view/onboarding/utils/appbar.dart';
@@ -29,28 +31,35 @@ class EditUser extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Obx(
-                () => GestureDetector(
-                  onTap: () => imagePicker.openDialog(),
-                  child: CircleAvatar(
-                    backgroundImage: user.user.value.profile.isNotEmpty
-                        ? NetworkImage(user.user.value.profile)
-                        : const AssetImage(ImagePath.profile) as ImageProvider,
-                    radius: 80.0,
-                    backgroundColor: Colors.grey.shade200,
-                    child: const Align(
-                      alignment: Alignment.bottomRight,
-                      child: CircleAvatar(
-                        backgroundColor: CustomColor.mainColor,
-                        radius: 20.0,
-                        child: Icon(
-                          Icons.camera_alt,
-                          size: 15.0,
-                          color: Colors.white,
+                () {
+                  final imageUrl = user.user.value.profile;
+                  return GestureDetector(
+                    onTap: () => imagePicker.openDialog(),
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.cover,
+                        width: 128.0,
+                        height: 128.0,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            width: 128.0,
+                            height: 128.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          ImagePath.profile,
+                          fit: BoxFit.cover,
+                          width: 128.0,
+                          height: 128.0,
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
               SizedBox(height: screenHeight * 0.05),
               Padding(
