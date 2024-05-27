@@ -14,10 +14,10 @@ import '../../view/course/mybooking/screens/booking/booking_form_two.dart';
 import 'usermodel_controller.dart';
 
 class BookingController extends GetxController {
+  final bookedSlot = <DateTime>[].obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
   Rx<TimeOfDay> startTime = Rx<TimeOfDay>(const TimeOfDay(hour: 0, minute: 0));
   Rx<TimeOfDay> endTime = Rx<TimeOfDay>(const TimeOfDay(hour: 0, minute: 0));
-
   var name = TextEditingController();
   var email = TextEditingController();
   var phone = TextEditingController();
@@ -69,5 +69,12 @@ class BookingController extends GetxController {
     } else {
       Get.to(() => BookingFormTwo());
     }
+  }
+
+  void bookedSlots() async {
+    final booked =
+        await BookingRepository().fetchTurfBooking(turf.id, selectedDate.value);
+    log("Booked slot length: ${booked.length}");
+    bookedSlot.assignAll(booked);
   }
 }

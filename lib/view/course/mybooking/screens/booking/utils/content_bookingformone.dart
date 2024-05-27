@@ -40,6 +40,7 @@ class _BookingFormContentState extends State<BookingFormContent> {
                 setState(() {
                   _selectedDate = selectedDate;
                   widget.controller.selectedDate.value = _selectedDate;
+                  widget.controller.bookedSlots();
                 });
               },
             ),

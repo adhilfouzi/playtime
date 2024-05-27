@@ -14,11 +14,12 @@ class BookingRepository {
       var bookingSnapshot = await _db.collectionGroup('bookings').get();
 
       List<BookingModel> bookingList = [];
+      final userId = AuthenticationRepository().authUser!.uid;
       for (var doc in bookingSnapshot.docs) {
         Map<String, dynamic> turfData = doc.data();
         String bookingId = doc.id; // Retrieve the document ID
         var booking = BookingModel.fromJson(turfData, bookingId);
-        if (booking.userId == AuthenticationRepository().authUser!.uid) {
+        if (booking.userId == userId) {
           bookingList.add(booking);
         }
       }
@@ -39,6 +40,49 @@ class BookingRepository {
           .doc(turfId)
           .collection('bookings')
           .add(booking.toJson());
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
+
+  Future<List<DateTime>> fetchTurfBooking(
+    String id,
+    DateTime selectedDate,
+  ) async {
+    try {
+      var bookingSnapshot =
+          await _db.collection('Owner').doc(id).collection('bookings').get();
+      List<DateTime> bookingList = [];
+      for (var doc in bookingSnapshot.docs) {
+        Map<String, dynamic> turfData = doc.data();
+
+        String bookingId = doc.id;
+        final turf = BookingModel.fromJson(turfData, bookingId);
+        final starting = turf.startTime;
+        final ending = turf.endTime;
+        if (selectedDate.month == starting.month &&
+            selectedDate.day == starting.day) {
+          log("differencre:${(ending.hour - starting.hour)}");
+          if ((ending.hour - starting.hour) > 1) {
+            for (var i = 0; i < (ending.hour - starting.hour); i++) {
+              final day = DateTime(
+                starting.year,
+                starting.month,
+                starting.day,
+                (i == 0 ? starting.hour : (starting.hour + i)),
+                starting.minute,
+              );
+              bookingList.add(day);
+              log(day.toIso8601String());
+            }
+          } else {
+            bookingList.add(starting);
+          }
+        }
+      }
+
+      // log("Total booking Request: ${bookingList.length}");
+      return bookingList;
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }

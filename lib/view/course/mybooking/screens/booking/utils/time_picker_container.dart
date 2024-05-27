@@ -79,6 +79,7 @@ class TimePickerDialogBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final list = _calculateTime();
     return AlertDialog(
       title: const Text('Select Time'),
       content: SizedBox(
@@ -86,7 +87,7 @@ class TimePickerDialogBox extends StatelessWidget {
         child: ListView.builder(
           itemCount: _calculateItemCount(),
           itemBuilder: (context, index) {
-            final time = _calculateTime(index);
+            final time = list[index];
             return ListTile(
               title: Text(
                 DateFormat('hh:mm a').format(
@@ -121,32 +122,121 @@ class TimePickerDialogBox extends StatelessWidget {
     final endHour = closingTime!.hour;
     final endMinute = closingTime!.minute;
     log("startHour: $startHour,endHour:$endHour,endMinute:$endMinute  ");
-    if (isOpening) {
-      return ((endHour == 0 ? 24 : endHour) - startHour) * 2;
+
+    final bookedSlot = booking.bookedSlot;
+    if (bookedSlot.isEmpty) {
+      if (isOpening) {
+        return ((endHour == 0 ? 24 : endHour) - startHour) * 2;
+      } else {
+        return (endHour == 0 ? 24 : endHour) - startHour;
+      }
     } else {
-      return (endHour == 0 ? 24 : endHour) - startHour;
+      if (isOpening) {
+        return (((endHour == 0 ? 24 : endHour) - startHour) * 2) -
+            bookedSlot.length -
+            (bookedSlot.length);
+      } else {
+        return ((endHour == 0 ? 24 : endHour) - startHour) - bookedSlot.length;
+      }
     }
   }
 
-  TimeOfDay _calculateTime(int index) {
+  // TimeOfDay _calculateTime(int index) {
+  //   final selectedDate = booking.selectedDate.value;
+  //   final today = DateTime.now();
+  //   late final int startHour;
+  //   if (selectedDate.month == today.month &&
+  //       selectedDate.day == today.day &&
+  //       isOpening) {
+  //     startHour = today.hour + 1;
+  //     log("true");
+  //   } else {
+  //     log('false');
+  //     startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
+  //   }
+  //   final startMinute = openingTime!.minute;
+  //   final totalMinutes = isOpening
+  //       ? (startHour * 60 + startMinute + index * 30) % (24 * 60)
+  //       : (startHour * 60 + startMinute + index * 60) % (24 * 60);
+  //   final hour = totalMinutes ~/ 60;
+  //   final minute = totalMinutes % 60;
+  //   return TimeOfDay(hour: hour, minute: minute);
+  // }
+
+  List<TimeOfDay> _calculateTime() {
+    final bookedSlot = booking.bookedSlot;
+    int numSlots = _calculateItemCount();
     final selectedDate = booking.selectedDate.value;
     final today = DateTime.now();
-    late final int startHour;
+    late int startHour;
+
     if (selectedDate.month == today.month &&
         selectedDate.day == today.day &&
         isOpening) {
       startHour = today.hour + 1;
-      log("true");
     } else {
-      log('false');
       startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
     }
+
     final startMinute = openingTime!.minute;
-    final totalMinutes = isOpening
-        ? (startHour * 60 + startMinute + index * 30) % (24 * 60)
-        : (startHour * 60 + startMinute + index * 60) % (24 * 60);
-    final hour = totalMinutes ~/ 60;
-    final minute = totalMinutes % 60;
-    return TimeOfDay(hour: hour, minute: minute);
+    final duration = isOpening ? 30 : 60; // Duration in minutes
+    List<TimeOfDay> availableSlots = [];
+    int offset =
+        isOpening ? 1 : 0; // To skip the next 30 minutes if isOpening is true
+
+    while (availableSlots.length < numSlots) {
+      final totalMinutes =
+          (startHour * 60 + startMinute + offset * duration) % (24 * 60);
+      final hour = totalMinutes ~/ 60;
+      final minute = totalMinutes % 60;
+      TimeOfDay potentialTime = TimeOfDay(hour: hour, minute: minute);
+
+      final potentialDateTime = DateTime(
+        selectedDate.year,
+        selectedDate.month,
+        selectedDate.day,
+        potentialTime.hour,
+        potentialTime.minute,
+      );
+
+      bool isTimeBooked = bookedSlot.any((bookedTime) {
+        final bookedDateTime = DateTime(
+          bookedTime.year,
+          bookedTime.month,
+          bookedTime.day,
+          bookedTime.hour,
+          bookedTime.minute,
+        );
+
+        final turfClosingBuffer =
+            DateTime(2002, 1, 1, closingTime!.hour, closingTime!.minute)
+                .subtract(const Duration(minutes: 30));
+        final beforeBuffer =
+            bookedDateTime.subtract(const Duration(minutes: 30));
+        final afterBuffer = bookedDateTime.add(const Duration(minutes: 30));
+        final closingBuffer = bookedDateTime.add(const Duration(minutes: 60));
+
+        if (isOpening) {
+          return potentialDateTime == bookedDateTime ||
+              potentialDateTime == beforeBuffer ||
+              potentialDateTime == afterBuffer ||
+              potentialDateTime == turfClosingBuffer;
+        } else {
+          return potentialDateTime == bookedDateTime ||
+              potentialDateTime == beforeBuffer ||
+              potentialDateTime == afterBuffer ||
+              potentialDateTime == closingBuffer;
+        }
+      });
+
+      if (!isTimeBooked) {
+        // The potential time is not booked
+        availableSlots.add(potentialTime);
+      }
+
+      offset++; // Increment offset to calculate the next potential time slot
+    }
+
+    return availableSlots;
   }
 }
