@@ -131,7 +131,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
             // Book now button
             mainButton('Book Now', context, () {
               final BookingController controller = Get.put(BookingController());
-              controller.turf = turf;
+              controller.turf.value = turf;
               Get.to(() => BookingFormOne(controller: controller));
             }),
           ],

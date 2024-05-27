@@ -1,11 +1,11 @@
 import 'dart:developer';
 
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/firestore/booking_repositories.dart';
 import 'package:users_side_of_turf_booking/model/data_model/owner_model.dart';
-import 'package:users_side_of_turf_booking/utils/portion/loadingpopup.dart';
 import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import 'package:users_side_of_turf_booking/view/course/head/bottom_navigationbar_widget.dart';
 
@@ -22,7 +22,8 @@ class BookingController extends GetxController {
   var email = TextEditingController();
   var phone = TextEditingController();
   var price = 0.0.obs;
-  var turf = OwnerModel.emptyOwnerModel().obs();
+  var turf = OwnerModel.emptyOwnerModel().obs;
+  late Razorpay _razorpay;
 
   UserController userController = Get.find();
 
@@ -32,6 +33,17 @@ class BookingController extends GetxController {
     name.text = userController.user.value.name;
     email.text = userController.user.value.email;
     phone.text = userController.user.value.number;
+
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void onClose() {
+    _razorpay.clear();
+    super.onClose();
   }
 
   // Method to combine date and time
@@ -39,26 +51,56 @@ class BookingController extends GetxController {
     return DateTime(date.year, date.month, date.day, time.hour, time.minute);
   }
 
-  void bookTheturf() async {
-    Get.to(() => const LoadingPopup());
+  void bookTheTurf() async {
+    var options = {
+      'key': 'rzp_test_X95zcCjqK3bbAQ', // Replace with your Razorpay key
+      'amount': (price.value * 100).toInt(), // Amount in paise
+      'name': name.text,
+      'description': 'Turf Booking Payment',
+      'prefill': {
+        'contact': phone.text,
+        'email': email.text,
+      },
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      log(e.toString());
+      CustomSnackbar.showError('Error: $e');
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     try {
       var booking = BookingModel(
-          turf: turf,
+          turf: turf.value,
           userId: AuthenticationRepository().authUser!.uid,
           startTime: combineDateTime(selectedDate.value, startTime.value),
           endTime: combineDateTime(selectedDate.value, endTime.value),
-          status: Status.pending.value,
+          status: Status.approved.value,
           price: price.value,
           username: name.text,
           userEmail: email.text,
           userNumber: phone.text);
 
-      await BookingRepository().saveBookingRecord(booking, turf.id);
+      await BookingRepository().saveBookingRecord(booking, turf.value.id);
       Get.offAll(() => const MyBottomNavigationBar());
       CustomSnackbar.showSuccess("Booking completed");
     } catch (e) {
       CustomSnackbar.showError(e.toString());
     }
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    CustomSnackbar.showError('Payment failed: ${response.message}');
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    CustomSnackbar.showInfo('External Wallet selected: ${response.walletName}');
   }
 
   void nextWay() {
@@ -72,8 +114,8 @@ class BookingController extends GetxController {
   }
 
   void bookedSlots() async {
-    final booked =
-        await BookingRepository().fetchTurfBooking(turf.id, selectedDate.value);
+    final booked = await BookingRepository()
+        .fetchTurfBooking(turf.value.id, selectedDate.value);
     log("Booked slot length: ${booked.length}");
     bookedSlot.assignAll(booked);
   }

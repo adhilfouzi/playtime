@@ -119,9 +119,9 @@ class _BookingFormContentState extends State<BookingFormContent> {
     final openingTime = !isOpening
         ? _openingTime
         : (parseTimeFromString(
-            controller.turf.openingTime, isOpening && false));
-    final closingTime =
-        parseTimeFromString(controller.turf.closingTime, isOpening && true);
+            controller.turf.value.openingTime, isOpening && false));
+    final closingTime = parseTimeFromString(
+        controller.turf.value.closingTime, isOpening && true);
     final initialTime = isOpening ? _openingTime : _closingTime;
 
     final selectedTime = await showDialog<TimeOfDay>(
@@ -165,7 +165,7 @@ class _BookingFormContentState extends State<BookingFormContent> {
         widget.controller.startTime.value = _openingTime!;
         widget.controller.endTime.value = _closingTime!;
         widget.controller.price.value = Formatter.calculateTotalPrice(
-            widget.controller.turf.price, _openingTime!, _closingTime!);
+            widget.controller.turf.value.price, _openingTime!, _closingTime!);
       });
     }
   }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/model/controller/validator.dart';
-import 'package:users_side_of_turf_booking/utils/portion/textfield.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/utils/appbar_booking_form.dart';
-
 import '../../../../../utils/portion/button.dart';
+import '../../../../../model/controller/validator.dart';
+import '../../../../../utils/portion/textfield.dart';
 import '../../../../../view_model/course/booking_controller.dart';
+import 'utils/appbar_booking_form.dart';
 
 class BookingFormTwo extends StatelessWidget {
   final GlobalKey<FormState> _bookingFormKey = GlobalKey<FormState>();
@@ -15,7 +14,8 @@ class BookingFormTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final BookingController controller = Get.find();
+    final BookingController bookingController = Get.find();
+
     return Scaffold(
       appBar: const AppbarBookingForm(),
       body: Form(
@@ -26,7 +26,7 @@ class BookingFormTwo extends StatelessWidget {
             MyTextField(
               hintText: "Aduham Ap",
               labelText: "Full Name",
-              controller: controller.name,
+              controller: bookingController.name,
               validator: (value) =>
                   InputValidators.validateEmpty("name", value),
               keyboardType: TextInputType.name,
@@ -39,7 +39,7 @@ class BookingFormTwo extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) => InputValidators.validateEmail(value),
-                controller: controller.email),
+                controller: bookingController.email),
             SizedBox(height: height * 0.01),
             MyTextField(
               hintText: "9876543210",
@@ -47,7 +47,7 @@ class BookingFormTwo extends StatelessWidget {
               textInputAction: TextInputAction.done,
               validator: (value) => InputValidators.validatePhoneNumber(value),
               keyboardType: TextInputType.number,
-              controller: controller.phone,
+              controller: bookingController.phone,
             ),
           ],
         ),
@@ -56,12 +56,17 @@ class BookingFormTwo extends StatelessWidget {
         color: Colors.white,
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.05, vertical: height * 0.02),
-        child: Button().mainButton('Submit', context, () {
-          FocusManager.instance.primaryFocus?.unfocus();
-          if (_bookingFormKey.currentState!.validate()) {
-            controller.bookTheturf();
-          }
-        }),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Button().mainButton('Submit', context, () {
+              FocusManager.instance.primaryFocus?.unfocus();
+              if (_bookingFormKey.currentState!.validate()) {
+                bookingController.bookTheTurf();
+              }
+            }),
+          ],
+        ),
       ),
     );
   }
