@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:users_side_of_turf_booking/model/controller/url.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/screens/booking/booking_form_one.dart.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../model/controller/url.dart';
+import '../../../../utils/const/colors.dart';
 import '../../../../utils/const/image_name.dart';
 import '../../../../view_model/course/booking_controller.dart';
 import '../../../../view_model/course/turf_controller.dart';
+import '../../mybooking/screens/booking/booking_form_one.dart.dart';
 import '../widget/turfview_appbar.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {
@@ -19,6 +21,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TurfController turfController = Get.find();
     final turf = turfController.viewTurf(turfid);
+    final PageController pageController = PageController();
 
     return Scaffold(
       appBar: TurfViewAppBar(turfid: turfid),
@@ -27,7 +30,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Image
+            // Image Carousel
             Container(
               height: 400,
               decoration: BoxDecoration(
@@ -43,18 +46,45 @@ class ViewTurfDetailsScreen extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: CachedNetworkImage(
-                  imageUrl: turf!.images[1],
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(color: Colors.white),
-                  ),
-                  errorWidget: (context, url, error) => Image.asset(
-                    ImagePath.turf,
-                    fit: BoxFit.cover,
-                  ),
+                child: Stack(
+                  children: [
+                    PageView.builder(
+                      controller: pageController,
+                      itemCount: turf!.images.length,
+                      itemBuilder: (context, index) {
+                        return CachedNetworkImage(
+                          imageUrl: turf.images[index],
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(color: Colors.white),
+                          ),
+                          errorWidget: (context, url, error) => Image.asset(
+                            ImagePath.turf,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      },
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: SmoothPageIndicator(
+                          controller: pageController,
+                          count: turf.images.length,
+                          effect: const ExpandingDotsEffect(
+                            dotHeight: 8,
+                            dotWidth: 8,
+                            dotColor: Colors.white,
+                            activeDotColor: CustomColor.mainColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -68,7 +98,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
             // Address
             Row(
               children: [
-                const Icon(Icons.location_on, color: Color(0xFF238C98)),
+                const Icon(Icons.location_on, color: CustomColor.mainColor),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -117,14 +147,14 @@ Widget mainButton(String text, BuildContext context, VoidCallback onPressed) {
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.white,
-      backgroundColor: const Color(0xFF238C98), // Text color
+      backgroundColor: CustomColor.mainColor, // Text color
       minimumSize:
           Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(999), // Button corner radius
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
-      shadowColor: const Color(0xFF238C98).withOpacity(0.5),
+      shadowColor: CustomColor.mainColor.withOpacity(0.5),
       elevation: 5,
     ),
     child: Text(
@@ -139,7 +169,7 @@ Widget whiteButton(String text, BuildContext context, VoidCallback onPressed) {
   return ElevatedButton(
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
-      foregroundColor: const Color(0xFF238C98),
+      foregroundColor: CustomColor.mainColor,
       backgroundColor: Colors.white, // Text color
       minimumSize:
           Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
