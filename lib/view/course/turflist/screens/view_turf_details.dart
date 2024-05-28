@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../model/controller/formater.dart';
 import '../../../../model/controller/url.dart';
 import '../../../../utils/const/colors.dart';
 import '../../../../utils/const/image_name.dart';
@@ -22,7 +23,8 @@ class ViewTurfDetailsScreen extends StatelessWidget {
     final TurfController turfController = Get.find();
     final turf = turfController.viewTurf(turfid);
     final PageController pageController = PageController();
-
+    var opening = Formatter.timeOfDayToString(turf!.openingTime);
+    var close = Formatter.timeOfDayToString(turf.closingTime);
     return Scaffold(
       appBar: TurfViewAppBar(turfid: turfid),
       body: SingleChildScrollView(
@@ -50,7 +52,7 @@ class ViewTurfDetailsScreen extends StatelessWidget {
                   children: [
                     PageView.builder(
                       controller: pageController,
-                      itemCount: turf!.images.length,
+                      itemCount: turf.images.length,
                       itemBuilder: (context, index) {
                         return CachedNetworkImage(
                           imageUrl: turf.images[index],
@@ -104,6 +106,25 @@ class ViewTurfDetailsScreen extends StatelessWidget {
                   child: Text(
                     turf.courtLocation,
                     style: const TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            // Address
+            Row(
+              children: [
+                const Icon(Icons.access_time, color: CustomColor.mainColor),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    turf.is24h ? "Open 24 Hours" : '$opening to $close',
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                    ),
+                    maxLines: 1,
                   ),
                 ),
               ],

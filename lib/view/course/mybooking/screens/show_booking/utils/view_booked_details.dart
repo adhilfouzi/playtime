@@ -36,7 +36,7 @@ class ViewBookingDetails extends StatelessWidget {
                 title: 'Time',
                 value: Formatter.timeRange(booking.startTime, booking.endTime)),
             _buildDetailRow(
-                title: 'Time', value: Formatter.formatCurrency(booking.price)),
+                title: 'Price', value: Formatter.formatCurrency(booking.price)),
             const SizedBox(height: 10),
             const Divider(),
             const SizedBox(height: 10),
