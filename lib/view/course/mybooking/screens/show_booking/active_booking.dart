@@ -66,7 +66,7 @@ class ActiveBooking extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return ViewBookingDetails(
+                              return ViewBookingDetailsScreen(
                                 booking: activeBookings[index],
                               ); // Show the booking details dialog
                             },

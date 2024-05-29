@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:users_side_of_turf_booking/model/data_model/transaction_model.dart';
 
 import '../../../data_model/booking_model.dart';
 import '../authentication/firebase_authentication.dart';
@@ -33,13 +34,28 @@ class BookingRepository {
   }
 
   /// Save booking data to Firestore
-  Future<void> saveBookingRecord(BookingModel booking, String turfId) async {
+  Future<String> saveBookingRecord(BookingModel booking, String turfId) async {
     try {
-      await _db
+      var book = await _db
           .collection("Owner")
           .doc(turfId)
           .collection('bookings')
           .add(booking.toJson());
+      return book.id;
+    } catch (e) {
+      throw ExceptionHandler.handleException(e);
+    }
+  }
+
+  /// Save Transaction data to Firestore
+  Future<void> saveTransactionRecord(
+      TransactionModel transaction, String turfId) async {
+    try {
+      await _db
+          .collection("Owner")
+          .doc(turfId)
+          .collection('transactions')
+          .add(transaction.toJson());
     } catch (e) {
       throw ExceptionHandler.handleException(e);
     }

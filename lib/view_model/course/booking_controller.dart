@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
 import 'package:users_side_of_turf_booking/model/backend/repositories/firestore/booking_repositories.dart';
 import 'package:users_side_of_turf_booking/model/data_model/owner_model.dart';
+import 'package:users_side_of_turf_booking/model/data_model/transaction_model.dart';
 import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
 import 'package:users_side_of_turf_booking/view/course/head/bottom_navigationbar_widget.dart';
 
@@ -52,9 +53,10 @@ class BookingController extends GetxController {
   }
 
   void bookTheTurf() async {
+    final advance = price.value ~/ 2;
     var options = {
       'key': 'rzp_test_X95zcCjqK3bbAQ', // Replace with your Razorpay key
-      'amount': (price.value * 100).toInt(), // Amount in paise
+      'amount': (advance * 100).toInt(), // Amount in paise
       'name': name.text,
       'description': 'Turf Booking Payment',
       'prefill': {
@@ -76,18 +78,42 @@ class BookingController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     try {
+      final advance = price.value ~/ 2;
+      final userId = AuthenticationRepository().authUser!.uid;
+
       var booking = BookingModel(
           turf: turf.value,
-          userId: AuthenticationRepository().authUser!.uid,
+          userId: userId,
           startTime: combineDateTime(selectedDate.value, startTime.value),
           endTime: combineDateTime(selectedDate.value, endTime.value),
           status: Status.approved.value,
           price: price.value,
+          balance: advance.toDouble(),
+          bookedDate: DateTime.now(),
+          discount: 0,
+          userProfile: userController.user.value.profile,
+          paid: advance.toDouble(),
           username: name.text,
           userEmail: email.text,
           userNumber: phone.text);
 
-      await BookingRepository().saveBookingRecord(booking, turf.value.id);
+      var bookingId =
+          await BookingRepository().saveBookingRecord(booking, turf.value.id);
+
+      var transaction = TransactionModel(
+          bookingId: bookingId,
+          userId: userId,
+          username: name.text,
+          userEmail: email.text,
+          userNumber: phone.text,
+          amount: advance.toDouble(),
+          transactionDate: DateTime.now(),
+          status: TransactionStatus.completed.value,
+          paymentMethod: PaymentMethod.online.value);
+
+      await BookingRepository()
+          .saveTransactionRecord(transaction, turf.value.id);
+
       Get.offAll(() => const MyBottomNavigationBar());
       CustomSnackbar.showSuccess("Booking completed");
     } catch (e) {
