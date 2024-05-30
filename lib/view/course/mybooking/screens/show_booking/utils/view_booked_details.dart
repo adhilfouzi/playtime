@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:users_side_of_turf_booking/utils/appbar/titleonly_appbar.dart';
 import '../../../../../../model/controller/formater.dart';
 import '../../../../../../model/controller/url.dart';
 import '../../../../../../model/data_model/booking_model.dart';
+import '../../../../../../utils/appbar/titleonly_appbar.dart';
 import '../../../../../../utils/portion/button.dart';
 import 'detail_row_view_screen.dart';
 
@@ -38,19 +38,19 @@ class ViewBookingDetailsScreen extends StatelessWidget {
                     title: 'Price',
                     value: Formatter.formatCurrency(booking.price)),
                 const SizedBox(height: 10),
-                const Divider(),
-                DetailRow(
-                    title: 'Price',
-                    value: Formatter.formatCurrency(booking.price)),
-                DetailRow(
-                    title: 'Paid',
-                    value: Formatter.formatCurrency(booking.paid)),
-                DetailRow(
-                    title: 'Discount',
-                    value: Formatter.formatCurrency(booking.discount)),
-                DetailRow(
-                    title: 'Balance',
-                    value: Formatter.formatCurrency(booking.balance)),
+                // const Divider(),
+                // DetailRow(
+                //     title: 'Price',
+                //     value: Formatter.formatCurrency(booking.price)),
+                // DetailRow(
+                //     title: 'Paid',
+                //     value: Formatter.formatCurrency(booking.paid)),
+                // DetailRow(
+                //     title: 'Discount',
+                //     value: Formatter.formatCurrency(booking.discount)),
+                // DetailRow(
+                //     title: 'Balance',
+                //     value: Formatter.formatCurrency(booking.balance)),
                 const Divider(),
                 const SizedBox(height: 10),
                 DetailRow(title: 'Name', value: booking.username),

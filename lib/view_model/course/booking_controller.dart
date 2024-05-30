@@ -3,14 +3,14 @@ import 'dart:developer';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/model/backend/repositories/authentication/firebase_authentication.dart';
-import 'package:users_side_of_turf_booking/model/backend/repositories/firestore/booking_repositories.dart';
-import 'package:users_side_of_turf_booking/model/data_model/owner_model.dart';
-import 'package:users_side_of_turf_booking/model/data_model/transaction_model.dart';
-import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
-import 'package:users_side_of_turf_booking/view/course/head/bottom_navigationbar_widget.dart';
 
+import '../../model/backend/repositories/authentication/firebase_authentication.dart';
+import '../../model/backend/repositories/firestore/booking_repositories.dart';
 import '../../model/data_model/booking_model.dart';
+import '../../model/data_model/owner_model.dart';
+import '../../model/data_model/transaction_model.dart';
+import '../../utils/portion/snackbar.dart';
+import '../../view/course/head/bottom_navigationbar_widget.dart';
 import '../../view/course/mybooking/screens/booking/booking_form_two.dart';
 import 'usermodel_controller.dart';
 
@@ -44,6 +44,12 @@ class BookingController extends GetxController {
   @override
   void onClose() {
     _razorpay.clear();
+
+    // Dispose of TextEditingControllers
+    name.dispose();
+    email.dispose();
+    phone.dispose();
+
     super.onClose();
   }
 
@@ -53,10 +59,9 @@ class BookingController extends GetxController {
   }
 
   void bookTheTurf() async {
-    final advance = price.value ~/ 2;
     var options = {
-      'key': 'rzp_test_X95zcCjqK3bbAQ', // Replace with your Razorpay key
-      'amount': (advance * 100).toInt(), // Amount in paise
+      'key': 'rzp_test_X95zcCjqK3bbAQ',
+      'amount': (price.value * 100).toInt(),
       'name': name.text,
       'description': 'Turf Booking Payment',
       'prefill': {
@@ -78,7 +83,6 @@ class BookingController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     try {
-      final advance = price.value ~/ 2;
       final userId = AuthenticationRepository().authUser!.uid;
 
       var booking = BookingModel(
@@ -88,11 +92,11 @@ class BookingController extends GetxController {
           endTime: combineDateTime(selectedDate.value, endTime.value),
           status: Status.approved.value,
           price: price.value,
-          balance: advance.toDouble(),
+          balance: 0,
           bookedDate: DateTime.now(),
           discount: 0,
           userProfile: userController.user.value.profile,
-          paid: advance.toDouble(),
+          paid: price.value,
           username: name.text,
           userEmail: email.text,
           userNumber: phone.text);
@@ -106,7 +110,7 @@ class BookingController extends GetxController {
           username: name.text,
           userEmail: email.text,
           userNumber: phone.text,
-          amount: advance.toDouble(),
+          amount: price.value,
           transactionDate: DateTime.now(),
           status: TransactionStatus.completed.value,
           paymentMethod: PaymentMethod.online.value);

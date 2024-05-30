@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/view/course/home/utils/home_appbar.dart';
 import '../../../../view_model/course/turf_controller.dart';
 import '../utils/favourite_section.dart';
+import '../utils/home_appbar.dart';
 import '../utils/premo_banner.dart';
 import '../utils/trending_section.dart';
 

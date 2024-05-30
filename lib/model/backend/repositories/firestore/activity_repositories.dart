@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:users_side_of_turf_booking/model/data_model/user_activity_model.dart';
-
+import '../../../data_model/user_activity_model.dart';
 import '../authentication/firebase_authentication.dart';
 import '../authentication/firebase_exceptionhandler.dart';
 

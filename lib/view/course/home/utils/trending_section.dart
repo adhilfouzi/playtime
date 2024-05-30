@@ -27,7 +27,7 @@ class TrendingSection extends StatelessWidget {
         ),
         SizedBox(height: height * 0.01),
         SizedBox(
-          height: height * 0.45,
+          height: height * 0.4,
           child: Obx(() => ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: controller.trendingTurfs.length,

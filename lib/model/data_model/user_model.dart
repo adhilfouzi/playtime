@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:users_side_of_turf_booking/model/data_model/owner_model.dart';
-
 import '../controller/formater.dart';
+import 'owner_model.dart';
 
 class UserModel {
   final String? id;

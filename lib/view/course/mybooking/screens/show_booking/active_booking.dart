@@ -38,7 +38,10 @@ class ActiveBooking extends StatelessWidget {
               child: Container(
                 height: MediaQuery.of(context).size.height - 200,
                 alignment: Alignment.center,
-                child: const Text("No bookings are available"),
+                child: const Text(
+                  "No Active bookings are available",
+                  style: TextStyle(overflow: TextOverflow.ellipsis),
+                ),
               ),
             ),
           );
@@ -61,14 +64,14 @@ class ActiveBooking extends StatelessWidget {
                         BookingDetails(
                           turf: activeBookings[index],
                         ),
-                        const Divider(), // Add Divider for visual separation
+                        const Divider(),
                         Button().mainButton("View Booking", context, () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return ViewBookingDetailsScreen(
                                 booking: activeBookings[index],
-                              ); // Show the booking details dialog
+                              );
                             },
                           );
                         }),

@@ -57,12 +57,15 @@ class Button {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: const Color(0xFF238C98),
+          backgroundColor: CustomColor.mainColor, // Text color
           minimumSize:
               Size(MediaQuery.of(context).size.width * 0.4, 50), // Button width
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(999), // Button corner radius
           ),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          shadowColor: CustomColor.mainColor.withOpacity(0.5),
+          elevation: 5,
         ),
         child: Text(text),
       ),

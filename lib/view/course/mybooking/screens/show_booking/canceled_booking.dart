@@ -34,7 +34,10 @@ class CanceledBooking extends StatelessWidget {
               child: Container(
                 height: MediaQuery.of(context).size.height - 200,
                 alignment: Alignment.center,
-                child: const Text("No bookings are available"),
+                child: const Text(
+                  "No Canceled bookings are available",
+                  style: TextStyle(overflow: TextOverflow.ellipsis),
+                ),
               ),
             ),
           );

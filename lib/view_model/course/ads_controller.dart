@@ -5,7 +5,7 @@ import '../../model/data_model/ads_model.dart';
 
 class AdsController extends GetxController {
   var adsModel = AdsModel.empty().obs;
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   @override
   void onInit() {
     super.onInit();

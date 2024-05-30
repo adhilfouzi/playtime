@@ -88,15 +88,17 @@ extension TransactionStatusExtension on TransactionStatus {
   }
 }
 
-enum PaymentMethod { cash, online }
+enum PaymentMethod { cash, online, failed }
 
 extension PaymentMethodExtension on PaymentMethod {
   String get value {
     switch (this) {
       case PaymentMethod.cash:
-        return 'pending';
+        return 'cash';
       case PaymentMethod.online:
-        return 'completed';
+        return 'online';
+      case PaymentMethod.failed:
+        return 'failed';
     }
   }
 }

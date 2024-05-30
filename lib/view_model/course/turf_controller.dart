@@ -21,7 +21,7 @@ class TurfController extends GetxController {
   final _turfList = <OwnerModel>[].obs;
   final _favouriteTurfList = ActivityModel.empty().obs;
   final _trendingTurfs = <String>[].obs;
-  final _isLoadingTurfs = true.obs;
+  final _isLoadingTurfs = false.obs;
   final _errorMessageTurfs = RxString('');
   final query = RxString('');
   final RxBool isLiked = false.obs;

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/model/controller/formater.dart';
-import 'package:users_side_of_turf_booking/view/course/turflist/screens/view_turf_details.dart';
+import '../../../../model/controller/formater.dart';
 import '../../../../utils/const/image_name.dart';
 import '../../../../view_model/course/turf_controller.dart';
+import '../screens/view_turf_details.dart';
 
 class TurfListItem extends StatelessWidget {
   final String turfid;

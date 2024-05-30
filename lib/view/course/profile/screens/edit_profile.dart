@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:users_side_of_turf_booking/utils/const/colors.dart';
-import 'package:users_side_of_turf_booking/utils/const/image_name.dart';
-import 'package:users_side_of_turf_booking/view/onboarding/utils/appbar.dart';
-import 'package:users_side_of_turf_booking/view_model/course/image_controller.dart';
-import 'package:users_side_of_turf_booking/view_model/course/usermodel_controller.dart';
+
+import '../../../../utils/const/colors.dart';
+import '../../../../utils/const/image_name.dart';
+import '../../../../view_model/course/image_controller.dart';
+import '../../../../view_model/course/usermodel_controller.dart';
+import '../../../onboarding/utils/appbar.dart';
 
 class EditUser extends StatelessWidget {
   const EditUser({super.key});

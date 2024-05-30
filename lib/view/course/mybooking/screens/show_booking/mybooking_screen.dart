@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/active_booking.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/canceled_booking.dart';
-import 'package:users_side_of_turf_booking/view/course/mybooking/screens/show_booking/completed_booking.dart';
 
+import 'active_booking.dart';
+import 'canceled_booking.dart';
+import 'completed_booking.dart';
 import 'utils/tab_bar.dart';
 
 class MyBooking extends StatefulWidget {
@@ -14,7 +14,7 @@ class MyBooking extends StatefulWidget {
 
 class _MyBookingState extends State<MyBooking> with TickerProviderStateMixin {
   late TabController tabController;
-  List<String> tabTitles = ['Active', 'Canceled', 'Completed'];
+  List<String> tabTitles = ['Active', 'Completed', 'Canceled'];
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _MyBookingState extends State<MyBooking> with TickerProviderStateMixin {
 
   void _handleTabSelection() {
     setState(() {
-      tabTitles = ['Active', 'Canceled', 'Completed'];
+      tabTitles = ['Active', 'Completed', 'Canceled'];
     });
   }
 
@@ -60,8 +60,8 @@ class _MyBookingState extends State<MyBooking> with TickerProviderStateMixin {
           controller: tabController,
           children: const [
             Hero(tag: 'Active', child: ActiveBooking()),
-            Hero(tag: 'Canceled', child: CanceledBooking()),
             Hero(tag: 'Completed', child: CompletedBooking()),
+            Hero(tag: 'Canceled', child: CanceledBooking()),
           ],
         ),
       ),

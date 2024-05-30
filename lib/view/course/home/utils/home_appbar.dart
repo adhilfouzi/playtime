@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/view_model/course/usermodel_controller.dart';
 
 import '../../../../utils/const/icons_image.dart';
+import '../../../../view_model/course/usermodel_controller.dart';
 
 class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeScreenAppBar({super.key});
