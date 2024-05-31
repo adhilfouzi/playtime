@@ -11,6 +11,10 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({super.key});
 
+  Future<void> refresh() async {
+    await controller.refreshHomescreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -21,15 +25,30 @@ class HomeScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: width * 0.04, vertical: height * 0.02),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const PromoBanner(),
-              FavouriteSection(controller: controller),
-              TrendingSection(controller: controller),
-            ],
-          ),
+        child: Obx(
+          () {
+            if (controller.isLoadingHome) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return RefreshIndicator(
+                onRefresh: refresh,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: SizedBox(
+                    child: Column(
+                      children: [
+                        const PromoBanner(),
+                        FavouriteSection(controller: controller),
+                        TrendingSection(controller: controller),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+          },
         ),
       ),
     );

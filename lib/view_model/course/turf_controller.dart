@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:users_side_of_turf_booking/view_model/course/ads_controller.dart';
 
 import '../../model/backend/repositories/firestore/activity_repositories.dart';
 import '../../model/backend/repositories/firestore/booking_repositories.dart';
@@ -22,7 +23,9 @@ class TurfController extends GetxController {
   final _favouriteTurfList = ActivityModel.empty().obs;
   final _trendingTurfs = <String>[].obs;
   final _isLoadingTurfs = false.obs;
+  final _isLoadingHome = false.obs;
   final _errorMessageTurfs = RxString('');
+  final _errorMessageHome = RxString('');
   final query = RxString('');
   final RxBool isLiked = false.obs;
 
@@ -35,7 +38,9 @@ class TurfController extends GetxController {
   ActivityModel get favouriteTurfList => _favouriteTurfList.value;
   List<String> get trendingTurfs => _trendingTurfs;
   bool get isLoadingTurfs => _isLoadingTurfs.value;
+  bool get isLoadingHome => _isLoadingHome.value;
   String get errorMessageTurfs => _errorMessageTurfs.value;
+  String get errorMessageHome => _errorMessageHome.value;
 
   @override
   void onInit() {
@@ -95,6 +100,22 @@ class TurfController extends GetxController {
       _errorMessageTurfs.value = 'Failed to fetch turf list: $e';
       log(e.toString());
       _isLoadingTurfs.value = false;
+    }
+  }
+
+  Future<void> refreshHomescreen() async {
+    _isLoadingHome.value = true;
+    try {
+      var favourite = await ActivityRepository().fetchActivityDetails();
+      AdsController().fetchAds();
+      var list = await ActivityRepository().findTrendingTurfs();
+      _trendingTurfs.assignAll(list);
+      _favouriteTurfList.value = favourite;
+    } catch (e) {
+      _errorMessageHome.value = 'Loading Error';
+      log(e.toString());
+    } finally {
+      _isLoadingHome.value = false;
     }
   }
 
