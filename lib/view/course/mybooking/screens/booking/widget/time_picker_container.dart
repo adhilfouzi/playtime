@@ -133,8 +133,7 @@ class TimePickerDialogBox extends StatelessWidget {
     } else {
       if (isOpening) {
         return (((endHour == 0 ? 24 : endHour) - startHour) * 2) -
-            bookedSlot.length -
-            (bookedSlot.length);
+            bookedSlot.length;
       } else {
         return ((endHour == 0 ? 24 : endHour) - startHour) - bookedSlot.length;
       }
