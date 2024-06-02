@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../../../../../../model/controller/formater.dart';
-import '../../../../../../utils/portion/snackbar.dart';
+import '../../../../../../widget/portion/snackbar.dart';
 import '../../../../../../view_model/course/booking_controller.dart';
 import 'calender.dart';
 import 'time_picker_container.dart';

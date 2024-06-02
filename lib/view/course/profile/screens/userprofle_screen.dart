@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../utils/const/image_name.dart';
+import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/usermodel_controller.dart';
 import '../../../../view_model/course/profile_controlller.dart';
 import '../../head/bottom_navigationbar_widget.dart';

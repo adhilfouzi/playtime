@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:get/get.dart';
 import '../../../../model/controller/formater.dart';
-import '../../../../utils/const/image_name.dart';
+import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/turf_controller.dart';
 import '../screens/view_turf_details.dart';
 

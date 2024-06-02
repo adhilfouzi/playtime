@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../model/backend/repositories/firestore/profile_image_repository.dart';
 import '../../model/backend/repositories/firestore/user_repositories.dart';
-import '../../utils/portion/snackbar.dart';
+import '../../widget/portion/snackbar.dart';
 import 'usermodel_controller.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;

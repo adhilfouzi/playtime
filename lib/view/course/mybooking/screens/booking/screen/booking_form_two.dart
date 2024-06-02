@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../utils/portion/button.dart';
-import '../../../../../model/controller/validator.dart';
-import '../../../../../utils/portion/textfield.dart';
-import '../../../../../view_model/course/booking_controller.dart';
-import 'utils/appbar_booking_form.dart';
+import '../../../../../../widget/appbar/titleonly_appbar.dart';
+import '../../../../../../widget/portion/button.dart';
+import '../../../../../../model/controller/validator.dart';
+import '../../../../../../widget/portion/textfield.dart';
+import '../../../../../../view_model/course/booking_controller.dart';
 
 class BookingFormTwo extends StatelessWidget {
   final GlobalKey<FormState> _bookingFormKey = GlobalKey<FormState>();
@@ -17,7 +17,7 @@ class BookingFormTwo extends StatelessWidget {
     final BookingController bookingController = Get.find();
 
     return Scaffold(
-      appBar: const AppbarBookingForm(),
+      appBar: const TitleOnlyAppBar(title: "Booking Form"),
       body: Form(
         key: _bookingFormKey,
         child: Column(

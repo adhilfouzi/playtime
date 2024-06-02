@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:users_side_of_turf_booking/utils/portion/button.dart';
+import 'package:users_side_of_turf_booking/widget/portion/button.dart';
 
 import '../../../../model/controller/formater.dart';
 import '../../../../model/controller/url.dart';
-import '../../../../utils/const/colors.dart';
-import '../../../../utils/const/image_name.dart';
+import '../../../../widget/const/colors.dart';
+import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/booking_controller.dart';
 import '../../../../view_model/course/turf_controller.dart';
-import '../../mybooking/screens/booking/booking_form_one.dart.dart';
+import '../../mybooking/screens/booking/screen/booking_form_one.dart.dart';
 import '../widget/turfview_appbar.dart';
 
 class ViewTurfDetailsScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../view_model/course/turf_controller.dart';
-import '../utils/turf_detailcard.dart';
+import 'turf_detailcard.dart';
 
 class FavouriteSection extends StatelessWidget {
   final TurfController controller;

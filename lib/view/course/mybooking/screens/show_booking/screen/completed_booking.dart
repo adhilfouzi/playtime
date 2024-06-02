@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../utils/portion/button.dart';
-import '../../../../../view_model/course/turf_controller.dart';
-import 'utils/booking_details.dart';
-import 'utils/view_booked_details.dart';
+import '../../../../../../view_model/course/turf_controller.dart';
+import '../widget/booking_details.dart';
 
-class ActiveBooking extends StatelessWidget {
-  const ActiveBooking({super.key});
+class CompletedBooking extends StatelessWidget {
+  const CompletedBooking({super.key});
 
   @override
   Widget build(BuildContext context) {
     final TurfController controller = Get.find();
-
     final height = MediaQuery.of(context).size.height;
+    final completedBookings = controller.completedBookings;
     final width = MediaQuery.of(context).size.width;
-    final activeBookings = controller.activeBookings;
     Future<void> refresh() async {
       await controller.separateBookings();
     }
@@ -30,7 +27,7 @@ class ActiveBooking extends StatelessWidget {
           child: Text(controller.errorMessageBookings),
         );
       } else {
-        if (activeBookings.isEmpty) {
+        if (completedBookings.isEmpty) {
           return RefreshIndicator(
             onRefresh: refresh,
             child: SingleChildScrollView(
@@ -39,7 +36,7 @@ class ActiveBooking extends StatelessWidget {
                 height: MediaQuery.of(context).size.height - 200,
                 alignment: Alignment.center,
                 child: const Text(
-                  "No Active bookings are available",
+                  "No Completed bookings are available",
                   style: TextStyle(overflow: TextOverflow.ellipsis),
                 ),
               ),
@@ -49,7 +46,7 @@ class ActiveBooking extends StatelessWidget {
           return RefreshIndicator(
             onRefresh: refresh,
             child: ListView.builder(
-              itemCount: activeBookings.length,
+              itemCount: completedBookings.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   elevation: 4,
@@ -62,19 +59,20 @@ class ActiveBooking extends StatelessWidget {
                     child: Column(
                       children: [
                         BookingDetails(
-                          turf: activeBookings[index],
+                          turf: completedBookings[index],
                         ),
-                        const Divider(),
-                        Button().mainButton("View Booking", context, () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return ViewBookingDetailsScreen(
-                                booking: activeBookings[index],
-                              );
-                            },
-                          );
-                        }),
+                        SizedBox(height: height * 0.02),
+                        const Text(
+                          "Well Played floks",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.green,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: height * 0.02),
                       ],
                     ),
                   ),

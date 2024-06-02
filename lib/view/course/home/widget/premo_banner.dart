@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../utils/const/image_name.dart';
+import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/ads_controller.dart';
 
 class PromoBanner extends StatelessWidget {

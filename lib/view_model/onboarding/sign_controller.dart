@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:users_side_of_turf_booking/utils/portion/snackbar.dart';
+import 'package:users_side_of_turf_booking/widget/portion/snackbar.dart';
 
 import '../../model/backend/repositories/authentication/firebase_authentication.dart';
-import '../../utils/portion/loadingpopup.dart';
+import '../../widget/portion/loadingpopup.dart';
 
 class SigninController extends GetxController {
   final RxBool isLoading = false.obs;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../view_model/course/turf_controller.dart';
-import 'utils/booking_details.dart';
+import '../../../../../../view_model/course/turf_controller.dart';
+import '../widget/booking_details.dart';
 
 class CanceledBooking extends StatelessWidget {
   const CanceledBooking({super.key});

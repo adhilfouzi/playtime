@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../model/controller/formater.dart';
-import '../../../../utils/const/image_name.dart';
+import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/turf_controller.dart';
 import '../../turflist/screens/view_turf_details.dart';
 

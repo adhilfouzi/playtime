@@ -9,9 +9,9 @@ import '../../model/backend/repositories/firestore/booking_repositories.dart';
 import '../../model/data_model/booking_model.dart';
 import '../../model/data_model/owner_model.dart';
 import '../../model/data_model/transaction_model.dart';
-import '../../utils/portion/snackbar.dart';
+import '../../widget/portion/snackbar.dart';
 import '../../view/course/head/bottom_navigationbar_widget.dart';
-import '../../view/course/mybooking/screens/booking/booking_form_two.dart';
+import '../../view/course/mybooking/screens/booking/screen/booking_form_two.dart';
 import 'usermodel_controller.dart';
 
 class BookingController extends GetxController {

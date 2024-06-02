@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../utils/portion/snackbar.dart';
+import '../../../../widget/portion/snackbar.dart';
 import '../../../../view/course/head/bottom_navigationbar_widget.dart';
 import '../firestore/user_repositories.dart';
 import 'firebase_exceptionhandler.dart';

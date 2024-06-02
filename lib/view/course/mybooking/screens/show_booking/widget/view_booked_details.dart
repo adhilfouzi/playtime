@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../../model/controller/formater.dart';
 import '../../../../../../model/controller/url.dart';
 import '../../../../../../model/data_model/booking_model.dart';
-import '../../../../../../utils/appbar/titleonly_appbar.dart';
-import '../../../../../../utils/portion/button.dart';
+import '../../../../../../widget/appbar/titleonly_appbar.dart';
+import '../../../../../../widget/portion/button.dart';
 import 'detail_row_view_screen.dart';
 
 class ViewBookingDetailsScreen extends StatelessWidget {

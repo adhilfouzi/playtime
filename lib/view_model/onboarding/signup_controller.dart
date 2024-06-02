@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import '../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../model/data_model/user_model.dart';
-import '../../utils/portion/loadingpopup.dart';
-import '../../utils/portion/snackbar.dart';
+import '../../widget/portion/loadingpopup.dart';
+import '../../widget/portion/snackbar.dart';
 import '../../view/course/head/bottom_navigationbar_widget.dart';
 import '../course/usermodel_controller.dart';
 

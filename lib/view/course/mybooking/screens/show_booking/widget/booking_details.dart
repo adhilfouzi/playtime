@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../model/data_model/booking_model.dart';
-import '../../../../../../utils/const/image_name.dart';
+import '../../../../../../widget/const/image_name.dart';
 
 class BookingDetails extends StatelessWidget {
   final BookingModel turf;

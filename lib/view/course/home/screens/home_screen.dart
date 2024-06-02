@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../view_model/course/turf_controller.dart';
-import '../utils/favourite_section.dart';
-import '../utils/home_appbar.dart';
-import '../utils/premo_banner.dart';
-import '../utils/trending_section.dart';
+import '../widget/favourite_section.dart';
+import '../widget/home_appbar.dart';
+import '../widget/premo_banner.dart';
+import '../widget/trending_section.dart';
 
 class HomeScreen extends StatelessWidget {
   final TurfController controller = Get.find();

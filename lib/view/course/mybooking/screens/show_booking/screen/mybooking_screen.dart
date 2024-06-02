@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'active_booking.dart';
 import 'canceled_booking.dart';
 import 'completed_booking.dart';
-import 'utils/tab_bar.dart';
+import '../widget/tab_bar.dart';
 
 class MyBooking extends StatefulWidget {
   const MyBooking({super.key});

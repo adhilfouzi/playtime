@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../model/controller/url.dart';
-import '../../utils/portion/snackbar.dart';
+import '../../widget/portion/snackbar.dart';
 import '../../view/onboarding/screens/login/login_screen.dart';
 
 class ProfileController {

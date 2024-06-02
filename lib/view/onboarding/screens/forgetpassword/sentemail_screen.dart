@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../utils/portion/button.dart';
+import '../../../../widget/portion/button.dart';
 import '../../../../view_model/onboarding/email_verification_controller.dart';
 import '../login/login_screen.dart';
 

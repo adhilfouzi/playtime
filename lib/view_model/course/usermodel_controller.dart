@@ -5,7 +5,7 @@ import '../../../model/backend/repositories/authentication/firebase_authenticati
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../model/controller/validator.dart';
 import '../../model/data_model/user_model.dart';
-import '../../utils/portion/snackbar.dart';
+import '../../widget/portion/snackbar.dart';
 
 class UserController extends GetxController {
   // static UserController get instance => Get.find();

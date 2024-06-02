@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../utils/const/image_name.dart';
-import '../../../../utils/portion/button.dart';
+import '../../../../widget/const/image_name.dart';
+import '../../../../widget/portion/button.dart';
 import '../login/login_screen.dart';
 import '../signup/signup_screen.dart';
 
