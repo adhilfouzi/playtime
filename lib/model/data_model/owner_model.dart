@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/formater.dart';
 
+/// Model class for representing owner data.
 class OwnerModel {
   String id;
   String courtName;
@@ -22,6 +23,7 @@ class OwnerModel {
   bool isOwner;
   bool isRegistered;
 
+  /// Constructor for OwnerModel.
   OwnerModel({
     required this.id,
     required this.courtName,
@@ -42,6 +44,7 @@ class OwnerModel {
     required this.isRegistered,
   });
 
+  /// Factory method to create an OwnerModel instance from JSON data.
   factory OwnerModel.fromJson(Map<String, dynamic> json) {
     List<String> images = [];
     if (json['images'] != null && json['images'] is List) {
@@ -71,6 +74,8 @@ class OwnerModel {
       isRegistered: json['isRegistered'] ?? false,
     );
   }
+
+  /// Factory method to create an empty OwnerModel instance.
   factory OwnerModel.emptyOwnerModel() {
     return OwnerModel(
       id: '',
@@ -93,6 +98,7 @@ class OwnerModel {
     );
   }
 
+  /// Factory method to create an OwnerModel instance from a map.
   factory OwnerModel.fromMap(Map<String, dynamic> map) {
     var openingTime = Formatter.timestampToTimeOfDay(map['openingTime']);
     var closingTime = Formatter.timestampToTimeOfDay(map['closingTime']);
@@ -119,6 +125,7 @@ class OwnerModel {
     );
   }
 
+  /// Convert the OwnerModel instance to JSON format.
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -141,6 +148,7 @@ class OwnerModel {
     };
   }
 
+  /// Convert the OwnerModel instance to a map.
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -163,6 +171,7 @@ class OwnerModel {
     };
   }
 
+  /// Factory method to create an OwnerModel instance from a Snapshot.
   factory OwnerModel.fromSnapshot(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
     List<String> images = [];

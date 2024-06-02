@@ -1,11 +1,14 @@
 class InputValidators {
-  static String? validateEmpty(String fileName, String? value) {
+  /// Validate if the value is empty.
+  /// [fieldName]: The name of the field to be displayed in the error message.
+  static String? validateEmpty(String fieldName, String? value) {
     if (value == null || value.isEmpty) {
-      return '$fileName cannot be empty';
+      return '$fieldName cannot be empty';
     }
     return null;
   }
 
+  /// Validate if the value is a valid email format.
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Email cannot be empty';
@@ -15,6 +18,7 @@ class InputValidators {
     return null;
   }
 
+  /// Validate if the password meets the minimum length requirement.
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Password cannot be empty';
@@ -24,6 +28,7 @@ class InputValidators {
     return null;
   }
 
+  /// Validate if the phone number is in a valid format.
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'Phone number cannot be empty';

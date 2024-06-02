@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../controller/formater.dart';
 
+/// Model class representing a transaction.
 class TransactionModel {
   final String? id;
   final String bookingId;
@@ -14,6 +15,7 @@ class TransactionModel {
   final String status;
   final String paymentMethod;
 
+  /// Constructor for TransactionModel.
   TransactionModel({
     this.id,
     required this.bookingId,
@@ -27,6 +29,7 @@ class TransactionModel {
     required this.paymentMethod,
   });
 
+  /// Factory method to create a TransactionModel instance from JSON data.
   factory TransactionModel.fromJson(Map<String, dynamic> json, String id) {
     return TransactionModel(
       id: id,
@@ -42,6 +45,7 @@ class TransactionModel {
     );
   }
 
+  /// Factory method to create a TransactionModel instance from a document snapshot.
   factory TransactionModel.fromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
     return TransactionModel(
@@ -58,6 +62,7 @@ class TransactionModel {
     );
   }
 
+  /// Convert the TransactionModel instance to JSON format.
   Map<String, dynamic> toJson() {
     return {
       'bookingId': bookingId,
@@ -73,8 +78,10 @@ class TransactionModel {
   }
 }
 
+/// Enumeration representing transaction status.
 enum TransactionStatus { pending, completed, failed }
 
+/// Extension for TransactionStatus enum.
 extension TransactionStatusExtension on TransactionStatus {
   String get value {
     switch (this) {
@@ -88,8 +95,10 @@ extension TransactionStatusExtension on TransactionStatus {
   }
 }
 
+/// Enumeration representing payment method.
 enum PaymentMethod { cash, online, failed }
 
+/// Extension for PaymentMethod enum.
 extension PaymentMethodExtension on PaymentMethod {
   String get value {
     switch (this) {

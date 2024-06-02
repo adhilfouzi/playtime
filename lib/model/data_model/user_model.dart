@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../controller/formater.dart';
-import 'owner_model.dart';
 
+/// Model class representing a user.
 class UserModel {
   final String? id;
   final String name;
@@ -10,6 +10,7 @@ class UserModel {
   final String profile;
   final bool isUser;
 
+  /// Constructor for UserModel.
   UserModel({
     this.id,
     required this.name,
@@ -19,6 +20,7 @@ class UserModel {
     required this.isUser,
   });
 
+  /// Factory method to create a UserModel instance from JSON data.
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json["id"],
@@ -30,6 +32,7 @@ class UserModel {
     );
   }
 
+  /// Factory method to create an empty UserModel instance.
   factory UserModel.emptyUserModel() {
     return UserModel(
       id: '',
@@ -41,6 +44,7 @@ class UserModel {
     );
   }
 
+  /// Convert the UserModel instance to a map.
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -52,6 +56,7 @@ class UserModel {
     };
   }
 
+  /// Factory method to create a UserModel instance from a map.
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
@@ -63,6 +68,7 @@ class UserModel {
     );
   }
 
+  /// Convert the UserModel instance to JSON format.
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -74,15 +80,9 @@ class UserModel {
     };
   }
 
+  /// Factory method to create a UserModel instance from a document snapshot.
   factory UserModel.fromSnapshot(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-
-    List<OwnerModel> favouritesList = [];
-    if (data['favourite'] != null) {
-      data['favourite'].forEach((v) {
-        favouritesList.add(OwnerModel.fromJson(v));
-      });
-    }
 
     return UserModel(
       id: data['id'] ?? "N/A",
@@ -94,7 +94,9 @@ class UserModel {
     );
   }
 
+  /// Get formatted phone number.
   String get formattedPhoneNo => Formatter.formatPhoneNumber(number);
 
-  static List<String> nameParts(name) => name.split(' ');
+  /// Split name into parts.
+  static List<String> nameParts(String name) => name.split(' ');
 }
