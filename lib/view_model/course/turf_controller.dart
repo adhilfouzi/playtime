@@ -11,7 +11,6 @@ import '../../model/data_model/owner_model.dart';
 import '../../model/data_model/user_activity_model.dart';
 
 class TurfController extends GetxController {
-  // TurfController variables
   RxList<BookingModel> activeBookings = <BookingModel>[].obs;
   RxList<BookingModel> canceledBookings = <BookingModel>[].obs;
   RxList<BookingModel> completedBookings = <BookingModel>[].obs;
@@ -89,17 +88,19 @@ class TurfController extends GetxController {
     try {
       _errorMessageTurfs.value = '';
       _isLoadingTurfs.value = true;
+      log("fetch Turf List loading........");
       var turfList = await TurfRepository().fetchAllTurfDetails();
       _turfList.assignAll(turfList);
       var favourite = await ActivityRepository().fetchActivityDetails();
       var list = await ActivityRepository().findTrendingTurfs();
       _trendingTurfs.assignAll(list);
       _favouriteTurfList.value = favourite;
-      _isLoadingTurfs.value = false;
     } catch (e) {
       _errorMessageTurfs.value = 'Failed to fetch turf list: $e';
       log(e.toString());
+    } finally {
       _isLoadingTurfs.value = false;
+      log("fetch Turf List loading........end ");
     }
   }
 

@@ -6,9 +6,9 @@ import '../widget/search_field.dart';
 import '../widget/turflist.dart';
 
 class AllTurfList extends StatelessWidget {
-  final TurfController controller = Get.find();
+  final TurfController controller;
 
-  AllTurfList({super.key});
+  const AllTurfList({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

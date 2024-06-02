@@ -141,28 +141,6 @@ class TimePickerDialogBox extends StatelessWidget {
     }
   }
 
-  // TimeOfDay _calculateTime(int index) {
-  //   final selectedDate = booking.selectedDate.value;
-  //   final today = DateTime.now();
-  //   late final int startHour;
-  //   if (selectedDate.month == today.month &&
-  //       selectedDate.day == today.day &&
-  //       isOpening) {
-  //     startHour = today.hour + 1;
-  //     log("true");
-  //   } else {
-  //     log('false');
-  //     startHour = isOpening ? openingTime!.hour : openingTime!.hour + 1;
-  //   }
-  //   final startMinute = openingTime!.minute;
-  //   final totalMinutes = isOpening
-  //       ? (startHour * 60 + startMinute + index * 30) % (24 * 60)
-  //       : (startHour * 60 + startMinute + index * 60) % (24 * 60);
-  //   final hour = totalMinutes ~/ 60;
-  //   final minute = totalMinutes % 60;
-  //   return TimeOfDay(hour: hour, minute: minute);
-  // }
-
   List<TimeOfDay> _calculateTime() {
     final bookedSlot = booking.bookedSlot;
     int numSlots = _calculateItemCount();

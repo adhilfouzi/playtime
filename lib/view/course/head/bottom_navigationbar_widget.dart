@@ -21,20 +21,27 @@ class MyBottomNavigationBar extends StatefulWidget {
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _selectedIndex = 0;
 
-  final List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    AllTurfList(),
-    const MyBooking(),
-    const UserProfile(),
-  ];
-  final TurfController turf = Get.find();
-  final UserController user = Get.find();
+  late TurfController turf;
+  late UserController user;
+
+  late List<Widget> _widgetOptions;
+
   @override
   void initState() {
     super.initState();
-    turf.fetchTurfList();
-    turf.separateBookings();
-    user.getUserRecord();
+    turf = Get.find<TurfController>();
+    user = Get.find<UserController>();
+
+    // turf.fetchTurfList();
+    // turf.separateBookings();
+    // user.getUserRecord();
+
+    _widgetOptions = <Widget>[
+      HomeScreen(controller: turf),
+      AllTurfList(controller: turf),
+      const MyBooking(),
+      UserProfile(controller: user),
+    ];
   }
 
   @override
@@ -90,7 +97,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 800),
               tabBackgroundColor: Colors.grey[100]!,
-              // tabBorderRadius: 20,
             ),
           ),
         ),

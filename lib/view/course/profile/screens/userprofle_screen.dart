@@ -10,13 +10,13 @@ import '../../head/bottom_navigationbar_widget.dart';
 import 'edit_profile.dart';
 
 class UserProfile extends StatelessWidget {
-  const UserProfile({super.key});
+  final UserController controller;
+  const UserProfile({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final UserController controller = Get.find();
 
     return PopScope(
       canPop: false,

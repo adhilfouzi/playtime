@@ -7,18 +7,18 @@ import '../widget/premo_banner.dart';
 import '../widget/trending_section.dart';
 
 class HomeScreen extends StatelessWidget {
-  final TurfController controller = Get.find();
+  final TurfController controller;
 
-  HomeScreen({super.key});
-
-  Future<void> refresh() async {
-    await controller.refreshHomescreen();
-  }
+  const HomeScreen({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+
+    Future<void> refresh() async {
+      await controller.refreshHomescreen();
+    }
 
     return Scaffold(
       appBar: const HomeScreenAppBar(),
