@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:users_side_of_turf_booking/widget/const/colors.dart';
 
 import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/ads_controller.dart';
@@ -24,21 +25,22 @@ class PromoBanner extends StatelessWidget {
         child: Obx(() {
           if (adsController.adsModel.value.poster.isEmpty) {
             return Container(
-              color: Colors.yellowAccent,
+              color: CustomColor.slotavailable,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: height * 0.06,
+                    height: height * 0.08,
                     width: width * 0.6,
                     child: Image.asset(ImagePath.logo, fit: BoxFit.contain),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: height * 0.03),
                   const Text(
                     "Unleash Your Game, Secure Slot Reservation",
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       fontSize: 13,
                       fontWeight: FontWeight.w800,
                     ),
@@ -47,6 +49,7 @@ class PromoBanner extends StatelessWidget {
                   const Text(
                     "Your Premier Hub for Effortless Sports Reservations",
                     textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
