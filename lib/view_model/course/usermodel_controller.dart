@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:users_side_of_turf_booking/widget/const/colors.dart';
 import '../../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../model/controller/validator.dart';
@@ -72,48 +73,73 @@ class UserController extends GetxController {
     }
   }
 
-  Future<void> editUserDetail(
-    String title,
-  ) async {
+  Future<void> editUserDetail(String title) async {
     Get.defaultDialog(
       title: "Edit $title",
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-                label: Text(
-              title == "number" ? "Phone Number" : "Name",
-            )),
-            controller: title == "number" ? number : name,
-            validator: (value) => title == "number"
-                ? InputValidators.validatePhoneNumber(value)
-                : InputValidators.validateEmpty("Name", value),
-            keyboardType:
-                title == "number" ? TextInputType.number : TextInputType.text,
-            textInputAction: TextInputAction.done,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              TextButton(
-                onPressed: () async {
-                  title == "number"
-                      ? await updateUserField('number', number.text)
-                      : await updateUserField('name', name.text);
-
-                  Get.back();
-                },
-                child: const Text("Save"),
-              ),
-              TextButton(
-                onPressed: () => Get.back(),
-                child: const Text("Back"),
-              ),
-            ],
-          ),
-        ],
+      titleStyle: const TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: CustomColor.mainColor,
       ),
+      content: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: title == "Number" ? "Phone Number" : "Name",
+                labelStyle: const TextStyle(color: CustomColor.mainColor),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              controller: title == "Number" ? number : name,
+              validator: (value) => title == "number"
+                  ? InputValidators.validatePhoneNumber(value)
+                  : InputValidators.validateEmpty("Name", value),
+              keyboardType:
+                  title == "Number" ? TextInputType.number : TextInputType.text,
+              textInputAction: TextInputAction.done,
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: CustomColor.mainColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () async {
+                    title == "Number"
+                        ? await updateUserField('number', number.text)
+                        : await updateUserField('name', name.text);
+
+                    Get.back();
+                  },
+                  child: const Text(
+                    "Save",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Get.back(),
+                  child: const Text(
+                    "Back",
+                    style: TextStyle(color: CustomColor.mainColor),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: false,
+      backgroundColor: Colors.white,
+      radius: 12.0,
     );
   }
 }

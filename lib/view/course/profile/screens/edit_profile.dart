@@ -85,21 +85,21 @@ class EditUser extends StatelessWidget {
               SizedBox(height: screenHeight * 0.05),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    buildEditableField(
-                      label: 'Name',
-                      value: user.user.value.name,
-                      onEdit: () => user.editUserDetail('name'),
-                    ),
-                    SizedBox(height: screenHeight * 0.02),
-                    buildEditableField(
-                      label: 'Number',
-                      value: user.user.value.number,
-                      onEdit: () => user.editUserDetail('number'),
-                    ),
-                  ],
-                ),
+                child: Obx(() => Column(
+                      children: [
+                        buildEditableField(
+                          label: 'Name',
+                          value: user.user.value.name,
+                          onEdit: () => user.editUserDetail('Name'),
+                        ),
+                        SizedBox(height: screenHeight * 0.02),
+                        buildEditableField(
+                          label: 'Number',
+                          value: user.user.value.number,
+                          onEdit: () => user.editUserDetail('Number'),
+                        ),
+                      ],
+                    )),
               ),
             ],
           ),
