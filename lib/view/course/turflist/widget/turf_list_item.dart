@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../model/controller/formater.dart';
 import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/turf_controller.dart';
-import '../screens/view_turf_details.dart';
+import '../../view_turf/screen/view_turf_details.dart';
 
 class TurfListItem extends StatelessWidget {
   final String turfid;
