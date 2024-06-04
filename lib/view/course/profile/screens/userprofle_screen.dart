@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:users_side_of_turf_booking/view/course/profile/screens/sub_screen/about_screen.dart';
 
 import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/usermodel_controller.dart';
 import '../../../../view_model/course/profile_controlller.dart';
 import '../../head/bottom_navigationbar_widget.dart';
-import 'edit_profile.dart';
+import 'sub_screen/edit_profile_screen.dart';
 
 class UserProfile extends StatelessWidget {
   final UserController controller;
@@ -127,7 +128,9 @@ class UserProfile extends StatelessWidget {
                 ),
                 CustomButton(
                   text: 'About Us',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const AboutUsScreen());
+                  },
                 ),
                 CustomButton(
                   text: 'Log Out',
