@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../../../../model/controller/formater.dart';
-import '../../../../../../model/controller/url.dart';
-import '../../../../../../model/data_model/booking_model.dart';
-import '../../../../../../widget/appbar/titleonly_appbar.dart';
-import '../../../../../../widget/portion/button.dart';
-import 'detail_row_view_screen.dart';
+import '../../../model/controller/formater.dart';
+import '../../../model/controller/url.dart';
+import '../../../model/data_model/booking_model.dart';
+import '../../../widget/appbar/titleonly_appbar.dart';
+import '../../../widget/portion/button.dart';
+import '../../my_booking/widget/detail_row_view_screen.dart';
 
 class ViewBookingDetailsScreen extends StatelessWidget {
   final BookingModel booking;

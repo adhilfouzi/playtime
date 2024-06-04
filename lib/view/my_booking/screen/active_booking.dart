@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../widget/portion/button.dart';
-import '../../../../../../view_model/course/turf_controller.dart';
+import '../../../widget/portion/button.dart';
+import '../../../view_model/course/turf_controller.dart';
 import '../widget/booking_details.dart';
 import '../widget/view_booked_details.dart';
 

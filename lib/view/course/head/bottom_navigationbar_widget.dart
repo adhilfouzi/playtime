@@ -7,7 +7,7 @@ import '../../../widget/const/icons_image.dart';
 import '../../../view_model/course/turf_controller.dart';
 import '../../../view_model/course/usermodel_controller.dart';
 import '../home/screens/home_screen.dart';
-import '../mybooking/screens/show_booking/screen/mybooking_screen.dart';
+import '../../my_booking/screen/mybooking_screen.dart';
 import '../profile/screens/userprofle_screen.dart';
 import '../turflist/screens/all_turf_list_screen.dart';
 

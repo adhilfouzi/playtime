@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../view_model/course/turf_controller.dart';
+import '../../../view_model/course/turf_controller.dart';
 import '../widget/booking_details.dart';
 
-class CompletedBooking extends StatelessWidget {
-  const CompletedBooking({super.key});
-
+class CanceledBooking extends StatelessWidget {
+  const CanceledBooking({super.key});
   @override
   Widget build(BuildContext context) {
     final TurfController controller = Get.find();
     final height = MediaQuery.of(context).size.height;
-    final completedBookings = controller.completedBookings;
     final width = MediaQuery.of(context).size.width;
+    final canceledBookings = controller.canceledBookings;
     Future<void> refresh() async {
       await controller.separateBookings();
     }
@@ -27,7 +26,7 @@ class CompletedBooking extends StatelessWidget {
           child: Text(controller.errorMessageBookings),
         );
       } else {
-        if (completedBookings.isEmpty) {
+        if (canceledBookings.isEmpty) {
           return RefreshIndicator(
             onRefresh: refresh,
             child: SingleChildScrollView(
@@ -36,7 +35,7 @@ class CompletedBooking extends StatelessWidget {
                 height: MediaQuery.of(context).size.height - 200,
                 alignment: Alignment.center,
                 child: const Text(
-                  "No Completed bookings are available",
+                  "No Canceled bookings are available",
                   style: TextStyle(overflow: TextOverflow.ellipsis),
                 ),
               ),
@@ -46,7 +45,7 @@ class CompletedBooking extends StatelessWidget {
           return RefreshIndicator(
             onRefresh: refresh,
             child: ListView.builder(
-              itemCount: completedBookings.length,
+              itemCount: canceledBookings.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   elevation: 4,
@@ -59,15 +58,15 @@ class CompletedBooking extends StatelessWidget {
                     child: Column(
                       children: [
                         BookingDetails(
-                          turf: completedBookings[index],
+                          turf: canceledBookings[index],
                         ),
                         SizedBox(height: height * 0.02),
                         const Text(
-                          "Well Played floks",
+                          "Canceled this turf booking",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             fontSize: 15,
-                            color: Colors.green,
+                            color: Color.fromARGB(221, 255, 0, 0),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,

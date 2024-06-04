@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../widget/appbar/titleonly_appbar.dart';
-import '../../../../../../widget/portion/button.dart';
-import '../../../../../../model/controller/validator.dart';
-import '../../../../../../widget/portion/textfield.dart';
-import '../../../../../../view_model/course/booking_controller.dart';
+import '../../../widget/appbar/titleonly_appbar.dart';
+import '../../../widget/portion/button.dart';
+import '../../../model/controller/validator.dart';
+import '../../../widget/portion/textfield.dart';
+import '../../../view_model/course/booking_controller.dart';
 
 class BookingFormTwo extends StatelessWidget {
   final GlobalKey<FormState> _bookingFormKey = GlobalKey<FormState>();

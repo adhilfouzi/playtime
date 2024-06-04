@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../widget/appbar/titleonly_appbar.dart';
-import '../../../../../../view_model/course/booking_controller.dart';
+import '../../../widget/appbar/titleonly_appbar.dart';
+import '../../../view_model/course/booking_controller.dart';
 import '../widget/bottombar_bookingform.dart';
 import '../widget/content_bookingformone.dart';
 
