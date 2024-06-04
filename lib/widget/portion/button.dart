@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../view_model/onboarding/sign_controller.dart';
 import '../const/colors.dart';
 
 class Button {
@@ -159,7 +160,7 @@ class Button {
   Widget googleSignInButton(BuildContext context, bool isBlack) {
     return ElevatedButton(
       onPressed: () {
-        // _handleSignIn(context);
+        SigninController().gooogleSignin();
       },
       style: ElevatedButton.styleFrom(
         foregroundColor: isBlack ? Colors.white : Colors.black,

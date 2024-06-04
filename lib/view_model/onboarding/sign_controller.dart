@@ -26,4 +26,16 @@ class SigninController extends GetxController {
       log("SigninError");
     }
   }
+
+  void gooogleSignin() async {
+    Get.to(() => const LoadingPopup());
+    try {
+      await AuthenticationRepository().signInWithGoogle();
+      emailTextEditingController.clear();
+      passwordTextEditingController.clear();
+    } catch (e) {
+      CustomSnackbar.showError(e.toString());
+      log("gooogle Signin Error");
+    }
+  }
 }

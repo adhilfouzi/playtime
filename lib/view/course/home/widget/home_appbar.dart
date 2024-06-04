@@ -26,13 +26,13 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Hello ${controller.user.value.name}',
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Obx(() => Text(
+                    'Hello ${controller.user.value.name}',
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
               const Text(
                 'Be the best version of yourself',
                 style: TextStyle(
