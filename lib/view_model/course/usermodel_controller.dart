@@ -17,8 +17,6 @@ class UserController extends GetxController {
   void onReady() async {
     super.onReady();
     await getUserRecord();
-    name.text = user.value.name;
-    number.text = user.value.number;
   }
 
   Future<void> getUserRecord() async {
@@ -31,6 +29,8 @@ class UserController extends GetxController {
       if (authUser != null) {
         final userd = await userRepository.getUserById();
         user(userd);
+        name.text = user.value.name;
+        number.text = user.value.number;
       }
       log("getUserRecord");
     } catch (e) {
@@ -59,9 +59,14 @@ class UserController extends GetxController {
 
   Future<void> updateUserField(String fieldName, String value) async {
     try {
-      await UserRepository()
-          .updateSpecificField(fieldName: fieldName, value: value);
-      await getUserRecord();
+      if (value.isNotEmpty) {
+        await UserRepository()
+            .updateSpecificField(fieldName: fieldName, value: value);
+        await getUserRecord();
+      } else {
+        log('empty value');
+        return;
+      }
     } catch (e) {
       log("updateUserField $fieldName: $e");
     }
