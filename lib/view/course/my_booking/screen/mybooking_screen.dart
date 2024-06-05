@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../course/head/bottom_navigationbar_widget.dart';
-import '../../my_booking/widget/tab_bar.dart';
+import '../../head/bottom_navigationbar_widget.dart';
 import 'active_booking.dart';
 import 'canceled_booking.dart';
 import 'completed_booking.dart';
+import '../widget/tab_bar.dart';
 
 class MyBooking extends StatefulWidget {
   const MyBooking({super.key});

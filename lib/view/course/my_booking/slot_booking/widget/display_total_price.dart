@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../model/controller/formater.dart';
+import '../../../../../model/controller/formater.dart';
 
 class TotalPriceDisplay extends StatelessWidget {
   final double price;

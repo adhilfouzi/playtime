@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import '../../../model/controller/formater.dart';
-import '../../../widget/portion/snackbar.dart';
-import '../../../view_model/course/booking_controller.dart';
-import '../../slot_booking/widget/calender.dart';
+import '../../../../../model/controller/formater.dart';
+import '../../../../../widget/portion/snackbar.dart';
+import '../../../../../view_model/course/booking_controller.dart';
+import 'calender.dart';
 import 'display_total_price.dart';
 import 'time_picker_container.dart';
 import 'time_selection_container.dart';

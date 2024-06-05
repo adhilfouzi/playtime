@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../widget/const/colors.dart';
-import '../../../view_model/course/booking_controller.dart';
+import '../../../../../widget/const/colors.dart';
+import '../../../../../view_model/course/booking_controller.dart';
 
 class TimeSelector extends StatelessWidget {
   final String title;

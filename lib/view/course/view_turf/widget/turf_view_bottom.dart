@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../model/controller/url.dart';
 import '../../../../view_model/course/booking_controller.dart';
 import '../../../../widget/portion/button.dart';
-import '../../../slot_booking/screen/booking_form_one.dart.dart';
+import '../../my_booking/slot_booking/screen/booking_form_one.dart.dart';
 
 class TurfBottomBar extends StatelessWidget {
   final dynamic turf;

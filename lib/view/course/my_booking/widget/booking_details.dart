@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../model/data_model/booking_model.dart';
-import '../../../widget/const/image_name.dart';
+import '../../../../model/data_model/booking_model.dart';
+import '../../../../widget/const/image_name.dart';
 
 class BookingDetails extends StatelessWidget {
   final BookingModel turf;
