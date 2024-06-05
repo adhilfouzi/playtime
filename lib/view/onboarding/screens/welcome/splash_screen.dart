@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../model/backend/repositories/authentication/firebase_authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../model/backend/repositories/firestore/user_repositories.dart';
 import '../../../../widget/const/colors.dart';
 import '../../../../widget/const/image_name.dart';
 import '../../../../view_model/course/turf_controller.dart';
 import '../../../../view_model/course/usermodel_controller.dart';
 import 'welcome_screen.dart';
+import '../../../../view/course/head/bottom_navigationbar_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -34,10 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Your logo widget
             Image.asset(ImagePath.logo),
-
-            // Circular progress indicator
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.4,
             ),
@@ -49,20 +47,26 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-}
 
-Future<void> checkUserLoggedIn() async {
-  try {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final items = prefs.getStringList(logs);
-    if (items == null) {
+  Future<void> checkUserLoggedIn() async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
       await Future.delayed(const Duration(seconds: 2));
       Get.off(() => const WelcomeScreen());
     } else {
-      await AuthenticationRepository()
-          .signInWithEmailAndPassword(items[0], items[1]);
+      try {
+        final userDetails = await UserRepository().fetchUserdetails(user.uid);
+        if (userDetails.isUser) {
+          Get.off(() => const MyBottomNavigationBar());
+        } else {
+          await FirebaseAuth.instance.signOut();
+          Get.off(() => const WelcomeScreen());
+        }
+      } catch (e) {
+        log('Error querying the database: $e');
+        Get.off(() => const WelcomeScreen());
+      }
     }
-  } catch (e) {
-    log('Error querying the database: $e');
   }
 }

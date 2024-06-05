@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../model/backend/repositories/authentication/firebase_authentication.dart';
 import '../../model/controller/url.dart';
@@ -45,9 +44,7 @@ class ProfileController {
   static void logout() async {
     // Call the logout function from Firebase or any other authentication service
     try {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
       await AuthenticationRepository().userLogout();
-      await prefs.remove(logs);
       Get.offAll(() => LoginScreen());
     } catch (e) {
       log("Error during logout: $e");

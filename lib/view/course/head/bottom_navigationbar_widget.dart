@@ -32,10 +32,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     turf = Get.find<TurfController>();
     user = Get.find<UserController>();
 
-    // turf.fetchTurfList();
-    // turf.separateBookings();
-    // user.getUserRecord();
-
     _widgetOptions = <Widget>[
       HomeScreen(controller: turf),
       AllTurfList(controller: turf),
