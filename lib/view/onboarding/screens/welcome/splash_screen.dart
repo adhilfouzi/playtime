@@ -29,16 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height * 0.2;
     return Scaffold(
       backgroundColor: CustomColor.mainColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: height),
             Image.asset(ImagePath.logo),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.4,
-            ),
+            SizedBox(height: height),
             const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),

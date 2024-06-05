@@ -26,7 +26,7 @@ class SignupScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: height * 0.2,
+                  height: height * 0.3,
                   width: width,
                   child: Image.asset(ImagePath.logo),
                 ),

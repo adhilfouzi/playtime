@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../widget/const/icons_image.dart';
@@ -20,8 +19,11 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           AppIconConverter.fromAsset(
             AppIcons.handWave,
-            height: 30,
-            width: 30,
+            height: 40,
+            // width: 30,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.015,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,17 +46,17 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      actions: <Widget>[
-        InkWell(
-          child: SvgPicture.asset(AppIcons.notification),
-          onTap: () {
-            // Handle notification button press
-          },
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.height * 0.021,
-        )
-      ],
+      // actions: <Widget>[
+      //   InkWell(
+      //     child: SvgPicture.asset(AppIcons.notification),
+      //     onTap: () {
+      //       // Handle notification button press
+      //     },
+      //   ),
+      //   SizedBox(
+      //     width: MediaQuery.of(context).size.height * 0.021,
+      //   )
+      // ],
     );
   }
 }

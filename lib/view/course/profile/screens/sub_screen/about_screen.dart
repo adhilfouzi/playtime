@@ -17,33 +17,17 @@ class AboutUsScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            vertical: height * 0.02,
-            horizontal: width * 0.04,
-          ),
+              vertical: height * 0.02, horizontal: width * 0.04),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: height * 0.2),
-              // Centered logo with appropriate size
               Image.asset(
                 ImagePath.logo,
                 height: height * 0.2,
               ),
-              SizedBox(height: height * 0.2),
-
-              // App description with improved text styling
-              const Text(
-                'Welcome to Our App!',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              SizedBox(height: height * 0.05),
-
-              // Version info with clear styling
+              SizedBox(height: height * 0.4),
               FutureBuilder<PackageInfo>(
                 future: PackageInfo.fromPlatform(),
                 builder: (context, snapshot) {
@@ -56,11 +40,13 @@ class AboutUsScreen extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return Text('Version Loading...',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey[600],
-                        ));
+                    return Text(
+                      'Version Loading...',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey[600],
+                      ),
+                    );
                   }
                 },
               ),

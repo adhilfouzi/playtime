@@ -31,9 +31,8 @@ class PromoBanner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: height * 0.08,
-                    width: width * 0.6,
-                    child: Image.asset(ImagePath.logo, fit: BoxFit.contain),
+                    child: Image.asset(ImagePath.logo,
+                        height: height * 0.15, fit: BoxFit.contain),
                   ),
                   SizedBox(height: height * 0.03),
                   const Text(
@@ -72,7 +71,7 @@ class PromoBanner extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                       child: CachedNetworkImage(
                         imageUrl: url,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                         width: width,
                         placeholder: (context, url) => Shimmer.fromColors(
                           baseColor: Colors.grey[300]!,
