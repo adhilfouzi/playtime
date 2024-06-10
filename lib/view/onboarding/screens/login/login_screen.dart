@@ -23,9 +23,9 @@ class LoginScreen extends StatelessWidget {
         actions: [],
         titleText: 'Log in',
       ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: loginFormKey,
+      body: Form(
+        key: loginFormKey,
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -60,9 +60,9 @@ class LoginScreen extends StatelessWidget {
                 _controller.signIn();
               }),
               SizedBox(height: height * 0.025),
-              const Text('or'),
+              // const Text('or'),
               SizedBox(height: height * 0.025),
-              Button().googleSignInButton(context, false),
+              // Button().googleSignInButton(context, false),
               SizedBox(height: height * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                   const Text('Don’t have an account? '),
                   TextButton(
                     onPressed: () {
-                      Get.offAll(() => SignupScreen());
+                      Get.to(() => SignupScreen());
                     },
                     child: const Text('Sign up'),
                   ),

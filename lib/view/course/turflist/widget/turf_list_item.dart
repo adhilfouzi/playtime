@@ -11,9 +11,9 @@ class TurfListItem extends StatelessWidget {
   final String turfid;
 
   const TurfListItem({
-    Key? key,
+    super.key,
     required this.turfid,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
