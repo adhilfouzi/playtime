@@ -1,1 +1,31 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"turf-booking-application-spot","appId":"1:813888667559:android:d715dbf3fcd38bae23c082","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"turf-booking-application-spot","configurations":{"android":"1:813888667559:android:d715dbf3fcd38bae23c082","ios":"1:813888667559:ios:bed13f3679a17b2823c082","web":"1:813888667559:web:305cbac694b5315823c082"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "turf-booking-application-spot",
+          "appId": "1:813888667559:android:d715dbf3fcd38bae23c082",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "turf-booking-application-spot",
+          "configurations": {
+            "android": "1:813888667559:android:d715dbf3fcd38bae23c082",
+            "ios": "1:813888667559:ios:bed13f3679a17b2823c082",
+            "web": "1:813888667559:web:305cbac694b5315823c082"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -60,9 +60,9 @@ class LoginScreen extends StatelessWidget {
                 _controller.signIn();
               }),
               SizedBox(height: height * 0.025),
-              // const Text('or'),
+              const Text('or'),
               SizedBox(height: height * 0.025),
-              // Button().googleSignInButton(context, false),
+              Button().googleSignInButton(context, false),
               SizedBox(height: height * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
