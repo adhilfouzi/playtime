@@ -36,8 +36,10 @@ class _MyBookingState extends State<MyBooking> with TickerProviderStateMixin {
     final height = MediaQuery.of(context).size.height;
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) async {
-        Get.offAll(fullscreenDialog: true, const MyBottomNavigationBar());
+      onPopInvokedWithResult: (bool didPop, Object? result) {
+        if (didPop) {
+          Get.offAll(fullscreenDialog: true, const MyBottomNavigationBar());
+        }
       },
       child: Scaffold(
         appBar: AppBar(

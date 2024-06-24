@@ -13,8 +13,10 @@ class AllTurfList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (didPop) async {
-        Get.offAll(fullscreenDialog: true, const MyBottomNavigationBar());
+      onPopInvokedWithResult: (bool didPop, Object? result) {
+        if (didPop) {
+          Get.offAll(fullscreenDialog: true, const MyBottomNavigationBar());
+        }
       },
       canPop: false,
       child: Scaffold(

@@ -17,8 +17,10 @@ class UserProfile extends StatelessWidget {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) async {
-        Get.offAll(fullscreenDialog: true, const MyBottomNavigationBar());
+      onPopInvokedWithResult: (bool didPop, Object? result) {
+        if (didPop) {
+          Get.offAll(fullscreenDialog: true, const MyBottomNavigationBar());
+        }
       },
       child: SafeArea(
         child: Scaffold(
